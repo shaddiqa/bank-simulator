@@ -1,5 +1,7 @@
 package com.midtrans.bank.transaction;
 
+import org.jpos.iso.ISOMsg;
+import org.jpos.iso.ISOSource;
 import org.jpos.transaction.Context;
 
 import java.io.Serializable;
@@ -28,6 +30,12 @@ public class Send extends BankTxnSupport {
     }
 
     private void send(Context ctx) {
-
+        try {
+            ISOSource source = (ISOSource) ctx.get(SOURCE);
+            ISOMsg response = (ISOMsg) ctx.get(RESPONSE);
+            source.send(response);
+        } catch (Exception e) {
+            error(e);
+        }
     }
 }

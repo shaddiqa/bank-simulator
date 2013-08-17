@@ -8,4 +8,8 @@ package com.midtrans.bank;
  * To change this template use File | Settings | File Templates.
  */
 public interface BankConstants {
+    public static final String REQUEST  = "REQUEST";
+    public static final String RESPONSE = "RESPONSE";
+    public static final String SOURCE   = "SOURCE";
+    public static final String MTI      = "MTI";
 }
