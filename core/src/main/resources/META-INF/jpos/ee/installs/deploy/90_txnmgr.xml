@@ -1,0 +1,34 @@
+<txnmgr name="txnmgr" logger="Q2" class="org.jpos.transaction.TransactionManager">
+    <property name="space" value="tspace:default"/>
+    <property name="queue" value="MainQueue"/>
+    <property name="max-sessions" value="100"/>
+    <property name="debug" value="true"/>
+
+    <participant class="org.jpos.transaction.Debug" logger="Q2"/>
+
+    <participant class="com.midtrans.bank.core.transaction.SelectBank" logger="Q2">
+        <property name="6000018193" value="CardCheck Cimb"/>
+    </participant>
+
+    <group name="CardCheck">
+        <participant class="com.midtrans.bank.core.transaction.CardCheck" logger="Q2">
+            <property name="r00" value="4111111111111111"/>
+            <property name="r05" value="4545454545454545"/>
+        </participant>
+    </group>
+
+    <group name="Cimb">
+        <participant class="com.midtrans.bank.core.transaction.SelectTransaction" logger="Q2">
+            <property name="0200 000000" value="CimbSale"/>
+            <property name="0800 990000" value="CimbEcho"/>
+        </participant>
+    </group>
+
+    <group name="CimbSale">
+        <participant class="com.midtrans.bank.cimb.transaction.Sale" logger="Q2"/>
+    </group>
+
+    <group name="CimbEcho">
+        <participant class="com.midtrans.bank.cimb.transaction.Echo" logger="Q2"/>
+    </group>
+</txnmgr>

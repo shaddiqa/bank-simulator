@@ -1,0 +1,6 @@
+<module name="model">
+    <mappings>
+        <mapping resource="com/midtrans/bank/core/model/History.hbm.xml" />
+        <mapping resource="com/midtrans/bank/core/model/Transaction.hbm.xml" />
+    </mappings>
+</module>

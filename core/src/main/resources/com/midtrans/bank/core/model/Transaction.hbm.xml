@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.midtrans.bank.core.model.Transaction" table="transaction" catalog="bank">
+        <id name="id" type="java.lang.Long" column="id">
+            <generator class="identity" />
+        </id>
+        <property name="referenceNumber" type="string" column="nonce" length="64" not-null="true" unique="true"/>
+        <property name="command" type="string" column="command" length="20" not-null="true"/>
+        <property name="bank" type="string" column="bank" length="20" not-null="true"/>
+        <property name="mid" type="string" column="mid" length="20"/>
+        <property name="tid" type="string" column="mid" length="20"/>
+        <property name="traceNumber" type="java.lang.Integer">
+            <column name="trace_number" sql-type="SMALLINT" />
+        </property>
+        <property name="amount" type="java.lang.Long" column="amount" />
+        <property name="status" type="string" column="status" />
+        <property name="createdAt" type="java.util.Date">
+            <column name="created_at" sql-type="DATETIME" />
+        </property>
+    </class>
+</hibernate-mapping>
