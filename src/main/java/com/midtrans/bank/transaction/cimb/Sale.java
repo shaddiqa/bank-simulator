@@ -1,5 +1,6 @@
-package com.midtrans.bank.transaction;
+package com.midtrans.bank.transaction.cimb;
 
+import com.midtrans.bank.transaction.BankTxnSupport;
 import org.jpos.iso.ISODate;
 import org.jpos.iso.ISOMsg;
 import org.jpos.transaction.Context;
@@ -29,11 +30,11 @@ public class Sale extends BankTxnSupport {
 
         response.set(24, request.getString(24));
         response.set(37, Long.toHexString(System.currentTimeMillis()));
-        response.set(39, "00");
+        response.set(39, ctx.getString(RCODE, "00"));
         response.set(41, request.getString(41));
 
         ctx.put(RESPONSE, response);
 
-        return PREPARED | NO_JOIN;
+        return PREPARED;
     }
 }

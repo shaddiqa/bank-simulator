@@ -24,7 +24,8 @@ public class SelectTransaction implements GroupSelector, BankConstants, Configur
     public String select(long id, Serializable context) {
         Context ctx = (Context) context;
         String mti = ctx.getString(MTI);
-        return cfg.get(mti);
+        String pCode = ctx.getString(PCODE);
+        return cfg.get(mti + " " + pCode);
     }
 
     @Override

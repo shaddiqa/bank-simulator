@@ -1,10 +1,6 @@
-package com.midtrans.bank;
+package com.midtrans.bank.listener;
 
-import org.jpos.core.Configurable;
-import org.jpos.core.Configuration;
-import org.jpos.core.ConfigurationException;
 import org.jpos.iso.ISOMsg;
-import org.jpos.iso.ISORequestListener;
 import org.jpos.iso.ISOSource;
 import org.jpos.space.Space;
 import org.jpos.space.SpaceFactory;
@@ -14,13 +10,10 @@ import org.jpos.transaction.Context;
  * Created with IntelliJ IDEA.
  * User: shaddiqa
  * Date: 8/17/13
- * Time: 12:06 PM
+ * Time: 2:15 PM
  * To change this template use File | Settings | File Templates.
  */
-public class BankRequestListener implements ISORequestListener, Configurable, BankConstants {
-
-    Configuration cfg;
-
+public class CimbRequestListener extends BankRequestListener {
     @Override
     public boolean process(ISOSource source, ISOMsg request) {
         try {
@@ -28,18 +21,14 @@ public class BankRequestListener implements ISORequestListener, Configurable, Ba
             ctx.put(SOURCE, source);
             ctx.put(REQUEST, request);
             ctx.put(MTI, request.getMTI());
+            ctx.put(PCODE, request.getString(3));
 
             Space sp = SpaceFactory.getSpace();
-            sp.out("MainQueue", ctx);
+            sp.out("CimbQueue", ctx);
 
             return true;
         } catch (Exception e) {
             return false;
         }
-    }
-
-    @Override
-    public void setConfiguration(Configuration cfg) throws ConfigurationException {
-        this.cfg = cfg;
     }
 }
