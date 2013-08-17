@@ -21,15 +21,16 @@ public class CardCheck extends BankTxnSupport {
     @Override
     protected int doPrepare(long id, Context ctx) throws Exception {
         ISOMsg request = (ISOMsg) ctx.get(REQUEST);
+        if(request.hasField(2)) {
+            String cardNumber = request.getString(2);
 
-        String cardNumber = request.getString(2);
-
-        if(Arrays.asList(r00).contains(cardNumber)) {
-            ctx.put(RCODE, "00");
-        } else if(Arrays.asList(r05).contains(cardNumber)) {
-            ctx.put(RCODE, "05");
-        } else {
-            ctx.put(RCODE, "P5");
+            if(Arrays.asList(r00).contains(cardNumber)) {
+                ctx.put(RCODE, "00");
+            } else if(Arrays.asList(r05).contains(cardNumber)) {
+                ctx.put(RCODE, "05");
+            } else {
+                ctx.put(RCODE, "P5");
+            }
         }
 
         return PREPARED | NO_JOIN;
