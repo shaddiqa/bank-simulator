@@ -29,7 +29,7 @@ public class Transaction implements Serializable {
 
     private String status;
 
-    private Date createdAt;
+    private Date requestedAt;
 
     public Long getId() {
         return id;
@@ -103,11 +103,11 @@ public class Transaction implements Serializable {
         this.status = status;
     }
 
-    public Date getCreatedAt() {
-        return createdAt;
+    public Date getRequestedAt() {
+        return requestedAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
+    public void setRequestedAt(Date requestedAt) {
+        this.requestedAt = requestedAt;
     }
 }

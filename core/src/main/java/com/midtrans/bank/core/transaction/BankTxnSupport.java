@@ -1,6 +1,8 @@
 package com.midtrans.bank.core.transaction;
 
 import com.midtrans.bank.core.BankConstants;
+import org.hibernate.Transaction;
+import org.jpos.ee.DB;
 import org.jpos.iso.ISOMsg;
 import org.jpos.iso.ISOSource;
 import org.jpos.transaction.Context;
@@ -33,6 +35,20 @@ public abstract class BankTxnSupport extends TxnSupport implements BankConstants
             source.send(response);
         } catch (Exception e) {
             error(e);
+        }
+    }
+
+    protected void closeDB(Context ctx) {
+        DB db = (DB) ctx.get(DB);
+        if(db != null) {
+            Transaction tx = (Transaction) ctx.get(TX);
+            if(tx != null) {
+                try {
+                    tx.commit();
+                } catch (Exception e) {
+                    tx.rollback();
+                }
+            }
         }
     }
 }

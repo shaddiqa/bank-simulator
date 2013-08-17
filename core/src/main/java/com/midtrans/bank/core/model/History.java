@@ -1,6 +1,7 @@
 package com.midtrans.bank.core.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * Created with IntelliJ IDEA.
@@ -24,7 +25,7 @@ public class History implements Serializable {
 
     private String status;
 
-    private String requestedAt;
+    private Date requestedAt;
 
     public Long getId() {
         return id;
@@ -82,11 +83,11 @@ public class History implements Serializable {
         this.status = status;
     }
 
-    public String getRequestedAt() {
+    public Date getRequestedAt() {
         return requestedAt;
     }
 
-    public void setRequestedAt(String requestedAt) {
+    public void setRequestedAt(Date requestedAt) {
         this.requestedAt = requestedAt;
     }
 }

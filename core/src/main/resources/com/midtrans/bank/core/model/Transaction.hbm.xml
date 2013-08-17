@@ -16,8 +16,8 @@
         </property>
         <property name="amount" type="java.lang.Long" column="amount" />
         <property name="status" type="string" column="status" />
-        <property name="createdAt" type="java.util.Date">
-            <column name="created_at" sql-type="DATETIME" />
+        <property name="requestedAt" type="java.util.Date">
+            <column name="requested_at" sql-type="DATETIME" />
         </property>
     </class>
 </hibernate-mapping>
