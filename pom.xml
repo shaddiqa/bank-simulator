@@ -53,7 +53,17 @@
        </dependency>
    </dependencies>
 
-    <build>
+   <repositories>
+        <!-- jPOS Package -->
+        <repository>
+            <id>jpos</id>
+            <name>jPOS Central Repository</name>
+            <url>http://jpos.org/maven</url>
+            <layout>default</layout>
+        </repository>
+   </repositories>
+
+   <build>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -67,8 +77,7 @@
                         </goals>
                         <configuration>
                             <transformers>
-                                <transformer
-                                        implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                                     <mainClass>org.jpos.q2.Q2</mainClass>
                                 </transformer>
                             </transformers>
@@ -90,5 +99,5 @@
                 </configuration>
             </plugin>
         </plugins>
-    </build>
+   </build>
 </project>
