@@ -21,6 +21,7 @@
         <participant class="com.midtrans.bank.transaction.SelectTransaction" logger="Q2">
             <property name="0200 000000" value="CimbSale"/>
             <property name="0800 990000" value="CimbEcho"/>
+            <property name="0200 020000" value="CimbVoid"/>
         </participant>
     </group>
 
@@ -30,5 +31,9 @@
 
     <group name="CimbEcho">
         <participant class="com.midtrans.bank.transaction.cimb.Echo" logger="Q2"/>
+    </group>
+
+    <group name="CimbVoid">
+        <participant class="com.midtrans.bank.transaction.cimb.Void" logger="Q2"/>
     </group>
 </txnmgr>
