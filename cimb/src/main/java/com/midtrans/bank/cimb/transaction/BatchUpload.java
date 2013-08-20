@@ -1,6 +1,6 @@
-package com.midtrans.bank.transaction.cimb;
+package com.midtrans.bank.cimb.transaction;
 
-import com.midtrans.bank.transaction.BankTxnSupport;
+import com.midtrans.bank.core.transaction.BankTxnSupport;
 import org.jpos.iso.ISODate;
 import org.jpos.iso.ISOMsg;
 import org.jpos.transaction.Context;
