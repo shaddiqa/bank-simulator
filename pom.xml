@@ -4,100 +4,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>bank-simulator</groupId>
+    <groupId>com.midtrans.bank</groupId>
     <artifactId>bank-simulator</artifactId>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
-
-   <dependencies>
-       <dependency>
-           <groupId>org.jpos</groupId>
-           <artifactId>jpos</artifactId>
-           <version>1.9.0</version>
-           <exclusions>
-               <exclusion>
-                   <groupId>com.sleepycat</groupId>
-                   <artifactId>je</artifactId>
-               </exclusion>
-           </exclusions>
-       </dependency>
-
-       <dependency>
-           <groupId>com.sleepycat</groupId>
-           <artifactId>je</artifactId>
-           <version>5.0.73</version>
-       </dependency>
-
-       <dependency>
-           <groupId>org.jpos.ee</groupId>
-           <artifactId>jposee-dbsupport</artifactId>
-           <version>2.0.1-SNAPSHOT</version>
-       </dependency>
-
-       <dependency>
-           <groupId>org.jpos.ee</groupId>
-           <artifactId>jposee-server-simulator</artifactId>
-           <version>2.0.1-SNAPSHOT</version>
-       </dependency>
-
-       <dependency>
-           <groupId>org.jpos.ee</groupId>
-           <artifactId>jposee-txn</artifactId>
-           <version>2.0.1-SNAPSHOT</version>
-       </dependency>
-
-       <dependency>
-           <groupId>junit</groupId>
-           <artifactId>junit</artifactId>
-           <version>4.11</version>
-           <scope>test</scope>
-       </dependency>
-   </dependencies>
-
-   <repositories>
-        <!-- jPOS Package -->
-        <repository>
-            <id>jpos</id>
-            <name>jPOS Central Repository</name>
-            <url>http://jpos.org/maven</url>
-            <layout>default</layout>
-        </repository>
-   </repositories>
-
-   <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-shade-plugin</artifactId>
-
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>shade</goal>
-                        </goals>
-                        <configuration>
-                            <transformers>
-                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>org.jpos.q2.Q2</mainClass>
-                                </transformer>
-                            </transformers>
-                        </configuration>
-                    </execution>
-                </executions>
-
-                <configuration>
-                    <filters>
-                        <filter>
-                            <artifact>*:*</artifact>
-                            <excludes>
-                                <exclude>META-INF/*.SF</exclude>
-                                <exclude>META-INF/*.DSA</exclude>
-                                <exclude>META-INF/*.RSA</exclude>
-                            </excludes>
-                        </filter>
-                    </filters>
-                </configuration>
-            </plugin>
-        </plugins>
-   </build>
+    <modules>
+        <module>db</module>
+        <module>core</module>
+        <module>cimb</module>
+    </modules>
 </project>
