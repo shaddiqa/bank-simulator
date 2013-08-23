@@ -34,6 +34,7 @@ public class Void extends BankTxnSupport {
 
         response.set(24, request.getString(24));
         response.set(37, Long.toHexString(System.currentTimeMillis()));
+        response.set(38, "");
         response.set(39, ctx.getString(RCODE, "00"));
         response.set(41, request.getString(41));
 

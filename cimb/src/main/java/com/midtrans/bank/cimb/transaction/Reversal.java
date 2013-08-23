@@ -22,6 +22,7 @@ public class Reversal extends BankTxnSupport {
         ISOMsg response = new ISOMsg();
         response.setMTI("0410");
         response.set(3, request.getString(3));
+        response.set(4, Long.toString(0L));
         response.set(11, request.getString(11));
 
         Date now = new Date();
@@ -30,6 +31,7 @@ public class Reversal extends BankTxnSupport {
 
         response.set(24, request.getString(24));
         response.set(37, Long.toHexString(System.currentTimeMillis()));
+        response.set(38, "");
         response.set(39, "00");
         response.set(41, request.getString(41));
 

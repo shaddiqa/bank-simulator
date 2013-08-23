@@ -22,15 +22,12 @@ public class Echo extends BankTxnSupport {
         ISOMsg response = new ISOMsg();
         response.setMTI("0810");
         response.set(3, request.getString(3));
-        response.set(11, request.getString(11));
 
         Date now = new Date();
         response.set(12, ISODate.getTime(now));
         response.set(13, ISODate.getDate(now));
 
         response.set(24, request.getString(24));
-        response.set(37, Long.toHexString(System.currentTimeMillis()));
-        response.set(39, "00");
         response.set(41, request.getString(41));
 
         ctx.put(RESPONSE, response);
