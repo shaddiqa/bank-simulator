@@ -23,7 +23,7 @@ public class BatchUpload extends BankTxnSupport {
         //TODO Add database for better simulation
 
         ISOMsg response = new ISOMsg();
-        response.setMTI("0210");
+        response.setMTI("0330");
         response.set(3, request.getString(3));
         response.set(4, request.getString(4));
         response.set(11, request.getString(11));

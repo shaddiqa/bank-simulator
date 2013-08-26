@@ -21,6 +21,7 @@
         <participant class="com.midtrans.bank.core.transaction.SelectTransaction" logger="Q2">
             <property name="0200 000000" value="CimbSale"/>
             <property name="0200 020000" value="CimbVoid"/>
+            <property name="0320 000000" value="CimbBatch"/>
             <property name="0400 000000" value="CimbReversal"/>
             <property name="0400 020000" value="CimbReversal"/>
             <property name="0800 990000" value="CimbEcho"/>
@@ -33,6 +34,10 @@
 
     <group name="CimbVoid">
         <participant class="com.midtrans.bank.cimb.transaction.Void" logger="Q2"/>
+    </group>
+
+    <group name="CimbBatch">
+        <participant class="com.midtrans.bank.cimb.transaction.BatchUpload" logger="Q2"/>
     </group>
 
     <group name="CimbReversal">
