@@ -10,22 +10,19 @@ import java.util.Date;
 /**
  * Created with IntelliJ IDEA.
  * User: rolanfirwandy
- * Date: 8/20/13
- * Time: 11:25 AM
+ * Date: 8/30/13
+ * Time: 2:43 PM
  * To change this template use File | Settings | File Templates.
  */
-public class BatchUpload extends BankTxnSupport {
+public class Trailer extends BankTxnSupport {
 
     @Override
     protected int doPrepare(long id, Context ctx) throws Exception {
         ISOMsg request = (ISOMsg) ctx.get(REQUEST);
 
-        //TODO Add database for better simulation
-
         ISOMsg response = new ISOMsg();
-        response.setMTI("0330");
+        response.setMTI("0510");
         response.set(3, request.getString(3));
-        response.set(4, request.getString(4));
         response.set(11, request.getString(11));
 
         Date now = new Date();
