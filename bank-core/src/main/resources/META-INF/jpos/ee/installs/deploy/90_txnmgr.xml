@@ -31,7 +31,7 @@
     </group>
 
     <group name="CimbVoid">
-        <participant class="com.midtrans.bank.transaction.cimb.Void" logger="Q2"/>
+        <participant class="com.midtrans.bank.cimb.transaction.Void" logger="Q2"/>
     </group>
 
     <group name="CimbReversal">
