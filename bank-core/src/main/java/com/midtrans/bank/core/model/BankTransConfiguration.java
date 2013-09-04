@@ -1,5 +1,8 @@
 package com.midtrans.bank.core.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created with IntelliJ IDEA.
  * User: shaddiqa
@@ -8,7 +11,7 @@ package com.midtrans.bank.core.model;
  * To change this template use File | Settings | File Templates.
  */
 public class BankTransConfiguration {
-    private Long pkBankTransConf;
+    private Long id;
 
     private boolean active;
 
@@ -22,12 +25,14 @@ public class BankTransConfiguration {
 
     private Lookup lookupOfCommandType;
 
-    public Long getPkBankTransConf() {
-        return pkBankTransConf;
+    private List<BankTransConfiguration> bankTransConfigurations = new ArrayList<BankTransConfiguration>();
+
+    public Long getId() {
+        return id;
     }
 
-    public void setPkBankTransConf(Long pkBankTransConf) {
-        this.pkBankTransConf = pkBankTransConf;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public boolean isActive() {
@@ -76,5 +81,13 @@ public class BankTransConfiguration {
 
     public void setLookupOfCommandType(Lookup lookupOfCommandType) {
         this.lookupOfCommandType = lookupOfCommandType;
+    }
+
+    public List<BankTransConfiguration> getBankTransConfigurations() {
+        return bankTransConfigurations;
+    }
+
+    public void setBankTransConfigurations(List<BankTransConfiguration> bankTransConfigurations) {
+        this.bankTransConfigurations = bankTransConfigurations;
     }
 }

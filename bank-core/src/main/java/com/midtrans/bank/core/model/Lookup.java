@@ -8,7 +8,7 @@ package com.midtrans.bank.core.model;
  * To change this template use File | Settings | File Templates.
  */
 public class Lookup {
-    private Long pkLookup;
+    private Long id;
 
     private boolean active;
 
@@ -28,12 +28,12 @@ public class Lookup {
 
     private LookupGroup lookupGroup;
 
-    public Long getPkLookup() {
-        return pkLookup;
+    public Long getId() {
+        return id;
     }
 
-    public void setPkLookup(Long pkLookup) {
-        this.pkLookup = pkLookup;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public boolean isActive() {

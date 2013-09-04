@@ -8,7 +8,7 @@ package com.midtrans.bank.core.model;
  * To change this template use File | Settings | File Templates.
  */
 public class CommandTypeCondition {
-    private Long pkCommTypeCond;
+    private Long id;
 
     private boolean active;
 
@@ -18,12 +18,12 @@ public class CommandTypeCondition {
 
     private Lookup lookupOfConditionType;
 
-    public Long getPkCommTypeCond() {
-        return pkCommTypeCond;
+    public Long getId() {
+        return id;
     }
 
-    public void setPkCommTypeCond(Long pkCommTypeCond) {
-        this.pkCommTypeCond = pkCommTypeCond;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public boolean isActive() {

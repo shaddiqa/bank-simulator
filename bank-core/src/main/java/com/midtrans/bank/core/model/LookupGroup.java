@@ -1,5 +1,8 @@
 package com.midtrans.bank.core.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created with IntelliJ IDEA.
  * User: shaddiqa
@@ -8,7 +11,7 @@ package com.midtrans.bank.core.model;
  * To change this template use File | Settings | File Templates.
  */
 public class LookupGroup {
-    private Long pkLookupGroup;
+    private Long id;
 
     private boolean active;
 
@@ -20,12 +23,14 @@ public class LookupGroup {
 
     private boolean viewable;
 
-    public Long getPkLookupGroup() {
-        return pkLookupGroup;
+    private List<Lookup> lookups = new ArrayList<Lookup>();
+
+    public Long getId() {
+        return id;
     }
 
-    public void setPkLookupGroup(Long pkLookupGroup) {
-        this.pkLookupGroup = pkLookupGroup;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public boolean isActive() {
@@ -66,5 +71,13 @@ public class LookupGroup {
 
     public void setViewable(boolean viewable) {
         this.viewable = viewable;
+    }
+
+    public List<Lookup> getLookups() {
+        return lookups;
+    }
+
+    public void setLookups(List<Lookup> lookups) {
+        this.lookups = lookups;
     }
 }

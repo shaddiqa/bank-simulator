@@ -1,6 +1,8 @@
 package com.midtrans.bank.core.model;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -10,7 +12,7 @@ import java.util.Date;
  * To change this template use File | Settings | File Templates.
  */
 public class Card {
-    private Long pkCard;
+    private Long id;
 
     private boolean active;
 
@@ -24,12 +26,14 @@ public class Card {
 
     private Bank bank;
 
-    public Long getPkCard() {
-        return pkCard;
+    private List<CardRule> cardRules = new ArrayList<CardRule>();
+
+    public Long getId() {
+        return id;
     }
 
-    public void setPkCard(Long pkCard) {
-        this.pkCard = pkCard;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public boolean isActive() {
@@ -78,5 +82,13 @@ public class Card {
 
     public void setBank(Bank bank) {
         this.bank = bank;
+    }
+
+    public List<CardRule> getCardRules() {
+        return cardRules;
+    }
+
+    public void setCardRules(List<CardRule> cardRules) {
+        this.cardRules = cardRules;
     }
 }

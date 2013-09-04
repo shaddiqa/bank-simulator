@@ -8,22 +8,22 @@ package com.midtrans.bank.core.model;
  * To change this template use File | Settings | File Templates.
  */
 public class CardRule {
-    private Long pkCardRule;
+    private Long id;
 
     private String note;
 
-    private Long fkCard;
+    private Card card;
 
     private Lookup lookupOfCommandType;
 
     private Lookup lookupOfConditionType;
 
-    public Long getPkCardRule() {
-        return pkCardRule;
+    public Long getId() {
+        return id;
     }
 
-    public void setPkCardRule(Long pkCardRule) {
-        this.pkCardRule = pkCardRule;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getNote() {
@@ -34,12 +34,12 @@ public class CardRule {
         this.note = note;
     }
 
-    public Long getFkCard() {
-        return fkCard;
+    public Card getCard() {
+        return card;
     }
 
-    public void setFkCard(Long fkCard) {
-        this.fkCard = fkCard;
+    public void setCard(Card card) {
+        this.card = card;
     }
 
     public Lookup getLookupOfCommandType() {

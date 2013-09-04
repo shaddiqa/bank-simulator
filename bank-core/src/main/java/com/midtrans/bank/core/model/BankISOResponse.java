@@ -8,7 +8,7 @@ package com.midtrans.bank.core.model;
  * To change this template use File | Settings | File Templates.
  */
 public class BankISOResponse {
-    private Long pkBankISOResponse;
+    private Long id;
 
     private String description;
 
@@ -22,12 +22,12 @@ public class BankISOResponse {
 
     private CommandTypeCondition commandTypeCondition;
 
-    public Long getPkBankISOResponse() {
-        return pkBankISOResponse;
+    public Long getId() {
+        return id;
     }
 
-    public void setPkBankISOResponse(Long pkBankISOResponse) {
-        this.pkBankISOResponse = pkBankISOResponse;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getDescription() {
