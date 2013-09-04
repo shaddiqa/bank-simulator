@@ -1,4 +1,4 @@
-package com.midtrans.bank.db.dao;
+package com.midtrans.bank.logic.dao;
 
 import java.util.List;
 

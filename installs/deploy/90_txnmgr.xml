@@ -1,0 +1,9 @@
+<txnmgr name="txnmgr" logger="Q2" class="org.jpos.transaction.TransactionManager">
+    <property name="space" value="tspace:default"/>
+    <property name="queue" value="MainQueue"/>
+    <property name="max-sessions" value="100"/>
+    <property name="debug" value="true"/>
+
+    <participant class="org.jpos.transaction.Debug" logger="Q2"/>
+
+</txnmgr>

@@ -9,15 +9,20 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>bank-db</module>
+        <module>bank-logic</module>
         <module>bank-core</module>
         <module>bank-ws</module>
     </modules>
 
     <properties>
         <bank-core.version>1.0-SNAPSHOT</bank-core.version>
-        <bank-db.version>1.0-SNAPSHOT</bank-db.version>
+        <bank-logic.version>1.0-SNAPSHOT</bank-logic.version>
         <bank-ws.version>1.0-SNAPSHOT</bank-ws.version>
+
+        <hibernate.connection.url>jdbc:mysql://localhost:3306/peacock?autoReconnect=true</hibernate.connection.url>
+        <hibernate.connection.driver_class>com.mysql.jdbc.Driver</hibernate.connection.driver_class>
+        <hibernate.connection.username>root</hibernate.connection.username>
+        <hibernate.connection.password></hibernate.connection.password>
     </properties>
 
     <build>

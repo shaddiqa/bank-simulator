@@ -35,8 +35,8 @@
                             <artifactItems>
                                 <artifactItem>
                                     <groupId>com.midtrans.bank</groupId>
-                                    <artifactId>bank-db</artifactId>
-                                    <version>${bank-db.version}</version>
+                                    <artifactId>bank-logic</artifactId>
+                                    <version>${bank-logic.version}</version>
                                     <type>jar</type>
                                     <overWrite>true</overWrite>
                                     <outputDirectory>${project.parent.basedir}/target/deploy/lib/</outputDirectory>

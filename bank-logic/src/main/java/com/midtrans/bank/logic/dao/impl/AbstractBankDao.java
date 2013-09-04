@@ -1,6 +1,6 @@
-package com.midtrans.bank.db.dao.impl;
+package com.midtrans.bank.logic.dao.impl;
 
-import com.midtrans.bank.db.dao.BankDao;
+import com.midtrans.bank.logic.dao.BankDao;
 import org.hibernate.Criteria;
 import org.jpos.ee.DB;
 

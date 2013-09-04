@@ -1,4 +1,4 @@
-package com.midtrans.bank.db.dao.impl;
+package com.midtrans.bank.logic.dao.impl;
 
 import com.midtrans.bank.core.model.Transaction;
 import org.hibernate.Criteria;

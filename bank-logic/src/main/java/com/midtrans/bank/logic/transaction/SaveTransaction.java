@@ -1,7 +1,7 @@
-package com.midtrans.bank.db.transaction;
+package com.midtrans.bank.logic.transaction;
 
 import com.midtrans.bank.core.transaction.BankTxnSupport;
-import com.midtrans.bank.db.dao.impl.TransactionDao;
+import com.midtrans.bank.logic.dao.impl.TransactionDao;
 
 /**
  * Created with IntelliJ IDEA.
