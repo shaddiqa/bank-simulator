@@ -35,7 +35,7 @@ public class Transaction implements Serializable {
 
     private Lookup lookupOfCommandType;
 
-    private Lookup lookupOfTransactionStatus;
+    private Lookup lookupOfConditionType;
 
     public Long getId() {
         return id;
@@ -133,11 +133,11 @@ public class Transaction implements Serializable {
         this.lookupOfCommandType = lookupOfCommandType;
     }
 
-    public Lookup getLookupOfTransactionStatus() {
-        return lookupOfTransactionStatus;
+    public Lookup getLookupOfConditionType() {
+        return lookupOfConditionType;
     }
 
-    public void setLookupOfTransactionStatus(Lookup lookupOfTransactionStatus) {
-        this.lookupOfTransactionStatus = lookupOfTransactionStatus;
+    public void setLookupOfConditionType(Lookup lookupOfConditionType) {
+        this.lookupOfConditionType = lookupOfConditionType;
     }
 }

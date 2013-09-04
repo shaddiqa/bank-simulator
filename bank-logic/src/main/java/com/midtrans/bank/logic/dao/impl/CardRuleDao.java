@@ -1,18 +1,19 @@
 package com.midtrans.bank.logic.dao.impl;
 
-import com.midtrans.bank.core.model.Transaction;
+import com.midtrans.bank.core.model.CardRule;
 import org.jpos.ee.DB;
 
 /**
  * Created with IntelliJ IDEA.
  * User: shaddiqa
- * Date: 8/17/13
- * Time: 9:01 PM
+ * Date: 9/4/13
+ * Time: 2:38 PM
  * To change this template use File | Settings | File Templates.
  */
-public class TransactionDao extends AbstractBankDao<Transaction> {
+public class CardRuleDao extends AbstractBankDao<CardRule> {
 
-    public TransactionDao(DB db) {
+    public CardRuleDao(DB db) {
         super(db);
     }
+
 }

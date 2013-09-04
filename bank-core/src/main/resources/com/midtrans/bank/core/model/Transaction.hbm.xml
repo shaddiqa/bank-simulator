@@ -29,8 +29,8 @@
             <column name="fk_lookup_command_type"/>
         </many-to-one>
 
-        <many-to-one name="lookupOfTransactionStatus" class="com.midtrans.bank.core.model.Lookup" fetch="join">
-            <column name="fk_lookup_transaction_status"/>
+        <many-to-one name="lookupOfConditionType" class="com.midtrans.bank.core.model.Lookup" fetch="join">
+            <column name="fk_lookup_condition_type"/>
         </many-to-one>
     </class>
 </hibernate-mapping>

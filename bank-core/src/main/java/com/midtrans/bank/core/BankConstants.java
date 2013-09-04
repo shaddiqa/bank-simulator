@@ -8,19 +8,22 @@ package com.midtrans.bank.core;
  * To change this template use File | Settings | File Templates.
  */
 public interface BankConstants {
-    public static final String REQUEST      = "REQUEST";
-    public static final String RESPONSE     = "RESPONSE";
-    public static final String SOURCE       = "SOURCE";
-    public static final String HEADER       = "HEADER";
-    public static final String MTI          = "MTI";
-    public static final String PCODE        = "PCODE";
-    public static final String RCODE        = "RCODE";
-
-    public static final String COMMAND      = "COMMAND";
-    public static final String BANK         = "BANK";
-    public static final String MID          = "MID";
-    public static final String TID          = "TID";
-    public static final String TRACE_NUMBER = "TRACE_NUMBER";
-    public static final String STATUS       = "STATUS";
-    public static final String REQUESTED_AT = "REQUESTED_AT";
+    public static final String REQUEST              = "REQUEST";
+    public static final String RESPONSE             = "RESPONSE";
+    public static final String SOURCE               = "SOURCE";
+    public static final String HEADER               = "HEADER";
+    public static final String MTI                  = "MTI";
+    public static final String PCODE                = "PCODE";
+    public static final String AMOUNT               = "AMOUNT";
+    public static final String CARD_NUMBER          = "CARD_NUMBER";
+    public static final String CARD_EXPIRE          = "CARD_EXPIRE";
+    public static final String MID                  = "MID";
+    public static final String TID                  = "TID";
+    public static final String TRACE_NUMBER         = "TRACE_NUMBER";
+    public static final String TXN_TIME             = "TXN_TIME";
+    public static final String RCODE                = "RCODE";
+    public static final String REFERENCE_NUMBER     = "REFERENCE_NUMBER";
+    public static final String BANK                 = "BANK";
+    public static final String CONDITION_TYPE       = "CONDITION_TYPE";
+    public static final String COMMAND_TYPE         = "COMMAND_TYPE";
 }
