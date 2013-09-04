@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<dragon-rest class="com.midtrans.bank.ws.BankRest" logger="Q2" name="bank-rest">
+    <property name="port" value="8090"/>
+    <property name="contextPath" value="/rest"/>
+
+    <property name="packagesToScan" value="com.midtrans.bank.ws.controller.main"/>
+    <property name="pathSpec" value="/*"/>
+</dragon-rest>
