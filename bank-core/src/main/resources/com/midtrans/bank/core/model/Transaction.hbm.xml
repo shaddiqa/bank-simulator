@@ -3,21 +3,34 @@
         "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
     <class name="com.midtrans.bank.core.model.Transaction" table="transaction" catalog="bank">
-        <id name="id" type="java.lang.Long" column="id">
+        <id name="id" type="java.lang.Long" column="pk_transaction">
             <generator class="identity" />
         </id>
-        <property name="referenceNumber" type="string" column="nonce" length="64" not-null="true" unique="true"/>
-        <property name="command" type="string" column="command" length="20" not-null="true"/>
-        <property name="bank" type="string" column="bank" length="20" not-null="true"/>
-        <property name="mid" type="string" column="mid" length="20"/>
-        <property name="tid" type="string" column="mid" length="20"/>
+        <property name="amount" type="java.lang.Long" column="amount"/>
+        <property name="mid" type="string" column="mid"/>
+        <property name="tid" type="string" column="tid"/>
+        <property name="tid" type="string" column="tid"/>
         <property name="traceNumber" type="java.lang.Integer">
-            <column name="trace_number" sql-type="SMALLINT" />
+            <column name="trace_number" sql-type="SMALLINT"/>
         </property>
-        <property name="amount" type="java.lang.Long" column="amount" />
-        <property name="status" type="string" column="status" />
-        <property name="requestedAt" type="java.util.Date">
-            <column name="requested_at" sql-type="DATETIME" />
+        <property name="cardNumber" type="string" column="card_number"/>
+        <property name="cardExpire" type="string" column="card_expire"/>
+        <property name="txnTime" type="java.util.Date">
+            <column name="txn_time" sql-type="DATETIME"/>
         </property>
+        <property name="referenceNumber" type="string" column="reference_number" not-null="true" unique="true"/>
+        <property name="responseCode" type="string" column="response_code"/>
+
+        <many-to-one name="bank" class="com.midtrans.bank.core.model.Bank" fetch="join">
+            <column name="fk_bank"/>
+        </many-to-one>
+
+        <many-to-one name="lookupOfCommandType" class="com.midtrans.bank.core.model.Lookup" fetch="join">
+            <column name="fk_lookup_command_type"/>
+        </many-to-one>
+
+        <many-to-one name="lookupOfTransactionStatus" class="com.midtrans.bank.core.model.Lookup" fetch="join">
+            <column name="fk_lookup_transaction_status"/>
+        </many-to-one>
     </class>
 </hibernate-mapping>

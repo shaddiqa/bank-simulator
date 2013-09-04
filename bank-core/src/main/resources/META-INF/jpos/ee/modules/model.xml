@@ -1,5 +1,13 @@
 <module name="model">
     <mappings>
+        <mapping resource="com/midtrans/bank/core/model/Bank.hbm.xml" />
+        <mapping resource="com/midtrans/bank/core/model/BankISOResponse.hbm.xml" />
+        <mapping resource="com/midtrans/bank/core/model/BankTransConfiguration.hbm.xml" />
+        <mapping resource="com/midtrans/bank/core/model/Card.hbm.xml" />
+        <mapping resource="com/midtrans/bank/core/model/CardRule.hbm.xml" />
+        <mapping resource="com/midtrans/bank/core/model/CommandTypeCondition.hbm.xml" />
+        <mapping resource="com/midtrans/bank/core/model/Lookup.hbm.xml" />
+        <mapping resource="com/midtrans/bank/core/model/LookupGroup.hbm.xml" />
         <mapping resource="com/midtrans/bank/core/model/Transaction.hbm.xml" />
     </mappings>
 </module>

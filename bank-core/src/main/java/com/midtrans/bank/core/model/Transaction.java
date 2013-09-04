@@ -13,9 +13,7 @@ import java.util.Date;
 public class Transaction implements Serializable {
     private Long id;
 
-    private String command;
-
-    private String bank;
+    private Long amount;
 
     private String mid;
 
@@ -23,13 +21,21 @@ public class Transaction implements Serializable {
 
     private Integer traceNumber;
 
+    private String cardNumber;
+
+    private String cardExpire;
+
+    private Date txnTime;
+
     private String referenceNumber;
 
-    private Long amount;
+    private String responseCode;
 
-    private String status;
+    private Bank bank;
 
-    private Date requestedAt;
+    private Lookup lookupOfCommandType;
+
+    private Lookup lookupOfTransactionStatus;
 
     public Long getId() {
         return id;
@@ -37,22 +43,6 @@ public class Transaction implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getCommand() {
-        return command;
-    }
-
-    public void setCommand(String command) {
-        this.command = command;
-    }
-
-    public String getBank() {
-        return bank;
-    }
-
-    public void setBank(String bank) {
-        this.bank = bank;
     }
 
     public String getMid() {
@@ -71,12 +61,44 @@ public class Transaction implements Serializable {
         this.tid = tid;
     }
 
+    public Long getAmount() {
+        return amount;
+    }
+
+    public void setAmount(Long amount) {
+        this.amount = amount;
+    }
+
     public Integer getTraceNumber() {
         return traceNumber;
     }
 
     public void setTraceNumber(Integer traceNumber) {
         this.traceNumber = traceNumber;
+    }
+
+    public String getCardNumber() {
+        return cardNumber;
+    }
+
+    public void setCardNumber(String cardNumber) {
+        this.cardNumber = cardNumber;
+    }
+
+    public String getCardExpire() {
+        return cardExpire;
+    }
+
+    public void setCardExpire(String cardExpire) {
+        this.cardExpire = cardExpire;
+    }
+
+    public Date getTxnTime() {
+        return txnTime;
+    }
+
+    public void setTxnTime(Date txnTime) {
+        this.txnTime = txnTime;
     }
 
     public String getReferenceNumber() {
@@ -87,27 +109,35 @@ public class Transaction implements Serializable {
         this.referenceNumber = referenceNumber;
     }
 
-    public Long getAmount() {
-        return amount;
+    public String getResponseCode() {
+        return responseCode;
     }
 
-    public void setAmount(Long amount) {
-        this.amount = amount;
+    public void setResponseCode(String responseCode) {
+        this.responseCode = responseCode;
     }
 
-    public String getStatus() {
-        return status;
+    public Bank getBank() {
+        return bank;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setBank(Bank bank) {
+        this.bank = bank;
     }
 
-    public Date getRequestedAt() {
-        return requestedAt;
+    public Lookup getLookupOfCommandType() {
+        return lookupOfCommandType;
     }
 
-    public void setRequestedAt(Date requestedAt) {
-        this.requestedAt = requestedAt;
+    public void setLookupOfCommandType(Lookup lookupOfCommandType) {
+        this.lookupOfCommandType = lookupOfCommandType;
+    }
+
+    public Lookup getLookupOfTransactionStatus() {
+        return lookupOfTransactionStatus;
+    }
+
+    public void setLookupOfTransactionStatus(Lookup lookupOfTransactionStatus) {
+        this.lookupOfTransactionStatus = lookupOfTransactionStatus;
     }
 }

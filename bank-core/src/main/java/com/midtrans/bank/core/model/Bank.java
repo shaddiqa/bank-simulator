@@ -27,6 +27,8 @@ public class Bank {
 
     private List<BankTransConfiguration> bankTransConfigurations = new ArrayList<BankTransConfiguration>();
 
+    private List<Transaction> transactions = new ArrayList<Transaction>();
+
     public Long getId() {
         return id;
     }
@@ -89,5 +91,13 @@ public class Bank {
 
     public void setBankTransConfigurations(List<BankTransConfiguration> bankTransConfigurations) {
         this.bankTransConfigurations = bankTransConfigurations;
+    }
+
+    public List<Transaction> getTransactions() {
+        return transactions;
+    }
+
+    public void setTransactions(List<Transaction> transactions) {
+        this.transactions = transactions;
     }
 }
