@@ -9,7 +9,6 @@
         <property name="amount" type="java.lang.Long" column="amount"/>
         <property name="mid" type="string" column="mid"/>
         <property name="tid" type="string" column="tid"/>
-        <property name="tid" type="string" column="tid"/>
         <property name="traceNumber" type="java.lang.Integer">
             <column name="trace_number" sql-type="SMALLINT"/>
         </property>

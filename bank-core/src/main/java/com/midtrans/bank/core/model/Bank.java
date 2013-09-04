@@ -1,7 +1,7 @@
 package com.midtrans.bank.core.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created with IntelliJ IDEA.
@@ -23,11 +23,9 @@ public class Bank {
 
     private String port;
 
-    private List<Card> cards = new ArrayList<Card>();
+    private Set<Card> cards = new HashSet<Card>();
 
-    private List<BankTransConfiguration> bankTransConfigurations = new ArrayList<BankTransConfiguration>();
-
-    private List<Transaction> transactions = new ArrayList<Transaction>();
+    private Set<BankTransConfiguration> bankTransConfigurations = new HashSet<BankTransConfiguration>();
 
     public Long getId() {
         return id;
@@ -77,27 +75,19 @@ public class Bank {
         this.port = port;
     }
 
-    public List getCards() {
+    public Set<Card> getCards() {
         return cards;
     }
 
-    public void setCards(List<Card> cards) {
+    public void setCards(Set<Card> cards) {
         this.cards = cards;
     }
 
-    public List<BankTransConfiguration> getBankTransConfigurations() {
+    public Set<BankTransConfiguration> getBankTransConfigurations() {
         return bankTransConfigurations;
     }
 
-    public void setBankTransConfigurations(List<BankTransConfiguration> bankTransConfigurations) {
+    public void setBankTransConfigurations(Set<BankTransConfiguration> bankTransConfigurations) {
         this.bankTransConfigurations = bankTransConfigurations;
-    }
-
-    public List<Transaction> getTransactions() {
-        return transactions;
-    }
-
-    public void setTransactions(List<Transaction> transactions) {
-        this.transactions = transactions;
     }
 }

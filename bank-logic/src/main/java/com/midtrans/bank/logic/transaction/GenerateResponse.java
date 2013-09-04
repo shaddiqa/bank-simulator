@@ -1,7 +1,6 @@
 package com.midtrans.bank.logic.transaction;
 
 import com.midtrans.bank.core.model.BankISOResponse;
-import com.midtrans.bank.core.model.CommandTypeCondition;
 import com.midtrans.bank.core.transaction.BankTxnSupport;
 import org.jpos.iso.ISODate;
 import org.jpos.iso.ISOMsg;
@@ -20,11 +19,10 @@ import java.util.List;
 public class GenerateResponse extends BankTxnSupport {
     @Override
     protected int doPrepare(long id, Context ctx) throws Exception {
-        CommandTypeCondition ctc = (CommandTypeCondition) ctx.get(CTC);
         ISOMsg request = (ISOMsg) ctx.get(REQUEST);
         Date now = new Date();
 
-        List<BankISOResponse> birs = ctc.getBankISOResponses();
+        List<BankISOResponse> birs = (List<BankISOResponse>) ctx.get(BIRS);
 
         ISOMsg response = new ISOMsg();
         response.setMTI(responseMTI(ctx.getString(MTI)));
@@ -48,9 +46,16 @@ public class GenerateResponse extends BankTxnSupport {
             }
         }
 
-        ctx.put(RCODE, response.getString(39));
-        ctx.put(REFERENCE_NUMBER, response.getString(37));
-        ctx.put(TXN_TIME, ISODate.parseISODate(response.getString(13) + response.getString(12)));
+        if(response.hasField(39)) {
+            ctx.put(RCODE, response.getString(39));
+        }
+        if(response.hasField(37)) {
+            ctx.put(REFERENCE_NUMBER, response.getString(37));
+        }
+
+        if(response.hasField(13) && response.hasField(12)) {
+            ctx.put(TXN_TIME, ISODate.parseISODate(response.getString(13) + response.getString(12)));
+        }
         ctx.put(RESPONSE, response);
 
         return PREPARED | NO_JOIN;

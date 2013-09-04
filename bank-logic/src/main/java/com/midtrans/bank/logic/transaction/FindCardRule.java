@@ -19,7 +19,7 @@ public class FindCardRule extends BankTxnSupport {
 
     @Override
     protected int doPrepare(long id, Context ctx) throws Exception {
-        DB db = getDB(ctx);
+        DB db = openDB(ctx);
 
         dao = new CardRuleDao(db);
 
@@ -31,6 +31,7 @@ public class FindCardRule extends BankTxnSupport {
 
         ctx.put(CR, cr);
 
+        closeDB(ctx);
         return PREPARED | NO_JOIN;
     }
 }

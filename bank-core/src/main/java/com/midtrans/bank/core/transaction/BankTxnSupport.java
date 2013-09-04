@@ -37,6 +37,18 @@ public abstract class BankTxnSupport extends TxnSupport implements BankConstants
         }
     }
 
+    protected DB openDB(Context ctx) {
+        DB db = (DB) ctx.get(DB);
+        if(db == null) {
+            db = new DB();
+            db.open();
+            Transaction txn = db.beginTransaction();
+            ctx.put(DB,db);
+            ctx.put(TX,txn);
+        }
+        return db;
+    }
+
     protected void closeDB(Context ctx) {
         DB db = (DB) ctx.get(DB);
         if(db != null) {
@@ -48,6 +60,10 @@ public abstract class BankTxnSupport extends TxnSupport implements BankConstants
                     tx.rollback();
                 }
             }
+            db.close();
         }
+
+        ctx.remove(DB);
+        ctx.remove(TX);
     }
 }

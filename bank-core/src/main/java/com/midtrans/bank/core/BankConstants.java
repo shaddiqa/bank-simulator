@@ -26,4 +26,5 @@ public interface BankConstants {
     public static final String BTC                  = "BTC";
     public static final String CR                   = "CR";
     public static final String CTC                  = "CTC";
+    public static final String BIRS                 = "BIRS";
 }

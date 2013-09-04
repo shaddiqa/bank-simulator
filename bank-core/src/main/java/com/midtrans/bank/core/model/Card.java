@@ -1,8 +1,8 @@
 package com.midtrans.bank.core.model;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created with IntelliJ IDEA.
@@ -26,7 +26,7 @@ public class Card {
 
     private Bank bank;
 
-    private List<CardRule> cardRules = new ArrayList<CardRule>();
+    private Set<CardRule> cardRules = new HashSet<CardRule>();
 
     public Long getId() {
         return id;
@@ -84,11 +84,11 @@ public class Card {
         this.bank = bank;
     }
 
-    public List<CardRule> getCardRules() {
+    public Set<CardRule> getCardRules() {
         return cardRules;
     }
 
-    public void setCardRules(List<CardRule> cardRules) {
+    public void setCardRules(Set<CardRule> cardRules) {
         this.cardRules = cardRules;
     }
 }

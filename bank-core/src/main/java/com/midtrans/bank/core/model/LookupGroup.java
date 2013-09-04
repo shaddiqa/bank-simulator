@@ -1,7 +1,7 @@
 package com.midtrans.bank.core.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created with IntelliJ IDEA.
@@ -23,7 +23,7 @@ public class LookupGroup {
 
     private boolean viewable;
 
-    private List<Lookup> lookups = new ArrayList<Lookup>();
+    private Set<Lookup> lookups = new HashSet<Lookup>();
 
     public Long getId() {
         return id;
@@ -73,11 +73,11 @@ public class LookupGroup {
         this.viewable = viewable;
     }
 
-    public List<Lookup> getLookups() {
+    public Set<Lookup> getLookups() {
         return lookups;
     }
 
-    public void setLookups(List<Lookup> lookups) {
+    public void setLookups(Set<Lookup> lookups) {
         this.lookups = lookups;
     }
 }

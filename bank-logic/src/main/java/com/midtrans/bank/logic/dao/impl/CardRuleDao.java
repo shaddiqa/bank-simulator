@@ -23,7 +23,6 @@ public class CardRuleDao extends AbstractBankDao<CardRule> {
         Criteria criteria = db.session().createCriteria(domainClass);
 
         criteria.createAlias("card", "c")
-                .createAlias("lookupOfConditionType", "lcond")
                 .add(Restrictions.eq("c.bank", btc.getBank()))
                 .add(Restrictions.eq("c.cardNo", cardNumber))
                 .add(Restrictions.eq("c.cardExpire", cardExpire))

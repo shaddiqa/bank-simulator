@@ -1,7 +1,7 @@
 package com.midtrans.bank.core.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created with IntelliJ IDEA.
@@ -21,7 +21,7 @@ public class CommandTypeCondition {
 
     private Lookup lookupOfConditionType;
 
-    private List<BankISOResponse> bankISOResponses = new ArrayList<BankISOResponse>();
+    private Set<BankISOResponse> bankISOResponses = new HashSet<BankISOResponse>();
 
     public Long getId() {
         return id;
@@ -63,11 +63,11 @@ public class CommandTypeCondition {
         this.lookupOfConditionType = lookupOfConditionType;
     }
 
-    public List<BankISOResponse> getBankISOResponses() {
+    public Set<BankISOResponse> getBankISOResponses() {
         return bankISOResponses;
     }
 
-    public void setBankISOResponses(List<BankISOResponse> bankISOResponses) {
+    public void setBankISOResponses(Set<BankISOResponse> bankISOResponses) {
         this.bankISOResponses = bankISOResponses;
     }
 }

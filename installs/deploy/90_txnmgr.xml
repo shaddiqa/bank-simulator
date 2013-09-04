@@ -6,15 +6,17 @@
 
     <participant class="org.jpos.transaction.Debug" logger="Q2"/>
 
-    <participant class="com.midtrans.bank.logic.transaction.StartTransaction"/>
+    <participant class="com.midtrans.bank.logic.transaction.StartTransaction" logger="Q2"/>
 
-    <participant class="com.midtrans.bank.logic.transaction.FindBankTransConfiguration"/>
+    <participant class="com.midtrans.bank.logic.transaction.FindBankTransConfiguration" logger="Q2"/>
 
-    <participant class="com.midtrans.bank.logic.transaction.FindCardRule"/>
+    <participant class="com.midtrans.bank.logic.transaction.FindCardRule" logger="Q2"/>
 
-    <participant class="com.midtrans.bank.logic.transaction.FindCommandTypeCondition"/>
+    <participant class="com.midtrans.bank.logic.transaction.FindCommandTypeCondition" logger="Q2"/>
 
-    <participant class="com.midtrans.bank.logic.transaction.GenerateResponse"/>
+    <participant class="com.midtrans.bank.logic.transaction.FindBankISOResponses" logger="Q2"/>
 
-    <participant class="com.midtrans.bank.logic.transaction.EndTransaction"/>
+    <participant class="com.midtrans.bank.logic.transaction.GenerateResponse" logger="Q2"/>
+
+    <participant class="com.midtrans.bank.logic.transaction.EndTransaction" logger="Q2"/>
 </txnmgr>

@@ -18,7 +18,7 @@ public class FindBankTransConfiguration extends BankTxnSupport {
 
     @Override
     protected int doPrepare(long id, Context ctx) throws Exception {
-        DB db = getDB(ctx);
+        DB db = openDB(ctx);
 
         dao = new BankTransConfigurationDao(db);
 
@@ -30,6 +30,7 @@ public class FindBankTransConfiguration extends BankTxnSupport {
 
         ctx.put(BTC, btc);
 
+        closeDB(ctx);
         return PREPARED | NO_JOIN;
     }
 }

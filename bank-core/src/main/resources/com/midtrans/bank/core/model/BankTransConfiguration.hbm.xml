@@ -23,7 +23,7 @@
 
         <set name="commandTypeConditions" table="command_type_condition" inverse="true" lazy="true" fetch="join">
             <key>
-                <column name="pk_bank_trans_conf" not-null="true"/>
+                <column name="pk_comm_type_cond" not-null="true"/>
             </key>
             <one-to-many class="com.midtrans.bank.core.model.CommandTypeCondition"/>
         </set>

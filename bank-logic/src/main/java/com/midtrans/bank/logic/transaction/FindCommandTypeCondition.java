@@ -24,7 +24,7 @@ public class FindCommandTypeCondition extends BankTxnSupport {
 
     @Override
     protected int doPrepare(long id, Context ctx) throws Exception {
-        DB db = getDB(ctx);
+        DB db = openDB(ctx);
 
         dao = new CommandTypeConditionDao(db);
 
@@ -32,6 +32,8 @@ public class FindCommandTypeCondition extends BankTxnSupport {
         CardRule rc = (CardRule) ctx.get(CR);
 
         CommandTypeCondition ctc = dao.findBy(btc, rc);
+
+        ctx.put(CTC, ctc);
 
         String conditionType = ctc.getLookupOfConditionType().getName();
 
@@ -41,8 +43,7 @@ public class FindCommandTypeCondition extends BankTxnSupport {
             Thread.sleep(5000L);
         }
 
-        ctx.put(CTC, ctc);
-
+        closeDB(ctx);
         return PREPARED | NO_JOIN;
     }
 }
