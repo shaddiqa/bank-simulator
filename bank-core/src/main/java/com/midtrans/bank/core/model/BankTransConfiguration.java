@@ -25,7 +25,7 @@ public class BankTransConfiguration {
 
     private Lookup lookupOfCommandType;
 
-    private List<BankTransConfiguration> bankTransConfigurations = new ArrayList<BankTransConfiguration>();
+    private List<CommandTypeCondition> commandTypeConditions = new ArrayList<CommandTypeCondition>();
 
     public Long getId() {
         return id;
@@ -83,11 +83,11 @@ public class BankTransConfiguration {
         this.lookupOfCommandType = lookupOfCommandType;
     }
 
-    public List<BankTransConfiguration> getBankTransConfigurations() {
-        return bankTransConfigurations;
+    public List<CommandTypeCondition> getCommandTypeConditions() {
+        return commandTypeConditions;
     }
 
-    public void setBankTransConfigurations(List<BankTransConfiguration> bankTransConfigurations) {
-        this.bankTransConfigurations = bankTransConfigurations;
+    public void setCommandTypeConditions(List<CommandTypeCondition> commandTypeConditions) {
+        this.commandTypeConditions = commandTypeConditions;
     }
 }

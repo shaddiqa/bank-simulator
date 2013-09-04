@@ -1,7 +1,7 @@
 package com.midtrans.bank.logic.transaction;
 
-import com.midtrans.bank.core.model.Bank;
-import com.midtrans.bank.core.model.Lookup;
+import com.midtrans.bank.core.model.BankTransConfiguration;
+import com.midtrans.bank.core.model.CardRule;
 import com.midtrans.bank.core.model.Transaction;
 import com.midtrans.bank.core.transaction.BankTxnSupport;
 import com.midtrans.bank.logic.dao.impl.TransactionDao;
@@ -26,6 +26,9 @@ public class SaveTransaction extends BankTxnSupport {
 
         dao = new TransactionDao(db);
 
+        BankTransConfiguration btc = (BankTransConfiguration) ctx.get(BTC);
+        CardRule cr = (CardRule) ctx.get(CR);
+
         Transaction txn = new Transaction();
         txn.setAmount((Long) ctx.get(AMOUNT));
         txn.setMid(ctx.getString(MID));
@@ -36,9 +39,9 @@ public class SaveTransaction extends BankTxnSupport {
         txn.setTxnTime((Date) ctx.get(TXN_TIME));
         txn.setReferenceNumber(ctx.getString(REFERENCE_NUMBER));
         txn.setResponseCode(ctx.getString(RCODE));
-        txn.setBank((Bank) ctx.get(BANK));
-        txn.setLookupOfCommandType((Lookup) ctx.get(COMMAND_TYPE));
-        txn.setLookupOfConditionType((Lookup) ctx.get(CONDITION_TYPE));
+        txn.setBank(btc.getBank());
+        txn.setLookupOfCommandType(cr.getLookupOfCommandType());
+        txn.setLookupOfConditionType(cr.getLookupOfConditionType());
 
         dao.saveOrUpdate(txn);
 

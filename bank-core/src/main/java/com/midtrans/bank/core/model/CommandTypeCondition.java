@@ -1,5 +1,8 @@
 package com.midtrans.bank.core.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created with IntelliJ IDEA.
  * User: shaddiqa
@@ -17,6 +20,8 @@ public class CommandTypeCondition {
     private BankTransConfiguration bankTransConfiguration;
 
     private Lookup lookupOfConditionType;
+
+    private List<BankISOResponse> bankISOResponses = new ArrayList<BankISOResponse>();
 
     public Long getId() {
         return id;
@@ -56,5 +61,13 @@ public class CommandTypeCondition {
 
     public void setLookupOfConditionType(Lookup lookupOfConditionType) {
         this.lookupOfConditionType = lookupOfConditionType;
+    }
+
+    public List<BankISOResponse> getBankISOResponses() {
+        return bankISOResponses;
+    }
+
+    public void setBankISOResponses(List<BankISOResponse> bankISOResponses) {
+        this.bankISOResponses = bankISOResponses;
     }
 }

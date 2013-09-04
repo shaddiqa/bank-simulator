@@ -8,5 +8,13 @@
 
     <participant class="com.midtrans.bank.logic.transaction.StartTransaction"/>
 
+    <participant class="com.midtrans.bank.logic.transaction.FindBankTransConfiguration"/>
+
+    <participant class="com.midtrans.bank.logic.transaction.FindCardRule"/>
+
+    <participant class="com.midtrans.bank.logic.transaction.FindCommandTypeCondition"/>
+
+    <participant class="com.midtrans.bank.logic.transaction.GenerateResponse"/>
+
     <participant class="com.midtrans.bank.logic.transaction.EndTransaction"/>
 </txnmgr>

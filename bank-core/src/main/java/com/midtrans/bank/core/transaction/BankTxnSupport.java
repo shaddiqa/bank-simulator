@@ -25,7 +25,6 @@ public abstract class BankTxnSupport extends TxnSupport implements BankConstants
 
     @Override
     public void abort(long id, Serializable context) {
-        send((Context) context);
     }
 
     private void send(Context ctx) {

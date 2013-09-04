@@ -23,7 +23,7 @@ public interface BankConstants {
     public static final String TXN_TIME             = "TXN_TIME";
     public static final String RCODE                = "RCODE";
     public static final String REFERENCE_NUMBER     = "REFERENCE_NUMBER";
-    public static final String BANK                 = "BANK";
-    public static final String CONDITION_TYPE       = "CONDITION_TYPE";
-    public static final String COMMAND_TYPE         = "COMMAND_TYPE";
+    public static final String BTC                  = "BTC";
+    public static final String CR                   = "CR";
+    public static final String CTC                  = "CTC";
 }
