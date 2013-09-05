@@ -18,5 +18,7 @@
 
     <participant class="com.midtrans.bank.logic.transaction.GenerateResponse" logger="Q2"/>
 
+    <participant class="com.midtrans.bank.logic.transaction.SaveTransaction" logger="Q2"/>
+
     <participant class="com.midtrans.bank.logic.transaction.EndTransaction" logger="Q2"/>
 </txnmgr>
