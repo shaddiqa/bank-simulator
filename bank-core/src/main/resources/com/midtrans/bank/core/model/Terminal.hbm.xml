@@ -2,19 +2,17 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
         "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-    <class name="com.midtrans.bank.core.model.Card" table="card" catalog="peacock">
-        <id name="id" type="java.lang.Long" column="pk_card">
+    <class name="com.midtrans.bank.core.model.Terminal" table="terminal" catalog="peacock">
+        <id name="id" type="java.lang.Long" column="pk_terminal">
             <generator class="identity" />
         </id>
         <property name="active" type="boolean">
             <column name="active" sql-type="TINYINT(1)" />
         </property>
-        <property name="activatedDate" type="java.util.Date">
-            <column name="actived_at" sql-type="DATETIME"/>
-        </property>
-        <property name="cardExpire" type="string" column="card_expire"/>
-        <property name="cardNo" type="string" column="card_no"/>
-        <property name="cvv" type="string" column="cvv"/>
+        <property name="mid" type="string" column="mid" />
+        <property name="tid" type="string" column="tid" />
+        <property name="count" type="java.lang.Integer" column="count" />
+        <property name="amount" type="java.lang.Long" column="amount" />
 
         <many-to-one name="bank" class="com.midtrans.bank.core.model.Bank" fetch="join">
             <column name="fk_bank"/>

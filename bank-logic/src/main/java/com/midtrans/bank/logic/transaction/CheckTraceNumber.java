@@ -1,5 +1,6 @@
 package com.midtrans.bank.logic.transaction;
 
+import com.midtrans.bank.core.model.Terminal;
 import com.midtrans.bank.core.model.Transaction;
 import com.midtrans.bank.core.transaction.BankTxnSupport;
 import com.midtrans.bank.logic.dao.impl.TransactionDao;
@@ -9,11 +10,11 @@ import org.jpos.transaction.Context;
 /**
  * Created with IntelliJ IDEA.
  * User: shaddiqa
- * Date: 8/17/13
- * Time: 9:46 PM
+ * Date: 9/6/13
+ * Time: 10:54 AM
  * To change this template use File | Settings | File Templates.
  */
-public class SaveTransaction extends BankTxnSupport {
+public class CheckTraceNumber extends BankTxnSupport {
     TransactionDao dao;
 
     @Override
@@ -22,11 +23,12 @@ public class SaveTransaction extends BankTxnSupport {
 
         dao = new TransactionDao(db);
 
-        Transaction txn = (Transaction) ctx.get(TXN);
+        Terminal terminal = (Terminal) ctx.get(TERMINAL);
+        Integer traceNumber = (Integer) ctx.get(TRACE_NUMBER);
 
-        dao.saveOrUpdate(txn);
+        Transaction txn = dao.checkTraceNumber(terminal, traceNumber);
 
-        ctx.put(TXN, txn);
+        assertNull(txn, "Trace number is used");
 
         closeDB(ctx);
         return PREPARED | NO_JOIN;

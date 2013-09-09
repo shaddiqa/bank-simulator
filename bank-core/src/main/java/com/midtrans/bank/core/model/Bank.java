@@ -1,8 +1,5 @@
 package com.midtrans.bank.core.model;
 
-import java.util.HashSet;
-import java.util.Set;
-
 /**
  * Created with IntelliJ IDEA.
  * User: shaddiqa
@@ -22,10 +19,6 @@ public class Bank {
     private String header;
 
     private String port;
-
-    private Set<Card> cards = new HashSet<Card>();
-
-    private Set<BankTransConfiguration> bankTransConfigurations = new HashSet<BankTransConfiguration>();
 
     public Long getId() {
         return id;
@@ -73,21 +66,5 @@ public class Bank {
 
     public void setPort(String port) {
         this.port = port;
-    }
-
-    public Set<Card> getCards() {
-        return cards;
-    }
-
-    public void setCards(Set<Card> cards) {
-        this.cards = cards;
-    }
-
-    public Set<BankTransConfiguration> getBankTransConfigurations() {
-        return bankTransConfigurations;
-    }
-
-    public void setBankTransConfigurations(Set<BankTransConfiguration> bankTransConfigurations) {
-        this.bankTransConfigurations = bankTransConfigurations;
     }
 }

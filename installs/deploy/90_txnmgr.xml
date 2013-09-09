@@ -5,20 +5,52 @@
     <property name="debug" value="true"/>
 
     <participant class="org.jpos.transaction.Debug" logger="Q2"/>
-
     <participant class="com.midtrans.bank.logic.transaction.StartTransaction" logger="Q2"/>
-
     <participant class="com.midtrans.bank.logic.transaction.FindBankTransConfiguration" logger="Q2"/>
-
-    <participant class="com.midtrans.bank.logic.transaction.FindCardRule" logger="Q2"/>
-
-    <participant class="com.midtrans.bank.logic.transaction.FindCommandTypeCondition" logger="Q2"/>
-
-    <participant class="com.midtrans.bank.logic.transaction.FindBankISOResponses" logger="Q2"/>
-
-    <participant class="com.midtrans.bank.logic.transaction.GenerateResponse" logger="Q2"/>
-
-    <participant class="com.midtrans.bank.logic.transaction.SaveTransaction" logger="Q2"/>
-
+    <participant class="com.midtrans.bank.logic.transaction.SelectCommand" logger="Q2">
+        <property name="Sale" value="FindTerminal CheckTraceNumber CreateTransaction DoSale SaveTerminal BuildResponse SaveTransaction"/>
+        <property name="Void" value="FindTerminal CheckTraceNumber FindTransaction DoVoid SaveTerminal BuildResponse SaveTransaction"/>
+        <property name="ReversalSale" value=""/>
+        <property name="ReversalVoid" value=""/>
+        <property name="Settlement" value=""/>
+        <property name="BatchUpload" value=""/>
+        <property name="SettlementTrailer" value=""/>
+    </participant>
     <participant class="com.midtrans.bank.logic.transaction.EndTransaction" logger="Q2"/>
+
+    <group name="FindTerminal">
+        <participant class="com.midtrans.bank.logic.transaction.FindTerminal" logger="Q2"/>
+    </group>
+
+    <group name="CheckTraceNumber">
+        <participant class="com.midtrans.bank.logic.transaction.CheckTraceNumber" logger="Q2"/>
+    </group>
+
+    <group name="CreateTransaction">
+        <participant class="com.midtrans.bank.logic.transaction.CreateTransaction" logger="Q2"/>
+    </group>
+
+    <group name="FindTransaction">
+        <participant class="com.midtrans.bank.logic.transaction.FindTransaction" logger="Q2"/>
+    </group>
+
+    <group name="DoSale">
+        <participant class="com.midtrans.bank.logic.transaction.DoSale" logger="Q2"/>
+    </group>
+
+    <group name="DoVoid">
+        <participant class="com.midtrans.bank.logic.transaction.DoVoid" logger="Q2"/>
+    </group>
+
+    <group name="SaveTerminal">
+        <participant class="com.midtrans.bank.logic.transaction.SaveTerminal" logger="Q2"/>
+    </group>
+
+    <group name="BuildResponse">
+        <participant class="com.midtrans.bank.logic.transaction.BuildResponse" logger="Q2"/>
+    </group>
+
+    <group name="SaveTransaction">
+        <participant class="com.midtrans.bank.logic.transaction.SaveTransaction" logger="Q2"/>
+    </group>
 </txnmgr>

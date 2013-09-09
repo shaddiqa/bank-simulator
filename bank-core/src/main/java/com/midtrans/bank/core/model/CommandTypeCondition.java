@@ -1,8 +1,5 @@
 package com.midtrans.bank.core.model;
 
-import java.util.HashSet;
-import java.util.Set;
-
 /**
  * Created with IntelliJ IDEA.
  * User: shaddiqa
@@ -20,8 +17,6 @@ public class CommandTypeCondition {
     private BankTransConfiguration bankTransConfiguration;
 
     private Lookup lookupOfConditionType;
-
-    private Set<BankISOResponse> bankISOResponses = new HashSet<BankISOResponse>();
 
     public Long getId() {
         return id;
@@ -61,13 +56,5 @@ public class CommandTypeCondition {
 
     public void setLookupOfConditionType(Lookup lookupOfConditionType) {
         this.lookupOfConditionType = lookupOfConditionType;
-    }
-
-    public Set<BankISOResponse> getBankISOResponses() {
-        return bankISOResponses;
-    }
-
-    public void setBankISOResponses(Set<BankISOResponse> bankISOResponses) {
-        this.bankISOResponses = bankISOResponses;
     }
 }

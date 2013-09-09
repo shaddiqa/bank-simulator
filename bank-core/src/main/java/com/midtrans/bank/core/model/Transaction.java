@@ -13,11 +13,11 @@ import java.util.Date;
 public class Transaction implements Serializable {
     private Long id;
 
+    private boolean active;
+
     private Long amount;
 
-    private String mid;
-
-    private String tid;
+    private Terminal terminal;
 
     private Integer traceNumber;
 
@@ -29,13 +29,27 @@ public class Transaction implements Serializable {
 
     private String referenceNumber;
 
+    private String authorizationId;
+
     private String responseCode;
 
-    private Bank bank;
+    private Integer voidTraceNumber;
 
-    private Lookup lookupOfCommandType;
+    private Long voidAmount;
 
-    private Lookup lookupOfConditionType;
+    private boolean voidFlag;
+
+    private boolean reversalFlag;
+
+    private String batchNumber;
+
+    public Transaction() {
+        this.active = true;
+        this.amount = 0L;
+        this.voidAmount = 0L;
+        this.voidFlag = false;
+        this.reversalFlag = false;
+    }
 
     public Long getId() {
         return id;
@@ -45,20 +59,20 @@ public class Transaction implements Serializable {
         this.id = id;
     }
 
-    public String getMid() {
-        return mid;
+    public boolean isActive() {
+        return active;
     }
 
-    public void setMid(String mid) {
-        this.mid = mid;
+    public void setActive(boolean active) {
+        this.active = active;
     }
 
-    public String getTid() {
-        return tid;
+    public Terminal getTerminal() {
+        return terminal;
     }
 
-    public void setTid(String tid) {
-        this.tid = tid;
+    public void setTerminal(Terminal terminal) {
+        this.terminal = terminal;
     }
 
     public Long getAmount() {
@@ -109,6 +123,14 @@ public class Transaction implements Serializable {
         this.referenceNumber = referenceNumber;
     }
 
+    public String getAuthorizationId() {
+        return authorizationId;
+    }
+
+    public void setAuthorizationId(String authorizationId) {
+        this.authorizationId = authorizationId;
+    }
+
     public String getResponseCode() {
         return responseCode;
     }
@@ -117,27 +139,43 @@ public class Transaction implements Serializable {
         this.responseCode = responseCode;
     }
 
-    public Bank getBank() {
-        return bank;
+    public Integer getVoidTraceNumber() {
+        return voidTraceNumber;
     }
 
-    public void setBank(Bank bank) {
-        this.bank = bank;
+    public void setVoidTraceNumber(Integer voidTraceNumber) {
+        this.voidTraceNumber = voidTraceNumber;
     }
 
-    public Lookup getLookupOfCommandType() {
-        return lookupOfCommandType;
+    public Long getVoidAmount() {
+        return voidAmount;
     }
 
-    public void setLookupOfCommandType(Lookup lookupOfCommandType) {
-        this.lookupOfCommandType = lookupOfCommandType;
+    public void setVoidAmount(Long voidAmount) {
+        this.voidAmount = voidAmount;
     }
 
-    public Lookup getLookupOfConditionType() {
-        return lookupOfConditionType;
+    public boolean isVoidFlag() {
+        return voidFlag;
     }
 
-    public void setLookupOfConditionType(Lookup lookupOfConditionType) {
-        this.lookupOfConditionType = lookupOfConditionType;
+    public void setVoidFlag(boolean voidFlag) {
+        this.voidFlag = voidFlag;
+    }
+
+    public boolean isReversalFlag() {
+        return reversalFlag;
+    }
+
+    public void setReversalFlag(boolean reversalFlag) {
+        this.reversalFlag = reversalFlag;
+    }
+
+    public String getBatchNumber() {
+        return batchNumber;
+    }
+
+    public void setBatchNumber(String batchNumber) {
+        this.batchNumber = batchNumber;
     }
 }

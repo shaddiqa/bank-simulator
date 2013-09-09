@@ -25,8 +25,6 @@ public class BankTransConfiguration {
 
     private Lookup lookupOfCommandType;
 
-    private Set<CommandTypeCondition> commandTypeConditions = new HashSet<CommandTypeCondition>();
-
     public Long getId() {
         return id;
     }
@@ -81,13 +79,5 @@ public class BankTransConfiguration {
 
     public void setLookupOfCommandType(Lookup lookupOfCommandType) {
         this.lookupOfCommandType = lookupOfCommandType;
-    }
-
-    public Set<CommandTypeCondition> getCommandTypeConditions() {
-        return commandTypeConditions;
-    }
-
-    public void setCommandTypeConditions(Set<CommandTypeCondition> commandTypeConditions) {
-        this.commandTypeConditions = commandTypeConditions;
     }
 }

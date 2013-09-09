@@ -1,8 +1,5 @@
 package com.midtrans.bank.core.model;
 
-import java.util.HashSet;
-import java.util.Set;
-
 /**
  * Created with IntelliJ IDEA.
  * User: shaddiqa
@@ -22,8 +19,6 @@ public class LookupGroup {
     private String name;
 
     private boolean viewable;
-
-    private Set<Lookup> lookups = new HashSet<Lookup>();
 
     public Long getId() {
         return id;
@@ -71,13 +66,5 @@ public class LookupGroup {
 
     public void setViewable(boolean viewable) {
         this.viewable = viewable;
-    }
-
-    public Set<Lookup> getLookups() {
-        return lookups;
-    }
-
-    public void setLookups(Set<Lookup> lookups) {
-        this.lookups = lookups;
     }
 }

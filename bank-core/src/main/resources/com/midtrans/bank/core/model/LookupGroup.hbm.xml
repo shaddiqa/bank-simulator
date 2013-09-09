@@ -19,12 +19,5 @@
         <property name="viewable" type="boolean">
             <column name="viewable" sql-type="TINYINT(1)" />
         </property>
-
-        <set name="lookups" table="lookup" inverse="true" lazy="true" fetch="join">
-            <key>
-                <column name="pk_lookup" not-null="true"/>
-            </key>
-            <one-to-many class="com.midtrans.bank.core.model.Lookup"/>
-        </set>
     </class>
 </hibernate-mapping>

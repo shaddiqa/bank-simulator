@@ -26,8 +26,6 @@ public class Card {
 
     private Bank bank;
 
-    private Set<CardRule> cardRules = new HashSet<CardRule>();
-
     public Long getId() {
         return id;
     }
@@ -82,13 +80,5 @@ public class Card {
 
     public void setBank(Bank bank) {
         this.bank = bank;
-    }
-
-    public Set<CardRule> getCardRules() {
-        return cardRules;
-    }
-
-    public void setCardRules(Set<CardRule> cardRules) {
-        this.cardRules = cardRules;
     }
 }

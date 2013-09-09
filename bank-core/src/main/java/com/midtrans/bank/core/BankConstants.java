@@ -13,6 +13,7 @@ public interface BankConstants {
     public static final String SOURCE               = "SOURCE";
     public static final String HEADER               = "HEADER";
     public static final String MTI                  = "MTI";
+    public static final String NII                  = "NII";
     public static final String PCODE                = "PCODE";
     public static final String AMOUNT               = "AMOUNT";
     public static final String CARD_NUMBER          = "CARD_NUMBER";
@@ -23,8 +24,17 @@ public interface BankConstants {
     public static final String TXN_TIME             = "TXN_TIME";
     public static final String RCODE                = "RCODE";
     public static final String REFERENCE_NUMBER     = "REFERENCE_NUMBER";
+    public static final String AUTHORIZATION_ID     = "AUTHORIZATION_ID";
+    public static final String COMMAND              = "COMMAND";
+    public static final String BATCH_NUMBER         = "BATCH_NUMBER";
+    public static final String BATCH_BLOCK          = "BATCH_BLOCK";
+    public static final String SETTLE_PARAM         = "SETTLE_PARAM";
+    public static final String TERMINAL             = "TERMINAL";
+    public static final String TXN                  = "TXN";
     public static final String BTC                  = "BTC";
     public static final String CR                   = "CR";
     public static final String CTC                  = "CTC";
     public static final String BIRS                 = "BIRS";
+    public static final String VALBEFORE            = "VALBEFORE";
+    public static final String VALAFTER             = "VALAFTER";
 }

@@ -6,9 +6,13 @@
         <id name="id" type="java.lang.Long" column="pk_transaction">
             <generator class="identity" />
         </id>
+        <property name="active" type="boolean">
+            <column name="active" sql-type="TINYINT(1)"/>
+        </property>
         <property name="amount" type="java.lang.Long" column="amount"/>
-        <property name="mid" type="string" column="mid"/>
-        <property name="tid" type="string" column="tid"/>
+        <many-to-one name="terminal" class="com.midtrans.bank.core.model.Terminal" fetch="join">
+            <column name="fk_terminal" />
+        </many-to-one>
         <property name="traceNumber" type="java.lang.Integer">
             <column name="trace_number" sql-type="SMALLINT"/>
         </property>
@@ -18,18 +22,19 @@
             <column name="txn_time" sql-type="DATETIME"/>
         </property>
         <property name="referenceNumber" type="string" column="reference_number" not-null="true" unique="true"/>
+        <property name="authorizationId" type="string" column="authorization_id"/>
         <property name="responseCode" type="string" column="response_code"/>
 
-        <many-to-one name="bank" class="com.midtrans.bank.core.model.Bank" fetch="join">
-            <column name="fk_bank"/>
-        </many-to-one>
-
-        <many-to-one name="lookupOfCommandType" class="com.midtrans.bank.core.model.Lookup" fetch="join">
-            <column name="fk_lookup_command_type"/>
-        </many-to-one>
-
-        <many-to-one name="lookupOfConditionType" class="com.midtrans.bank.core.model.Lookup" fetch="join">
-            <column name="fk_lookup_condition_type"/>
-        </many-to-one>
+        <property name="voidTraceNumber" type="java.lang.Integer">
+            <column name="void_trace_number" sql-type="SMALLINT"/>
+        </property>
+        <property name="voidAmount" type="java.lang.Long" column="void_amount"/>
+        <property name="voidFlag" type="boolean">
+            <column name="void_flag" sql-type="TINYINT(1)"/>
+        </property>
+        <property name="reversalFlag" type="boolean">
+            <column name="reversal_flag" sql-type="TINYINT(1)"/>
+        </property>
+        <property name="batchNumber" type="string" column="batch_number"/>
     </class>
 </hibernate-mapping>

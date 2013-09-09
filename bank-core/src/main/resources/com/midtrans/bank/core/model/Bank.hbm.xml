@@ -13,19 +13,5 @@
         <property name="note" type="string" column="note"/>
         <property name="header" type="string" column="header"/>
         <property name="port" type="string" column="port"/>
-
-        <set name="cards" table="card" inverse="true" lazy="true" fetch="join">
-            <key>
-                <column name="pk_card" not-null="true"/>
-            </key>
-            <one-to-many class="com.midtrans.bank.core.model.Card"/>
-        </set>
-
-        <set name="bankTransConfigurations" table="bank_trans_configuration" inverse="true" lazy="true" fetch="join">
-            <key>
-                <column name="pk_bank_trans_conf" not-null="true"/>
-            </key>
-            <one-to-many class="com.midtrans.bank.core.model.BankTransConfiguration"/>
-        </set>
     </class>
 </hibernate-mapping>

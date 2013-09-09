@@ -8,6 +8,7 @@
         <mapping resource="com/midtrans/bank/core/model/CommandTypeCondition.hbm.xml" />
         <mapping resource="com/midtrans/bank/core/model/Lookup.hbm.xml" />
         <mapping resource="com/midtrans/bank/core/model/LookupGroup.hbm.xml" />
+        <mapping resource="com/midtrans/bank/core/model/Terminal.hbm.xml" />
         <mapping resource="com/midtrans/bank/core/model/Transaction.hbm.xml" />
     </mappings>
 </module>

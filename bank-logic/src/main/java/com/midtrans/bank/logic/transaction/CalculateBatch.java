@@ -1,19 +1,23 @@
 package com.midtrans.bank.logic.transaction;
 
+import com.midtrans.bank.core.model.Terminal;
 import com.midtrans.bank.core.model.Transaction;
 import com.midtrans.bank.core.transaction.BankTxnSupport;
 import com.midtrans.bank.logic.dao.impl.TransactionDao;
+import com.midtrans.bank.logic.util.SettlementUtil;
 import org.jpos.ee.DB;
 import org.jpos.transaction.Context;
+
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
  * User: shaddiqa
- * Date: 8/17/13
- * Time: 9:46 PM
+ * Date: 9/9/13
+ * Time: 12:13 PM
  * To change this template use File | Settings | File Templates.
  */
-public class SaveTransaction extends BankTxnSupport {
+public class CalculateBatch extends BankTxnSupport {
     TransactionDao dao;
 
     @Override
@@ -22,11 +26,13 @@ public class SaveTransaction extends BankTxnSupport {
 
         dao = new TransactionDao(db);
 
-        Transaction txn = (Transaction) ctx.get(TXN);
+        String command = ctx.getString(COMMAND);
+        Terminal terminal = (Terminal) ctx.get(TERMINAL);
+        String batchNumber = ctx.getString(BATCH_NUMBER);
 
-        dao.saveOrUpdate(txn);
+        List<Transaction> transactions = dao.findBy(terminal, batchNumber);
 
-        ctx.put(TXN, txn);
+        ctx.put(BATCH_BLOCK, SettlementUtil.createBatchBlock(transactions));
 
         closeDB(ctx);
         return PREPARED | NO_JOIN;

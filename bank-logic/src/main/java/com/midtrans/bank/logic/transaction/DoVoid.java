@@ -2,33 +2,31 @@ package com.midtrans.bank.logic.transaction;
 
 import com.midtrans.bank.core.model.Transaction;
 import com.midtrans.bank.core.transaction.BankTxnSupport;
-import com.midtrans.bank.logic.dao.impl.TransactionDao;
-import org.jpos.ee.DB;
+import com.midtrans.bank.logic.util.SettlementUtil;
 import org.jpos.transaction.Context;
 
 /**
  * Created with IntelliJ IDEA.
  * User: shaddiqa
- * Date: 8/17/13
- * Time: 9:46 PM
+ * Date: 9/9/13
+ * Time: 12:26 PM
  * To change this template use File | Settings | File Templates.
  */
-public class SaveTransaction extends BankTxnSupport {
-    TransactionDao dao;
-
+public class DoVoid extends BankTxnSupport {
     @Override
     protected int doPrepare(long id, Context ctx) throws Exception {
-        DB db = openDB(ctx);
-
-        dao = new TransactionDao(db);
-
         Transaction txn = (Transaction) ctx.get(TXN);
+        Integer traceNumber = (Integer) ctx.get(TRACE_NUMBER);
+        long amount = (Long) ctx.get(AMOUNT);
 
-        dao.saveOrUpdate(txn);
+        txn.setVoidAmount(amount);
+        txn.setVoidTraceNumber(traceNumber);
+        txn.setVoidFlag(true);
+
+        ctx.put(VALAFTER, SettlementUtil.calculateAmount(txn));
 
         ctx.put(TXN, txn);
 
-        closeDB(ctx);
         return PREPARED | NO_JOIN;
     }
 }

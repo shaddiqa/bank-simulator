@@ -1,6 +1,6 @@
 package com.midtrans.bank.logic.transaction;
 
-import com.midtrans.bank.core.model.Transaction;
+import com.midtrans.bank.core.model.Terminal;
 import com.midtrans.bank.core.transaction.BankTxnSupport;
 import com.midtrans.bank.logic.dao.impl.TransactionDao;
 import org.jpos.ee.DB;
@@ -9,11 +9,11 @@ import org.jpos.transaction.Context;
 /**
  * Created with IntelliJ IDEA.
  * User: shaddiqa
- * Date: 8/17/13
- * Time: 9:46 PM
+ * Date: 9/9/13
+ * Time: 12:00 PM
  * To change this template use File | Settings | File Templates.
  */
-public class SaveTransaction extends BankTxnSupport {
+public class DeactivateTransactions extends BankTxnSupport {
     TransactionDao dao;
 
     @Override
@@ -22,11 +22,11 @@ public class SaveTransaction extends BankTxnSupport {
 
         dao = new TransactionDao(db);
 
-        Transaction txn = (Transaction) ctx.get(TXN);
+        String command = ctx.getString(COMMAND);
+        Terminal terminal = (Terminal) ctx.get(TERMINAL);
+        String batchNumber = command.equals("SettlementTrailer") ? ctx.getString(BATCH_NUMBER) : null;
 
-        dao.saveOrUpdate(txn);
-
-        ctx.put(TXN, txn);
+        dao.deactivate(terminal, batchNumber);
 
         closeDB(ctx);
         return PREPARED | NO_JOIN;
