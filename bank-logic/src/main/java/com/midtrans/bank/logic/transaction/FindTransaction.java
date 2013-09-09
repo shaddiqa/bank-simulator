@@ -28,20 +28,21 @@ public class FindTransaction extends BankTxnSupport {
 
         String cardNumber = ctx.getString(CARD_NUMBER);
         Long amount = (Long) ctx.get(AMOUNT);
-        Integer traceNumber = (Integer) ctx.get(TRACE_NUMBER);
         String cardExpire = ctx.getString(CARD_EXPIRE);
         Terminal terminal = (Terminal) ctx.get(TERMINAL);
         String command = ctx.getString(COMMAND);
         Date txnTime = (Date) ctx.get(TXN_TIME);
         String referenceNumber = ctx.getString(REFERENCE_NUMBER);
         String responseCode = ctx.getString(RCODE);
+        String batchNumber = ctx.getString(BATCH_NUMBER);
+        Integer traceNumber = (Integer) ctx.get(TRACE_NUMBER);
 
         Transaction txn = null;
 
         if(command.equals("Void")) {
             txn = dao.findBy(cardNumber, amount, cardExpire, terminal, txnTime, referenceNumber);
         } else if (command.equals("BatchUpload")) {
-            txn = dao.findBy(cardNumber, amount, traceNumber, cardExpire, terminal, txnTime, referenceNumber, responseCode);
+            txn = dao.findBy(cardNumber, amount, Integer.valueOf(batchNumber.substring(4,9)), cardExpire, terminal, txnTime, referenceNumber, responseCode);
         } else if(command.equals("ReversalSale")) {
             txn = dao.findBy(cardNumber, amount, traceNumber, cardExpire, terminal);
         } else if(command.equals("ReversalVoid")) {

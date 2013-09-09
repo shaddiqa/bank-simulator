@@ -28,9 +28,8 @@ public class CalculateBatch extends BankTxnSupport {
 
         String command = ctx.getString(COMMAND);
         Terminal terminal = (Terminal) ctx.get(TERMINAL);
-        String batchNumber = ctx.getString(BATCH_NUMBER);
 
-        List<Transaction> transactions = dao.findBy(terminal, batchNumber);
+        List<Transaction> transactions = dao.findBy(terminal, command.equals("SettlementTrailer"));
 
         ctx.put(BATCH_BLOCK, SettlementUtil.createBatchBlock(transactions));
 

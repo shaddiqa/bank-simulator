@@ -67,4 +67,13 @@ public abstract class BankTxnSupport extends TxnSupport implements BankConstants
         ctx.remove(DB);
         ctx.remove(TX);
     }
+
+    protected String responseMTI(String mti) {
+        int c = mti.charAt(2);
+
+        StringBuilder responseMTI = new StringBuilder(mti);
+        responseMTI.setCharAt(2, (char) ++c);
+
+        return responseMTI.toString();
+    }
 }

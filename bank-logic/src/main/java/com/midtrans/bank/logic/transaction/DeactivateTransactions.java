@@ -24,9 +24,8 @@ public class DeactivateTransactions extends BankTxnSupport {
 
         String command = ctx.getString(COMMAND);
         Terminal terminal = (Terminal) ctx.get(TERMINAL);
-        String batchNumber = command.equals("SettlementTrailer") ? ctx.getString(BATCH_NUMBER) : null;
 
-        dao.deactivate(terminal, batchNumber);
+        dao.deactivate(terminal, command.equals("SettlementTrailer"));
 
         closeDB(ctx);
         return PREPARED | NO_JOIN;

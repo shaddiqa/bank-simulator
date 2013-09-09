@@ -26,10 +26,14 @@ public class StartTransaction extends BankTxnSupport {
         ctx.put(HEADER, ISOUtil.hexString(source.getHeader()));
         ctx.put(MTI, request.getMTI());
         ctx.put(PCODE, request.getString(3));
-        ctx.put(AMOUNT, Long.valueOf(request.getString(4)));
+        if(request.hasField(4)) {
+            ctx.put(AMOUNT, Long.valueOf(request.getString(4)));
+        }
         ctx.put(CARD_NUMBER, request.getString(2));
         ctx.put(CARD_EXPIRE, request.getString(14));
-        ctx.put(TRACE_NUMBER, Integer.valueOf(request.getString(11)));
+        if(request.hasField(11)) {
+            ctx.put(TRACE_NUMBER, Integer.valueOf(request.getString(11)));
+        }
         ctx.put(NII, request.getString(24));
         ctx.put(TID, request.getString(41));
         ctx.put(MID, request.getString(42));

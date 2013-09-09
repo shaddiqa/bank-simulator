@@ -8,10 +8,11 @@
     <participant class="com.midtrans.bank.logic.transaction.StartTransaction" logger="Q2"/>
     <participant class="com.midtrans.bank.logic.transaction.FindBankTransConfiguration" logger="Q2"/>
     <participant class="com.midtrans.bank.logic.transaction.SelectCommand" logger="Q2">
+        <property name="Echo" value="DoEcho EchoResponse"/>
         <property name="Sale" value="FindTerminal CheckTraceNumber CreateTransaction DoSale SaveTerminal BuildResponse SaveTransaction"/>
         <property name="Void" value="FindTerminal CheckTraceNumber FindTransaction DoVoid SaveTerminal BuildResponse SaveTransaction"/>
-        <property name="ReversalSale" value=""/>
-        <property name="ReversalVoid" value=""/>
+        <property name="ReversalSale" value="FindTransaction DoReversalSale SaveTerminal BuildResponse SaveTransaction"/>
+        <property name="ReversalVoid" value="FindTransaction DoReversalVoid SaveTerminal BuildResponse SaveTransaction"/>
         <property name="Settlement" value=""/>
         <property name="BatchUpload" value=""/>
         <property name="SettlementTrailer" value=""/>
@@ -34,6 +35,10 @@
         <participant class="com.midtrans.bank.logic.transaction.FindTransaction" logger="Q2"/>
     </group>
 
+    <group name="DoEcho">
+        <participant class="com.midtrans.bank.logic.transaction.DoEcho" logger="Q2"/>
+    </group>
+
     <group name="DoSale">
         <participant class="com.midtrans.bank.logic.transaction.DoSale" logger="Q2"/>
     </group>
@@ -42,12 +47,24 @@
         <participant class="com.midtrans.bank.logic.transaction.DoVoid" logger="Q2"/>
     </group>
 
+    <group name="DoReversalSale">
+        <participant class="com.midtrans.bank.logic.transaction.DoReversalSale" logger="Q2"/>
+    </group>
+
+    <group name="DoReversalVoid">
+        <participant class="com.midtrans.bank.logic.transaction.DoReversalVoid" logger="Q2"/>
+    </group>
+
     <group name="SaveTerminal">
         <participant class="com.midtrans.bank.logic.transaction.SaveTerminal" logger="Q2"/>
     </group>
 
     <group name="BuildResponse">
         <participant class="com.midtrans.bank.logic.transaction.BuildResponse" logger="Q2"/>
+    </group>
+
+    <group name="EchoResponse">
+        <participant class="com.midtrans.bank.logic.transaction.EchoResponse" logger="Q2"/>
     </group>
 
     <group name="SaveTransaction">

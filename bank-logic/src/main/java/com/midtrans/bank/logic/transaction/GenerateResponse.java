@@ -60,13 +60,4 @@ public class GenerateResponse extends BankTxnSupport {
 
         return PREPARED | NO_JOIN;
     }
-
-    private String responseMTI(String mti) {
-        int c = mti.charAt(2);
-
-        StringBuilder responseMTI = new StringBuilder(mti);
-        responseMTI.setCharAt(2, (char) ++c);
-
-        return responseMTI.toString();
-    }
 }
