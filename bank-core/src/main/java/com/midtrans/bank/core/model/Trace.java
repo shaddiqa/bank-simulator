@@ -29,6 +29,11 @@ public class Trace {
         return new Trace(terminal, traceNumber);
     }
 
+    @Override
+    public String toString() {
+        return String.format("ID:%s FK_TERMINAL:%s TRACENO:%s", id, terminal.getId(), traceNumber);
+    }
+
     public Long getId() {
         return id;
     }

@@ -40,6 +40,11 @@ public class Terminal {
         return this;
     }
 
+    @Override
+    public String toString() {
+        return String.format("ID:%s MID:%s TID:%s", id, mid, tid);
+    }
+
     public Long getId() {
         return id;
     }

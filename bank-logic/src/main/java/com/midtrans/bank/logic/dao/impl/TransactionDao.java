@@ -66,7 +66,6 @@ public class TransactionDao extends AbstractBankDao<Transaction> {
      * @param cardNumber
      * @param amount
      * @param traceNumber
-     * @param cardExpire
      * @param terminal
      * @return
      */

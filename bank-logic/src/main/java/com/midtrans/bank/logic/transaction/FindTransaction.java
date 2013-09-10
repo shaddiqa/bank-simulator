@@ -2,6 +2,7 @@ package com.midtrans.bank.logic.transaction;
 
 import com.midtrans.bank.core.model.Terminal;
 import com.midtrans.bank.core.model.Transaction;
+import com.midtrans.bank.core.model.VoidTxn;
 import com.midtrans.bank.core.transaction.BankTxnSupport;
 import com.midtrans.bank.logic.dao.impl.TransactionDao;
 import org.jpos.ee.DB;
@@ -42,8 +43,11 @@ public class FindTransaction extends BankTxnSupport {
             txn = dao.findBy(cardNumber, amount, cardExpire, terminal, txnTime, referenceNumber);
         } else if ("BatchUpload".equals(command)) {
             txn = dao.findBy(cardNumber, amount, Integer.valueOf(batchNumber.substring(4,10)), cardExpire, terminal, txnTime, referenceNumber, responseCode);
-        } else if("ReversalSale".equals(command) || "ReversalVoid".equals(command)) {
+        } else if("ReversalSale".equals(command)) {
             txn = dao.findBy(cardNumber, amount, traceNumber, terminal);
+        } else if("ReversalVoid".equals(command)) {
+            VoidTxn voidTxn = (VoidTxn) ctx.get(VOID_TXN);
+            txn = voidTxn.getTransaction();
         }
 
         assertNotNull(txn, "12");
