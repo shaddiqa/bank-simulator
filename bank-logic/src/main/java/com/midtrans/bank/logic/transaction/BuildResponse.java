@@ -1,9 +1,5 @@
 package com.midtrans.bank.logic.transaction;
 
-import com.midtrans.bank.core.model.BatchTxn;
-import com.midtrans.bank.core.model.SettlementTxn;
-import com.midtrans.bank.core.model.Transaction;
-import com.midtrans.bank.core.model.VoidTxn;
 import com.midtrans.bank.core.transaction.BankTxnSupport;
 import org.jpos.iso.ISODate;
 import org.jpos.iso.ISOException;
@@ -29,7 +25,7 @@ public class BuildResponse extends BankTxnSupport implements AbortParticipant {
 
     @Override
     protected int doPrepareForAbort(long id, Context ctx) throws Exception {
-        String rCode = ctx.getString("RC");
+        String rCode = ctx.getString(RC);
 
         return buildResponse(ctx, rCode);
     }
@@ -39,35 +35,15 @@ public class BuildResponse extends BankTxnSupport implements AbortParticipant {
         String pCode = ctx.getString(PCODE);
         Long amount = (Long) ctx.get(AMOUNT);
         Integer traceNumber = (Integer) ctx.get(TRACE_NUMBER);
-        Date txnTime = (Date) ctx.get(TXN_TIME);
+        Date txnTime = (Date) ctx.get(TXN_TIME, new Date());
         String nii = ctx.getString(NII);
-        String refNo = ctx.getString(REFERENCE_NUMBER);
-        String authId = ctx.getString(AUTHORIZATION_ID);
+        String refNo = ctx.getString(REFERENCE_NUMBER, Long.toHexString(System.currentTimeMillis()));
+        String authId = ctx.getString(AUTHORIZATION_ID, "");
         String tid = ctx.getString(TID);
 
-        String command = ctx.getString(COMMAND);
-        if("Sale".equals(command)) {
-            Transaction txn = (Transaction) ctx.get(TXN);
-            txn.setResponseCode(rCode);
-
-            ctx.put(TXN, txn);
-        } else if("Void".equals(command)) {
-            VoidTxn voidTxn = (VoidTxn) ctx.get(VOID_TXN);
-            voidTxn.setResponseCode(rCode);
-
-            ctx.put(VOID_TXN, voidTxn);
-        } else if("Settlement".equals(command) || "SettlementTrailer".equals(command)) {
-            SettlementTxn settlementTxn = (SettlementTxn) ctx.get(SETTLE_TXN);
-            settlementTxn.setResponseCode(rCode);
-
-            ctx.put(SETTLE_TXN, settlementTxn);
-        } else if("BatchUpload".equals(command)) {
-            BatchTxn batchTxn = (BatchTxn) ctx.get(BATCH_TXN);
-            batchTxn.setResponseCode(rCode);
-
-            ctx.put(BATCH_TXN, batchTxn);
-        }
-
+        ctx.put(TXN_TIME, txnTime);
+        ctx.put(REFERENCE_NUMBER, refNo);
+        ctx.put(AUTHORIZATION_ID, authId);
         ctx.put(RCODE, rCode);
         ctx.put(RESPONSE, createResponse(responseMTI(mti), pCode, amount, traceNumber, txnTime, nii, refNo, authId, rCode, tid));
 

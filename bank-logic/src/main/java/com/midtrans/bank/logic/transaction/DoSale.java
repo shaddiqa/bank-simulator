@@ -5,8 +5,6 @@ import com.midtrans.bank.core.model.Transaction;
 import com.midtrans.bank.core.transaction.BankTxnSupport;
 import org.jpos.transaction.Context;
 
-import java.util.Date;
-
 /**
  * Created with IntelliJ IDEA.
  * User: shaddiqa
@@ -19,21 +17,10 @@ public class DoSale extends BankTxnSupport {
     protected int doPrepare(long id, Context ctx) throws Exception {
         Transaction txn = (Transaction) ctx.get(TXN);
 
-        Date now = new Date();
-        String refNo = Long.toHexString(System.currentTimeMillis());
-        String authId = "AUTH";
-
-        ctx.put(TXN_TIME, now);
-        ctx.put(REFERENCE_NUMBER, refNo);
-        ctx.put(AUTHORIZATION_ID, authId);
-
         txn.setAmount((Long) ctx.get(AMOUNT));
         txn.setTrace((Trace) ctx.get(BANK_TRACE));
         txn.setCardNumber(ctx.getString(CARD_NUMBER));
         txn.setCardExpire(ctx.getString(CARD_EXPIRE));
-        txn.setTxnTime(now);
-        txn.setReferenceNumber(refNo);
-        txn.setAuthorizationId(authId);
 
         ctx.put(VALAFTER, txn.calcSettleAmount());
 

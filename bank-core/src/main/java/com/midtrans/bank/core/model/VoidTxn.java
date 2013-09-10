@@ -20,6 +20,8 @@ public class VoidTxn {
 
     private Transaction transaction;
 
+    private String authorizationId;
+
     private String responseCode;
 
     private Date createdAt;
@@ -68,6 +70,14 @@ public class VoidTxn {
 
     public void setTransaction(Transaction transaction) {
         this.transaction = transaction;
+    }
+
+    public String getAuthorizationId() {
+        return authorizationId;
+    }
+
+    public void setAuthorizationId(String authorizationId) {
+        this.authorizationId = authorizationId;
     }
 
     public String getResponseCode() {

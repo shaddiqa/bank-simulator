@@ -2,24 +2,22 @@ package com.midtrans.bank.logic.transaction;
 
 import com.midtrans.bank.core.model.BatchTxn;
 import com.midtrans.bank.core.transaction.BankTxnSupport;
-import com.midtrans.bank.logic.dao.impl.BatchTxnDao;
-import org.jpos.ee.DB;
 import org.jpos.transaction.AbortParticipant;
 import org.jpos.transaction.Context;
+
+import java.util.Date;
 
 /**
  * Created with IntelliJ IDEA.
  * User: shaddiqa
  * Date: 9/10/13
- * Time: 1:56 PM
+ * Time: 10:35 PM
  * To change this template use File | Settings | File Templates.
  */
-public class SaveBatchTxn extends BankTxnSupport implements AbortParticipant {
-    BatchTxnDao dao;
-
+public class UpdateBatchTxn extends BankTxnSupport implements AbortParticipant {
     @Override
     protected int doPrepare(long id, Context ctx) throws Exception {
-        return saveBatchTxn(ctx);
+        return updateTransaction(ctx);
     }
 
     @Override
@@ -28,19 +26,23 @@ public class SaveBatchTxn extends BankTxnSupport implements AbortParticipant {
             return PREPARED | NO_JOIN;
         }
 
-        return saveBatchTxn(ctx);
+        return updateTransaction(ctx);
     }
 
-    private int saveBatchTxn(Context ctx) {
-        DB db = openDB(ctx);
-
-        dao = new BatchTxnDao(db);
+    private int updateTransaction(Context ctx) {
+        Date txnTime = (Date) ctx.get(TXN_TIME);
+        String refNo = ctx.getString(REFERENCE_NUMBER);
+        String authId = ctx.getString(AUTHORIZATION_ID);
+        String rCode = ctx.getString(RCODE);
 
         BatchTxn batchTxn = (BatchTxn) ctx.get(BATCH_TXN);
+        batchTxn.setTxnTime(txnTime);
+        batchTxn.setReferenceNumber(refNo);
+        batchTxn.setAuthorizationId(authId);
+        batchTxn.setResponseCode(rCode);
 
-        dao.saveOrUpdate(batchTxn);
+        ctx.put(BATCH_TXN, batchTxn);
 
-        closeDB(ctx);
         return PREPARED | NO_JOIN;
     }
 }

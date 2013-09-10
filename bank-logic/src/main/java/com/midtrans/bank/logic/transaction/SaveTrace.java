@@ -24,9 +24,7 @@ public class SaveTrace extends BankTxnSupport implements AbortParticipant {
 
     @Override
     protected int doPrepareForAbort(long id, Context ctx) throws Exception {
-        String rCode = ctx.getString(RC);
-
-        if("94".equals(rCode)) {
+        if(ctx.get(BANK_TRACE) == null) {
             return PREPARED | NO_JOIN;
         }
 

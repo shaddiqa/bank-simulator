@@ -19,7 +19,9 @@ public class DoReversalSale extends BankTxnSupport {
         Transaction txn = (Transaction) ctx.get(TXN);
 
         Date now = new Date();
+        String authId = "";
 
+        ctx.put(AUTHORIZATION_ID, authId);
         ctx.put(TXN_TIME, now);
 
         txn.setReversal(true);

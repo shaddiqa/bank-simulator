@@ -6,8 +6,6 @@ import com.midtrans.bank.core.model.Terminal;
 import com.midtrans.bank.core.transaction.BankTxnSupport;
 import org.jpos.transaction.Context;
 
-import java.util.Date;
-
 /**
  * Created with IntelliJ IDEA.
  * User: shaddiqa
@@ -22,14 +20,6 @@ public class DoSettlementTrailer extends BankTxnSupport {
         Terminal terminal = (Terminal) ctx.get(TERMINAL);
         SettlementTxn settlementTxn = (SettlementTxn) ctx.get(SETTLE_TXN);
 
-        Date now = new Date();
-        String refNo = Long.toHexString(System.currentTimeMillis());
-
-        settlementTxn.setTxnTime(now);
-        settlementTxn.setReferenceNumber(refNo);
-
-        ctx.put(TXN_TIME, now);
-        ctx.put(REFERENCE_NUMBER, refNo);
         ctx.put(SETTLE_TXN, settlementTxn);
 
         assertTrue(terminal.getBatchCount().equals(parameter.getDebitSales().getCount()), "95");

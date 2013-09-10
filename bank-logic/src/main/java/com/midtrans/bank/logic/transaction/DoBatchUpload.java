@@ -22,7 +22,7 @@ public class DoBatchUpload extends BankTxnSupport {
         String batchNumber = ctx.getString(BATCH_NUMBER);
         Date now = new Date();
         String refNo = Long.toHexString(System.currentTimeMillis());
-        String authId = "AUTH";
+        String authId = "";
 
         batchTxn.setTrace(trace);
         batchTxn.setBatchNumber(batchNumber);

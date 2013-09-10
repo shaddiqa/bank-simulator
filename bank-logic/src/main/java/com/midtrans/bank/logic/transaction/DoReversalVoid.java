@@ -21,7 +21,9 @@ public class DoReversalVoid extends BankTxnSupport {
         VoidTxn voidTxn = (VoidTxn) ctx.get(VOID_TXN);
 
         Date now = new Date();
+        String authId = "";
 
+        ctx.put(AUTHORIZATION_ID, authId);
         ctx.put(TXN_TIME, now);
 
         voidTxn.setReversal(true);

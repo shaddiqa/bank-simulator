@@ -2,24 +2,22 @@ package com.midtrans.bank.logic.transaction;
 
 import com.midtrans.bank.core.model.Transaction;
 import com.midtrans.bank.core.transaction.BankTxnSupport;
-import com.midtrans.bank.logic.dao.impl.TransactionDao;
-import org.jpos.ee.DB;
 import org.jpos.transaction.AbortParticipant;
 import org.jpos.transaction.Context;
+
+import java.util.Date;
 
 /**
  * Created with IntelliJ IDEA.
  * User: shaddiqa
- * Date: 8/17/13
- * Time: 9:46 PM
+ * Date: 9/10/13
+ * Time: 10:28 PM
  * To change this template use File | Settings | File Templates.
  */
-public class SaveTransaction extends BankTxnSupport implements AbortParticipant {
-    TransactionDao dao;
-
+public class UpdateTransaction extends BankTxnSupport implements AbortParticipant {
     @Override
     protected int doPrepare(long id, Context ctx) throws Exception {
-        return saveTransaction(ctx);
+        return updateTransaction(ctx);
     }
 
     @Override
@@ -28,21 +26,23 @@ public class SaveTransaction extends BankTxnSupport implements AbortParticipant 
             return PREPARED | NO_JOIN;
         }
 
-        return saveTransaction(ctx);
+        return updateTransaction(ctx);
     }
 
-    private int saveTransaction(Context ctx) {
-        DB db = openDB(ctx);
-
-        dao = new TransactionDao(db);
+    private int updateTransaction(Context ctx) {
+        Date txnTime = (Date) ctx.get(TXN_TIME);
+        String refNo = ctx.getString(REFERENCE_NUMBER);
+        String authId = ctx.getString(AUTHORIZATION_ID);
+        String rCode = ctx.getString(RCODE);
 
         Transaction txn = (Transaction) ctx.get(TXN);
-
-        dao.saveOrUpdate(txn);
+        txn.setTxnTime(txnTime);
+        txn.setReferenceNumber(refNo);
+        txn.setAuthorizationId(authId);
+        txn.setResponseCode(rCode);
 
         ctx.put(TXN, txn);
 
-        closeDB(ctx);
         return PREPARED | NO_JOIN;
     }
 }

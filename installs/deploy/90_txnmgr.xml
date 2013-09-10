@@ -8,14 +8,14 @@
     <participant class="com.midtrans.bank.logic.transaction.StartTransaction" logger="Q2"/>
     <participant class="com.midtrans.bank.logic.transaction.FindBankTransConfiguration" logger="Q2"/>
     <participant class="com.midtrans.bank.logic.transaction.SelectCommand" logger="Q2">
-        <property name="Echo" value="DoEcho EchoResponse"/>
-        <property name="Sale" value="FindTerminal CheckTrace CreateTrace SaveTrace CreateTransaction DoSale UpdateTerminal SaveTerminal BuildResponse SaveTransaction"/>
-        <property name="Void" value="FindTerminal CheckTrace CreateTrace SaveTrace FindTransaction CheckBalance CreateVoidTxn DoVoid UpdateTerminal SaveTerminal BuildResponse SaveVoidTxn SaveTransaction"/>
+        <property name="Echo" value="EchoResponse"/>
+        <property name="Sale" value="FindTerminal CheckTrace CreateTrace SaveTrace CreateTransaction DoSale UpdateTerminal SaveTerminal BuildResponse UpdateTransaction SaveTransaction"/>
+        <property name="Void" value="FindTerminal CheckTrace CreateTrace SaveTrace FindTransaction CheckBalance CreateVoidTxn DoVoid UpdateTerminal SaveTerminal BuildResponse UpdateVoidTxn SaveVoidTxn SaveTransaction"/>
         <property name="ReversalSale" value="FindTerminal FindTrace FindTransaction DoReversalSale UpdateTerminal SaveTerminal BuildResponse SaveTransaction"/>
         <property name="ReversalVoid" value="FindTerminal FindTrace FindVoidTxn FindTransaction DoReversalVoid UpdateTerminal SaveTerminal BuildResponse SaveVoidTxn SaveTransaction"/>
-        <property name="Settlement" value="FindTerminal CheckTrace CreateTrace SaveTrace CreateSettlementTxn DoSettlement ResetTerminal SaveTerminal BuildResponse SaveSettlementTxn DeactivateTransactions"/>
-        <property name="BatchUpload" value="FindTerminal CheckTrace CheckBatchNumber CreateTrace SaveTrace FindTransaction CreateBatchTxn DoBatchUpload UpdateBatchTerminal SaveTerminal BuildResponse SaveBatchTxn"/>
-        <property name="SettlementTrailer" value="FindTerminal CheckTrace CreateTrace SaveTrace CreateSettlementTxn DoSettlementTrailer ResetTerminal ResetBatchTerminal SaveTerminal BuildResponse SaveSettlementTxn DeactivateTransactions"/>
+        <property name="Settlement" value="FindTerminal CheckTrace CreateTrace SaveTrace CreateSettlementTxn DoSettlement ResetTerminal SaveTerminal BuildResponse UpdateSettlementTxn SaveSettlementTxn DeactivateTraces"/>
+        <property name="BatchUpload" value="FindTerminal CheckTrace CheckBatchNumber CreateTrace SaveTrace FindTransaction CreateBatchTxn DoBatchUpload UpdateBatchTerminal SaveTerminal BuildResponse UpdateBatchTxn SaveBatchTxn"/>
+        <property name="SettlementTrailer" value="FindTerminal CheckTrace CreateTrace SaveTrace CreateSettlementTxn DoSettlementTrailer ResetTerminal ResetBatchTerminal SaveTerminal BuildResponse UpdateSettlementTxn SaveSettlementTxn DeactivateTraces"/>
     </participant>
     <participant class="com.midtrans.bank.logic.transaction.EndTransaction" logger="Q2"/>
 
@@ -67,10 +67,6 @@
         <participant class="com.midtrans.bank.logic.transaction.FindVoidTxn" logger="Q2"/>
     </group>
 
-    <group name="DoEcho">
-        <participant class="com.midtrans.bank.logic.transaction.DoEcho" logger="Q2"/>
-    </group>
-
     <group name="DoSale">
         <participant class="com.midtrans.bank.logic.transaction.DoSale" logger="Q2"/>
     </group>
@@ -111,8 +107,8 @@
         <participant class="com.midtrans.bank.logic.transaction.ResetTerminal" logger="Q2"/>
     </group>
 
-    <group name="DeactivateTransactions">
-        <participant class="com.midtrans.bank.logic.transaction.DeactivateTransactions" logger="Q2"/>
+    <group name="DeactivateTraces">
+        <participant class="com.midtrans.bank.logic.transaction.DeactivateTraces" logger="Q2"/>
     </group>
 
     <group name="ResetBatchTerminal">
@@ -125,6 +121,22 @@
 
     <group name="UpdateTerminal">
         <participant class="com.midtrans.bank.logic.transaction.UpdateTerminal" logger="Q2"/>
+    </group>
+
+    <group name="UpdateTransaction">
+        <participant class="com.midtrans.bank.logic.transaction.UpdateTransaction" logger="Q2"/>
+    </group>
+
+    <group name="UpdateVoidTxn">
+        <participant class="com.midtrans.bank.logic.transaction.UpdateVoidTxn" logger="Q2"/>
+    </group>
+
+    <group name="UpdateBatchTxn">
+        <participant class="com.midtrans.bank.logic.transaction.UpdateBatchTxn" logger="Q2"/>
+    </group>
+
+    <group name="UpdateSettlementTxn">
+        <participant class="com.midtrans.bank.logic.transaction.UpdateSettlementTxn" logger="Q2"/>
     </group>
 
     <group name="SaveTerminal">

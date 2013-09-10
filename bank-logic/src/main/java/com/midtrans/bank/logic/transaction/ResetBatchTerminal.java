@@ -15,7 +15,7 @@ import org.jpos.transaction.Context;
 public class ResetBatchTerminal extends BankTxnSupport implements AbortParticipant {
     @Override
     protected int doPrepare(long id, Context ctx) throws Exception {
-        return resetBatchTerminal(ctx);
+        return PREPARED | NO_JOIN;
     }
 
     @Override

@@ -31,7 +31,7 @@ public class EchoResponse extends BankTxnSupport implements AbortParticipant {
     private int buildResponse(Context ctx) throws ISOException {
         String mti = ctx.getString(MTI);
         String pCode = ctx.getString(PCODE);
-        Date txnTime = (Date) ctx.get(TXN_TIME);
+        Date txnTime = (Date) ctx.get(TXN_TIME, new Date());
         String nii = ctx.getString(NII);
         String tid = ctx.getString(TID);
 
