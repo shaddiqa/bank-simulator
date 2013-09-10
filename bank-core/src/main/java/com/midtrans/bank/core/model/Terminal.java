@@ -29,6 +29,8 @@ public class Terminal {
     public Terminal reset() {
         this.count = 0;
         this.amount = 0L;
+        this.batchCount = 0;
+        this.batchAmount = 0L;
 
         return this;
     }
