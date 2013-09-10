@@ -1,6 +1,7 @@
 package com.midtrans.bank.logic.transaction;
 
 import com.midtrans.bank.core.model.SettlementParameter;
+import com.midtrans.bank.core.model.SettlementTxn;
 import com.midtrans.bank.core.model.Terminal;
 import com.midtrans.bank.core.transaction.BankTxnSupport;
 import org.jpos.transaction.Context;
@@ -19,12 +20,17 @@ public class DoSettlement extends BankTxnSupport {
     protected int doPrepare(long id, Context ctx) throws Exception {
         Terminal terminal = (Terminal) ctx.get(TERMINAL);
         SettlementParameter parameter = (SettlementParameter) ctx.get(SETTLE_PARAM);
+        SettlementTxn settlementTxn = (SettlementTxn) ctx.get(SETTLE_TXN);
 
         Date now = new Date();
         String refNo = Long.toHexString(System.currentTimeMillis());
 
+        settlementTxn.setTxnTime(now);
+        settlementTxn.setReferenceNumber(refNo);
+
         ctx.put(TXN_TIME, now);
         ctx.put(REFERENCE_NUMBER, refNo);
+        ctx.put(SETTLE_TXN, settlementTxn);
 
         assertTrue(terminal.getCount().equals(parameter.getDebitSales().getCount()), "95");
         assertTrue(terminal.getAmount().equals(parameter.getDebitSales().getAmount()), "95");

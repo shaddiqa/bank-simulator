@@ -46,22 +46,22 @@ public class BuildResponse extends BankTxnSupport implements AbortParticipant {
         String tid = ctx.getString(TID);
 
         String command = ctx.getString(COMMAND);
-        if(command.equals("Sale")) {
+        if("Sale".equals(command)) {
             Transaction txn = (Transaction) ctx.get(TXN);
             txn.setResponseCode(rCode);
 
             ctx.put(TXN, txn);
-        } else if(command.equals("Void")) {
+        } else if("Void".equals(command)) {
             VoidTxn voidTxn = (VoidTxn) ctx.get(VOID_TXN);
             voidTxn.setResponseCode(rCode);
 
             ctx.put(VOID_TXN, voidTxn);
-        } else if(command.equals("Settlement") || command.equals("SettlementTrailer")) {
+        } else if("Settlement".equals(command) || "SettlementTrailer".equals(command)) {
             SettlementTxn settlementTxn = (SettlementTxn) ctx.get(SETTLE_TXN);
             settlementTxn.setResponseCode(rCode);
 
             ctx.put(SETTLE_TXN, settlementTxn);
-        } else if(command.equals("BatchUpload")) {
+        } else if("BatchUpload".equals(command)) {
             BatchTxn batchTxn = (BatchTxn) ctx.get(BATCH_TXN);
             batchTxn.setResponseCode(rCode);
 

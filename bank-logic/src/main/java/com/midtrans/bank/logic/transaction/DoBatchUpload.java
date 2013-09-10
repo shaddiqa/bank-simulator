@@ -20,13 +20,15 @@ public class DoBatchUpload extends BankTxnSupport {
         BatchTxn batchTxn = (BatchTxn) ctx.get(BATCH_TXN);
         Trace trace = (Trace) ctx.get(BANK_TRACE);
         String batchNumber = ctx.getString(BATCH_NUMBER);
-
-        batchTxn.setTrace(trace);
-        batchTxn.setBatchNumber(batchNumber);
-
         Date now = new Date();
         String refNo = Long.toHexString(System.currentTimeMillis());
         String authId = "AUTH";
+
+        batchTxn.setTrace(trace);
+        batchTxn.setBatchNumber(batchNumber);
+        batchTxn.setTxnTime(now);
+        batchTxn.setReferenceNumber(refNo);
+        batchTxn.setAuthorizationId(authId);
 
         ctx.put(TXN_TIME, now);
         ctx.put(REFERENCE_NUMBER, refNo);

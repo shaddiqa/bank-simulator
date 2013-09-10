@@ -14,6 +14,8 @@ public class SettlementTxn {
 
     private Trace trace;
 
+    private Date txnTime;
+
     private String batchNumber;
 
     private String settlementParameter;
@@ -42,6 +44,14 @@ public class SettlementTxn {
 
     public void setTrace(Trace trace) {
         this.trace = trace;
+    }
+
+    public Date getTxnTime() {
+        return txnTime;
+    }
+
+    public void setTxnTime(Date txnTime) {
+        this.txnTime = txnTime;
     }
 
     public String getBatchNumber() {

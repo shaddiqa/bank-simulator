@@ -30,18 +30,18 @@ public class SettlementParameter {
     }
 
     public static SettlementParameter create(String param) {
-        int csc = Integer.valueOf(param.substring(0,2));
-        long csa = Long.valueOf(param.substring(3,14));
-        int crc = Integer.valueOf(param.substring(15,17));
-        long cra = Long.valueOf(param.substring(18,29));
-        int dsc = Integer.valueOf(param.substring(30,32));
-        long dsa = Long.valueOf(param.substring(33,44));
-        int drc = Integer.valueOf(param.substring(45,47));
-        long dra = Long.valueOf(param.substring(48,59));
-        int asc = Integer.valueOf(param.substring(60,62));
-        long asa = Long.valueOf(param.substring(63,74));
-        int arc = Integer.valueOf(param.substring(75,77));
-        long ara = Long.valueOf(param.substring(78,89));
+        int csc = Integer.valueOf(param.substring(0,3));
+        long csa = Long.valueOf(param.substring(3,15));
+        int crc = Integer.valueOf(param.substring(15,18));
+        long cra = Long.valueOf(param.substring(18,30));
+        int dsc = Integer.valueOf(param.substring(30,33));
+        long dsa = Long.valueOf(param.substring(33,45));
+        int drc = Integer.valueOf(param.substring(45,48));
+        long dra = Long.valueOf(param.substring(48,60));
+        int asc = Integer.valueOf(param.substring(60,63));
+        long asa = Long.valueOf(param.substring(63,75));
+        int arc = Integer.valueOf(param.substring(75,78));
+        long ara = Long.valueOf(param.substring(78,90));
 
         SettlementBlock creditSales = new SettlementBlock(csc, csa);
         SettlementBlock creditRefund = new SettlementBlock(crc, cra);
