@@ -14,7 +14,7 @@
         <property name="ReversalSale" value="FindTerminal FindTrace FindTransaction DoReversalSale UpdateTerminal SaveTerminal BuildResponse SaveTransaction"/>
         <property name="ReversalVoid" value="FindTerminal FindTrace FindVoidTxn FindTransaction DoReversalVoid UpdateTerminal SaveTerminal BuildResponse SaveVoidTxn SaveTransaction"/>
         <property name="Settlement" value="FindTerminal CheckTrace CreateTrace SaveTrace CreateSettlementTxn DoSettlement ResetTerminal ResetBatchTerminal SaveTerminal BuildResponse SaveSettlementTxn DeactivateTransactions"/>
-        <property name="BatchUpload" value="FindTerminal CheckTrace CreateTrace SaveTrace FindTransaction CreateBatchTxn DoBatchUpload UpdateBatchTerminal SaveTerminal BuildResponse SaveBatchTxn"/>
+        <property name="BatchUpload" value="FindTerminal CheckTrace CheckBatchNumber CreateTrace SaveTrace FindTransaction CreateBatchTxn DoBatchUpload UpdateBatchTerminal SaveTerminal BuildResponse SaveBatchTxn"/>
         <property name="SettlementTrailer" value="FindTerminal CheckTrace CreateTrace SaveTrace CreateSettlementTxn DoSettlementTrailer ResetTerminal ResetBatchTerminal SaveTerminal BuildResponse SaveSettlementTxn DeactivateTransactions"/>
     </participant>
     <participant class="com.midtrans.bank.logic.transaction.EndTransaction" logger="Q2"/>
@@ -25,6 +25,10 @@
 
     <group name="CheckTrace">
         <participant class="com.midtrans.bank.logic.transaction.CheckTrace" logger="Q2"/>
+    </group>
+
+    <group name="CheckBatchNumber">
+        <participant class="com.midtrans.bank.logic.transaction.CheckBatchNumber" logger="Q2"/>
     </group>
 
     <group name="CheckBalance">
