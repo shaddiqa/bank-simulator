@@ -2,7 +2,7 @@ package com.midtrans.bank.logic.transaction;
 
 import com.midtrans.bank.core.model.Terminal;
 import com.midtrans.bank.core.transaction.BankTxnSupport;
-import com.midtrans.bank.logic.dao.impl.TransactionDao;
+import com.midtrans.bank.logic.dao.impl.TraceDao;
 import org.jpos.ee.DB;
 import org.jpos.transaction.Context;
 
@@ -14,13 +14,13 @@ import org.jpos.transaction.Context;
  * To change this template use File | Settings | File Templates.
  */
 public class DeactivateTransactions extends BankTxnSupport {
-    TransactionDao dao;
+    TraceDao dao;
 
     @Override
     protected int doPrepare(long id, Context ctx) throws Exception {
         DB db = openDB(ctx);
 
-        dao = new TransactionDao(db);
+        dao = new TraceDao(db);
 
         Terminal terminal = (Terminal) ctx.get(TERMINAL);
 

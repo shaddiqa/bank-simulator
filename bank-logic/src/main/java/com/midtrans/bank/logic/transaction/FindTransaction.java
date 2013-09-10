@@ -42,13 +42,11 @@ public class FindTransaction extends BankTxnSupport {
             txn = dao.findBy(cardNumber, amount, cardExpire, terminal, txnTime, referenceNumber);
         } else if (command.equals("BatchUpload")) {
             txn = dao.findBy(cardNumber, amount, Integer.valueOf(batchNumber.substring(4,9)), cardExpire, terminal, txnTime, referenceNumber, responseCode);
-        } else if(command.equals("ReversalSale")) {
-            txn = dao.findBy(cardNumber, amount, traceNumber, cardExpire, terminal);
-        } else if(command.equals("ReversalVoid")) {
-            txn = dao.findBy(cardNumber, amount, traceNumber, cardExpire, terminal, txnTime, referenceNumber);
+        } else if(command.equals("ReversalSale") || command.equals("ReversalVoid")) {
+            txn = dao.findBy(cardNumber, amount, traceNumber, terminal);
         }
 
-        assertNotNull(txn, "Transaction is not found");
+        assertNotNull(txn, "12");
 
         ctx.put(VALBEFORE, txn.calcSettleAmount());
 

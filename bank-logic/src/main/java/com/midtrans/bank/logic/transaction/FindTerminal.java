@@ -29,7 +29,7 @@ public class FindTerminal extends BankTxnSupport {
 
         Terminal terminal = dao.findBy(btc.getBank(), mid, tid);
 
-        assertNotNull(terminal, "No active terminal found");
+        assertNotNull(terminal, "14");
 
         ctx.put(TERMINAL, terminal);
 

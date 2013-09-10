@@ -7,7 +7,6 @@
             <generator class="identity" />
         </id>
         <property name="amount" type="java.lang.Long" column="amount"/>
-        <one-to-one name="trace" class="com.midtrans.bank.core.model.Trace" fetch="join" constrained="true"/>
         <property name="cardNumber" type="string" column="card_number"/>
         <property name="cardExpire" type="string" column="card_expire"/>
         <property name="txnTime" type="java.util.Date">
@@ -18,6 +17,11 @@
         <property name="responseCode" type="string" column="response_code"/>
 
         <property name="batchNumber" type="string" column="batch_number"/>
+
+        <many-to-one name="trace" class="com.midtrans.bank.core.model.Trace" fetch="join">
+            <column name="fk_trace"/>
+        </many-to-one>
+
         <property name="createdAt" type="java.util.Date">
             <column name="created_at" sql-type="DATETIME"/>
         </property>

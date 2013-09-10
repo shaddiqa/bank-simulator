@@ -1,5 +1,6 @@
 package com.midtrans.bank.logic.dao.impl;
 
+import com.midtrans.bank.core.model.Trace;
 import com.midtrans.bank.core.model.Transaction;
 import com.midtrans.bank.core.model.VoidTxn;
 import org.hibernate.Criteria;
@@ -19,11 +20,11 @@ public class VoidTxnDao extends AbstractBankDao<VoidTxn> {
         super(db);
     }
 
-    public VoidTxn findBy(Transaction txn, Integer traceNumber) {
+    public VoidTxn findBy(Transaction txn, Trace trace) {
         Criteria criteria = db.session().createCriteria(domainClass);
 
         criteria.add(Restrictions.eq("transaction", txn))
-                .add(Restrictions.eq("traceNumber", traceNumber));
+                .add(Restrictions.eq("trace", trace));
         return (VoidTxn) criteria.uniqueResult();
     }
 }

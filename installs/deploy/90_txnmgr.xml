@@ -11,8 +11,8 @@
         <property name="Echo" value="DoEcho EchoResponse"/>
         <property name="Sale" value="FindTerminal CheckTrace CreateTrace SaveTrace CreateTransaction DoSale UpdateTerminal SaveTerminal BuildResponse SaveTransaction"/>
         <property name="Void" value="FindTerminal CheckTrace CreateTrace SaveTrace FindTransaction CheckBalance CreateVoidTxn DoVoid UpdateTerminal SaveTerminal BuildResponse SaveVoidTxn SaveTransaction"/>
-        <property name="ReversalSale" value="FindTransaction DoReversalSale UpdateTerminal SaveTerminal BuildResponse SaveTransaction"/>
-        <property name="ReversalVoid" value="FindTransaction FindVoidTxn DoReversalVoid UpdateTerminal SaveTerminal BuildResponse SaveVoidTxn SaveTransaction"/>
+        <property name="ReversalSale" value="FindTerminal FindTrace FindTransaction DoReversalSale UpdateTerminal SaveTerminal BuildResponse SaveTransaction"/>
+        <property name="ReversalVoid" value="FindTerminal FindTrace FindTransaction FindVoidTxn DoReversalVoid UpdateTerminal SaveTerminal BuildResponse SaveVoidTxn SaveTransaction"/>
         <property name="Settlement" value="FindTerminal CheckTrace CreateTrace SaveTrace CreateSettlementTxn DoSettlement ResetTerminal SaveTerminal BuildResponse SaveSettlementTxn DeactivateTransactions"/>
         <property name="BatchUpload" value="FindTerminal CheckTrace CreateTrace SaveTrace FindTransaction CreateBatchTxn DoBatchUpload UpdateBatchTerminal SaveTerminal BuildResponse SaveBatchTxn"/>
         <property name="SettlementTrailer" value="FindTerminal CheckTrace CreateTrace SaveTrace CreateSettlementTxn DoSettlementTrailer ResetTerminal ResetBatchTerminal SaveTerminal BuildResponse SaveSettlementTxn DeactivateTransactions"/>
@@ -49,6 +49,10 @@
 
     <group name="CreateSettlementTxn">
         <participant class="com.midtrans.bank.logic.transaction.CreateSettlementTxn" logger="Q2"/>
+    </group>
+
+    <group name="FindTrace">
+        <participant class="com.midtrans.bank.logic.transaction.FindTrace" logger="Q2"/>
     </group>
 
     <group name="FindTransaction">

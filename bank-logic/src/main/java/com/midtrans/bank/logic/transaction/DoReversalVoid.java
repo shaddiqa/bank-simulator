@@ -5,6 +5,8 @@ import com.midtrans.bank.core.model.VoidTxn;
 import com.midtrans.bank.core.transaction.BankTxnSupport;
 import org.jpos.transaction.Context;
 
+import java.util.Date;
+
 /**
  * Created with IntelliJ IDEA.
  * User: shaddiqa
@@ -17,6 +19,10 @@ public class DoReversalVoid extends BankTxnSupport {
     protected int doPrepare(long id, Context ctx) throws Exception {
         Transaction txn = (Transaction) ctx.get(TXN);
         VoidTxn voidTxn = (VoidTxn) ctx.get(VOID_TXN);
+
+        Date now = new Date();
+
+        ctx.put(TXN_TIME, now);
 
         voidTxn.setReversal(true);
         txn.modifyVoidAmount(voidTxn);

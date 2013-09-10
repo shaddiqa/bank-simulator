@@ -6,11 +6,15 @@
         <id name="id" type="java.lang.Long" column="pk_settlement_txn">
             <generator class="identity" />
         </id>
-        <one-to-one name="trace" class="com.midtrans.bank.core.model.Trace" fetch="join" constrained="true"/>
         <property name="batchNumber" type="string" column="batch_number"/>
         <property name="settlementParameter" type="string" column="settlementParameter"/>
         <property name="referenceNumber" type="string" column="reference_number"/>
         <property name="responseCode" type="string" column="response_code"/>
+
+        <many-to-one name="trace" class="com.midtrans.bank.core.model.Trace" fetch="join">
+            <column name="fk_trace"/>
+        </many-to-one>
+
         <property name="createdAt" type="java.util.Date">
             <column name="created_at" sql-type="DATETIME"/>
         </property>

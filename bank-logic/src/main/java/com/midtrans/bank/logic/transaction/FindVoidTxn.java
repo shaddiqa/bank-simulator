@@ -1,5 +1,6 @@
 package com.midtrans.bank.logic.transaction;
 
+import com.midtrans.bank.core.model.Trace;
 import com.midtrans.bank.core.model.Transaction;
 import com.midtrans.bank.core.model.VoidTxn;
 import com.midtrans.bank.core.transaction.BankTxnSupport;
@@ -24,9 +25,11 @@ public class FindVoidTxn extends BankTxnSupport {
         dao = new VoidTxnDao(db);
 
         Transaction txn = (Transaction) ctx.get(TXN);
-        Integer traceNumber = (Integer) ctx.get(TRACE_NUMBER);
+        Trace trace = (Trace) ctx.get(BANK_TRACE);
 
-        VoidTxn voidTxn = dao.findBy(txn, traceNumber);
+        VoidTxn voidTxn = dao.findBy(txn, trace);
+
+        assertNotNull(voidTxn, "12");
 
         ctx.put(VOID_TXN, voidTxn);
 

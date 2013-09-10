@@ -4,17 +4,17 @@ import com.midtrans.bank.core.model.Terminal;
 import com.midtrans.bank.core.model.Trace;
 import com.midtrans.bank.core.transaction.BankTxnSupport;
 import com.midtrans.bank.logic.dao.impl.TraceDao;
-import org.jpos.ee.DB;
 import org.jpos.transaction.Context;
+import org.jpos.ee.DB;
 
 /**
  * Created with IntelliJ IDEA.
  * User: shaddiqa
- * Date: 9/6/13
- * Time: 10:54 AM
+ * Date: 9/10/13
+ * Time: 4:49 PM
  * To change this template use File | Settings | File Templates.
  */
-public class CheckTrace extends BankTxnSupport {
+public class FindTrace extends BankTxnSupport {
     TraceDao dao;
 
     @Override
@@ -28,7 +28,9 @@ public class CheckTrace extends BankTxnSupport {
 
         Trace trace = dao.findBy(terminal, traceNumber);
 
-        assertNull(trace, "94");
+        assertNotNull(trace, "12");
+
+        ctx.put(BANK_TRACE, trace);
 
         closeDB(ctx);
         return PREPARED | NO_JOIN;

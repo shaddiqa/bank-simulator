@@ -4,6 +4,8 @@ import com.midtrans.bank.core.model.Transaction;
 import com.midtrans.bank.core.transaction.BankTxnSupport;
 import org.jpos.transaction.Context;
 
+import java.util.Date;
+
 /**
  * Created with IntelliJ IDEA.
  * User: shaddiqa
@@ -15,6 +17,10 @@ public class DoReversalSale extends BankTxnSupport {
     @Override
     protected int doPrepare(long id, Context ctx) throws Exception {
         Transaction txn = (Transaction) ctx.get(TXN);
+
+        Date now = new Date();
+
+        ctx.put(TXN_TIME, now);
 
         txn.setReversal(true);
 

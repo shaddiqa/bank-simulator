@@ -26,8 +26,8 @@ public class DoSettlement extends BankTxnSupport {
         ctx.put(TXN_TIME, now);
         ctx.put(REFERENCE_NUMBER, refNo);
 
-        assertTrue(terminal.getCount().equals(parameter.getDebitSales().getCount()), "Count is not equal");
-        assertTrue(terminal.getAmount().equals(parameter.getDebitSales().getAmount()), "Amount is not equal");
+        assertTrue(terminal.getCount().equals(parameter.getDebitSales().getCount()), "95");
+        assertTrue(terminal.getAmount().equals(parameter.getDebitSales().getAmount()), "95");
 
         return PREPARED | NO_JOIN;
     }

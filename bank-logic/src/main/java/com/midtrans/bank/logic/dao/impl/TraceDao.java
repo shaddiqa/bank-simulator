@@ -3,6 +3,7 @@ package com.midtrans.bank.logic.dao.impl;
 import com.midtrans.bank.core.model.Terminal;
 import com.midtrans.bank.core.model.Trace;
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.criterion.Restrictions;
 import org.jpos.ee.DB;
 
@@ -27,5 +28,14 @@ public class TraceDao extends AbstractBankDao<Trace> {
                 .add(Restrictions.eq("active", true));
 
         return (Trace) criteria.uniqueResult();
+    }
+
+    public int deactivate(Terminal terminal) {
+        String hql = "update Trace set active = false where terminal = :terminal";
+
+        Query query = db.session().createQuery(hql);
+        query.setParameter("terminal", terminal);
+
+        return query.executeUpdate();
     }
 }

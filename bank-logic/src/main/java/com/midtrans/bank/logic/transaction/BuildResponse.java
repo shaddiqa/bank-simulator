@@ -1,6 +1,9 @@
 package com.midtrans.bank.logic.transaction;
 
+import com.midtrans.bank.core.model.BatchTxn;
+import com.midtrans.bank.core.model.SettlementTxn;
 import com.midtrans.bank.core.model.Transaction;
+import com.midtrans.bank.core.model.VoidTxn;
 import com.midtrans.bank.core.transaction.BankTxnSupport;
 import org.jpos.iso.ISODate;
 import org.jpos.iso.ISOException;
@@ -26,7 +29,9 @@ public class BuildResponse extends BankTxnSupport implements AbortParticipant {
 
     @Override
     protected int doPrepareForAbort(long id, Context ctx) throws Exception {
-        return buildResponse(ctx, "12");
+        String rCode = ctx.getString("RC");
+
+        return buildResponse(ctx, rCode);
     }
 
     private int buildResponse(Context ctx, String rCode) throws ISOException {
@@ -40,10 +45,29 @@ public class BuildResponse extends BankTxnSupport implements AbortParticipant {
         String authId = ctx.getString(AUTHORIZATION_ID);
         String tid = ctx.getString(TID);
 
-        Transaction txn = (Transaction) ctx.get(TXN);
-        txn.setResponseCode(rCode);
+        String command = ctx.getString(COMMAND);
+        if(command.equals("Sale")) {
+            Transaction txn = (Transaction) ctx.get(TXN);
+            txn.setResponseCode(rCode);
 
-        ctx.put(TXN, txn);
+            ctx.put(TXN, txn);
+        } else if(command.equals("Void")) {
+            VoidTxn voidTxn = (VoidTxn) ctx.get(VOID_TXN);
+            voidTxn.setResponseCode(rCode);
+
+            ctx.put(VOID_TXN, voidTxn);
+        } else if(command.equals("Settlement") || command.equals("SettlementTrailer")) {
+            SettlementTxn settlementTxn = (SettlementTxn) ctx.get(SETTLE_TXN);
+            settlementTxn.setResponseCode(rCode);
+
+            ctx.put(SETTLE_TXN, settlementTxn);
+        } else if(command.equals("BatchUpload")) {
+            BatchTxn batchTxn = (BatchTxn) ctx.get(BATCH_TXN);
+            batchTxn.setResponseCode(rCode);
+
+            ctx.put(BATCH_TXN, batchTxn);
+        }
+
         ctx.put(RCODE, rCode);
         ctx.put(RESPONSE, createResponse(responseMTI(mti), pCode, amount, traceNumber, txnTime, nii, refNo, authId, rCode, tid));
 

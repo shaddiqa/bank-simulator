@@ -19,7 +19,7 @@ public class CheckBalance extends BankTxnSupport {
 
         Long balance = txn.getAmount() - txn.getVoidAmount();
 
-        assertTrue(balance.compareTo(amount) >= 0, "Balance is less than the amount to be void");
+        assertTrue(balance.compareTo(amount) >= 0, "12");
 
         return PREPARED | NO_JOIN;
     }
