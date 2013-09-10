@@ -3,27 +3,34 @@ package com.midtrans.bank.logic.transaction;
 import com.midtrans.bank.core.model.Transaction;
 import com.midtrans.bank.core.model.VoidTxn;
 import com.midtrans.bank.core.transaction.BankTxnSupport;
+import com.midtrans.bank.logic.dao.impl.VoidTxnDao;
+import org.jpos.ee.DB;
 import org.jpos.transaction.Context;
 
 /**
  * Created with IntelliJ IDEA.
  * User: shaddiqa
- * Date: 9/9/13
- * Time: 12:26 PM
+ * Date: 9/10/13
+ * Time: 10:15 AM
  * To change this template use File | Settings | File Templates.
  */
-public class DoVoid extends BankTxnSupport {
+public class FindVoidTxn extends BankTxnSupport {
+    VoidTxnDao dao;
+
     @Override
     protected int doPrepare(long id, Context ctx) throws Exception {
+        DB db = openDB(ctx);
+
+        dao = new VoidTxnDao(db);
+
         Transaction txn = (Transaction) ctx.get(TXN);
-        VoidTxn voidTxn = (VoidTxn) ctx.get(VOID_TXN);
+        Integer traceNumber = (Integer) ctx.get(TRACE_NUMBER);
 
-        txn.modifyVoidAmount(voidTxn);
+        VoidTxn voidTxn = dao.findBy(txn, traceNumber);
 
-        ctx.put(VALAFTER, txn.calcSettleAmount());
+        ctx.put(VOID_TXN, voidTxn);
 
-        ctx.put(TXN, txn);
-
+        closeDB(ctx);
         return PREPARED | NO_JOIN;
     }
 }

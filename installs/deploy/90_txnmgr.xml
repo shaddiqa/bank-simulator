@@ -10,9 +10,9 @@
     <participant class="com.midtrans.bank.logic.transaction.SelectCommand" logger="Q2">
         <property name="Echo" value="DoEcho EchoResponse"/>
         <property name="Sale" value="FindTerminal CheckTraceNumber CreateTransaction DoSale SaveTerminal BuildResponse SaveTransaction"/>
-        <property name="Void" value="FindTerminal CheckTraceNumber FindTransaction DoVoid SaveTerminal BuildResponse SaveTransaction"/>
+        <property name="Void" value="FindTerminal CheckTraceNumber FindTransaction CheckBalance CreateVoidTxn DoVoid SaveTerminal BuildResponse SaveVoidTxn SaveTransaction"/>
         <property name="ReversalSale" value="FindTransaction DoReversalSale SaveTerminal BuildResponse SaveTransaction"/>
-        <property name="ReversalVoid" value="FindTransaction DoReversalVoid SaveTerminal BuildResponse SaveTransaction"/>
+        <property name="ReversalVoid" value="FindTransaction FindVoidTxn DoReversalVoid SaveTerminal BuildResponse SaveVoidTxn SaveTransaction"/>
         <property name="Settlement" value=""/>
         <property name="BatchUpload" value=""/>
         <property name="SettlementTrailer" value=""/>
@@ -27,12 +27,24 @@
         <participant class="com.midtrans.bank.logic.transaction.CheckTraceNumber" logger="Q2"/>
     </group>
 
+    <group name="CheckBalance">
+        <participant class="com.midtrans.bank.logic.transaction.CheckBalance" logger="Q2"/>
+    </group>
+
     <group name="CreateTransaction">
         <participant class="com.midtrans.bank.logic.transaction.CreateTransaction" logger="Q2"/>
     </group>
 
+    <group name="CreateVoidTxn">
+        <participant class="com.midtrans.bank.logic.transaction.CreateVoidTxn" logger="Q2"/>
+    </group>
+
     <group name="FindTransaction">
         <participant class="com.midtrans.bank.logic.transaction.FindTransaction" logger="Q2"/>
+    </group>
+
+    <group name="FindVoidTxn">
+        <participant class="com.midtrans.bank.logic.transaction.FindVoidTxn" logger="Q2"/>
     </group>
 
     <group name="DoEcho">
@@ -69,5 +81,9 @@
 
     <group name="SaveTransaction">
         <participant class="com.midtrans.bank.logic.transaction.SaveTransaction" logger="Q2"/>
+    </group>
+
+    <group name="SaveVoidTxn">
+        <participant class="com.midtrans.bank.logic.transaction.SaveVoidTxn" logger="Q2"/>
     </group>
 </txnmgr>

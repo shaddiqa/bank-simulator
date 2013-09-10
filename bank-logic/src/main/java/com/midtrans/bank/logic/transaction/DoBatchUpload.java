@@ -2,7 +2,6 @@ package com.midtrans.bank.logic.transaction;
 
 import com.midtrans.bank.core.model.Transaction;
 import com.midtrans.bank.core.transaction.BankTxnSupport;
-import com.midtrans.bank.logic.util.SettlementUtil;
 import org.jpos.transaction.Context;
 
 /**
@@ -20,7 +19,7 @@ public class DoBatchUpload extends BankTxnSupport {
 
         txn.setBatchNumber(batchNumber);
 
-        ctx.put(VALAFTER, SettlementUtil.calculateAmount(txn));
+        ctx.put(VALAFTER, txn.calcSettleAmount());
 
         ctx.put(TXN, txn);
 

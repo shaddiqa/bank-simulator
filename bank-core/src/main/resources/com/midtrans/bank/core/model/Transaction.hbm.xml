@@ -25,16 +25,13 @@
         <property name="authorizationId" type="string" column="authorization_id"/>
         <property name="responseCode" type="string" column="response_code"/>
 
-        <property name="voidTraceNumber" type="java.lang.Integer">
-            <column name="void_trace_number" sql-type="SMALLINT"/>
-        </property>
         <property name="voidAmount" type="java.lang.Long" column="void_amount"/>
-        <property name="voidFlag" type="boolean">
-            <column name="void_flag" sql-type="TINYINT(1)"/>
-        </property>
-        <property name="reversalFlag" type="boolean">
-            <column name="reversal_flag" sql-type="TINYINT(1)"/>
+        <property name="reversal" type="boolean">
+            <column name="reversal" sql-type="TINYINT(1)"/>
         </property>
         <property name="batchNumber" type="string" column="batch_number"/>
+        <property name="createdAt" type="java.util.Date">
+            <column name="created_at" sql-type="DATETIME"/>
+        </property>
     </class>
 </hibernate-mapping>

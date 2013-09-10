@@ -1,28 +1,25 @@
 package com.midtrans.bank.logic.transaction;
 
 import com.midtrans.bank.core.model.Transaction;
-import com.midtrans.bank.core.model.VoidTxn;
 import com.midtrans.bank.core.transaction.BankTxnSupport;
 import org.jpos.transaction.Context;
 
 /**
  * Created with IntelliJ IDEA.
  * User: shaddiqa
- * Date: 9/9/13
- * Time: 12:26 PM
+ * Date: 9/10/13
+ * Time: 10:48 AM
  * To change this template use File | Settings | File Templates.
  */
-public class DoVoid extends BankTxnSupport {
+public class CheckBalance extends BankTxnSupport {
     @Override
     protected int doPrepare(long id, Context ctx) throws Exception {
         Transaction txn = (Transaction) ctx.get(TXN);
-        VoidTxn voidTxn = (VoidTxn) ctx.get(VOID_TXN);
+        Long amount = (Long) ctx.get(AMOUNT);
 
-        txn.modifyVoidAmount(voidTxn);
+        Long balance = txn.getAmount() - txn.getVoidAmount();
 
-        ctx.put(VALAFTER, txn.calcSettleAmount());
-
-        ctx.put(TXN, txn);
+        assertTrue(balance.compareTo(amount) >= 0, "Balance is less than the amount to be void");
 
         return PREPARED | NO_JOIN;
     }

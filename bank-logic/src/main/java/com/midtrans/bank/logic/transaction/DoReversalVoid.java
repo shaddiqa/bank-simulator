@@ -1,8 +1,8 @@
 package com.midtrans.bank.logic.transaction;
 
 import com.midtrans.bank.core.model.Transaction;
+import com.midtrans.bank.core.model.VoidTxn;
 import com.midtrans.bank.core.transaction.BankTxnSupport;
-import com.midtrans.bank.logic.util.SettlementUtil;
 import org.jpos.transaction.Context;
 
 /**
@@ -16,13 +16,14 @@ public class DoReversalVoid extends BankTxnSupport {
     @Override
     protected int doPrepare(long id, Context ctx) throws Exception {
         Transaction txn = (Transaction) ctx.get(TXN);
+        VoidTxn voidTxn = (VoidTxn) ctx.get(VOID_TXN);
 
-        txn.setVoidAmount(null);
-        txn.setVoidTraceNumber(null);
-        txn.setVoidFlag(false);
+        voidTxn.setReversal(true);
+        txn.modifyVoidAmount(voidTxn);
 
-        ctx.put(VALAFTER, SettlementUtil.calculateAmount(txn));
+        ctx.put(VALAFTER, txn.calcSettleAmount());
 
+        ctx.put(VOID_TXN, voidTxn);
         ctx.put(TXN, txn);
 
         return PREPARED | NO_JOIN;

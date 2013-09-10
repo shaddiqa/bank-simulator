@@ -33,22 +33,37 @@ public class Transaction implements Serializable {
 
     private String responseCode;
 
-    private Integer voidTraceNumber;
-
     private Long voidAmount;
 
-    private boolean voidFlag;
-
-    private boolean reversalFlag;
+    private boolean reversal;
 
     private String batchNumber;
+
+    private Date createdAt;
 
     public Transaction() {
         this.active = true;
         this.amount = 0L;
         this.voidAmount = 0L;
-        this.voidFlag = false;
-        this.reversalFlag = false;
+        this.reversal = false;
+        this.createdAt = new Date();
+    }
+
+    public void modifyVoidAmount(VoidTxn voidTxn) {
+        if(voidTxn.isReversal()) {
+            this.voidAmount -= voidTxn.getAmount();
+        } else {
+            this.voidAmount += voidTxn.getAmount();
+
+        }
+    }
+
+    public Long calcSettleAmount() {
+        if(reversal) {
+            return 0L;
+        }
+
+        return amount - voidAmount;
     }
 
     public Long getId() {
@@ -139,14 +154,6 @@ public class Transaction implements Serializable {
         this.responseCode = responseCode;
     }
 
-    public Integer getVoidTraceNumber() {
-        return voidTraceNumber;
-    }
-
-    public void setVoidTraceNumber(Integer voidTraceNumber) {
-        this.voidTraceNumber = voidTraceNumber;
-    }
-
     public Long getVoidAmount() {
         return voidAmount;
     }
@@ -155,20 +162,12 @@ public class Transaction implements Serializable {
         this.voidAmount = voidAmount;
     }
 
-    public boolean isVoidFlag() {
-        return voidFlag;
+    public boolean isReversal() {
+        return reversal;
     }
 
-    public void setVoidFlag(boolean voidFlag) {
-        this.voidFlag = voidFlag;
-    }
-
-    public boolean isReversalFlag() {
-        return reversalFlag;
-    }
-
-    public void setReversalFlag(boolean reversalFlag) {
-        this.reversalFlag = reversalFlag;
+    public void setReversal(boolean reversal) {
+        this.reversal = reversal;
     }
 
     public String getBatchNumber() {
@@ -177,5 +176,13 @@ public class Transaction implements Serializable {
 
     public void setBatchNumber(String batchNumber) {
         this.batchNumber = batchNumber;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 }

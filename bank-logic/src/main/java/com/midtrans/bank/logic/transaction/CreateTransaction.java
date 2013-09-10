@@ -2,7 +2,6 @@ package com.midtrans.bank.logic.transaction;
 
 import com.midtrans.bank.core.model.Transaction;
 import com.midtrans.bank.core.transaction.BankTxnSupport;
-import com.midtrans.bank.logic.util.SettlementUtil;
 import org.jpos.transaction.Context;
 
 /**
@@ -17,7 +16,7 @@ public class CreateTransaction extends BankTxnSupport {
     protected int doPrepare(long id, Context ctx) throws Exception {
         Transaction txn = new Transaction();
 
-        ctx.put(VALBEFORE, SettlementUtil.calculateAmount(txn));
+        ctx.put(VALBEFORE, txn.calcSettleAmount());
 
         ctx.put(TXN, txn);
 

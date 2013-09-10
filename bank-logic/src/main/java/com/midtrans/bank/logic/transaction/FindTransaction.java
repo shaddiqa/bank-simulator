@@ -4,7 +4,6 @@ import com.midtrans.bank.core.model.Terminal;
 import com.midtrans.bank.core.model.Transaction;
 import com.midtrans.bank.core.transaction.BankTxnSupport;
 import com.midtrans.bank.logic.dao.impl.TransactionDao;
-import com.midtrans.bank.logic.util.SettlementUtil;
 import org.jpos.ee.DB;
 import org.jpos.transaction.Context;
 
@@ -51,7 +50,7 @@ public class FindTransaction extends BankTxnSupport {
 
         assertNotNull(txn, "Transaction is not found");
 
-        ctx.put(VALBEFORE, SettlementUtil.calculateAmount(txn));
+        ctx.put(VALBEFORE, txn.calcSettleAmount());
 
         ctx.put(TXN, txn);
 

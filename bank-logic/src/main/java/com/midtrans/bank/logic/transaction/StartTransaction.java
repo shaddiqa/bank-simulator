@@ -50,7 +50,7 @@ public class StartTransaction extends BankTxnSupport {
 
         SettlementParameter parameter = null;
         if(request.hasField(63)) {
-            parameter = new SettlementParameter(request.getString(63));
+            parameter = SettlementParameter.create(request.getString(63));
         }
         ctx.put(SETTLE_PARAM, parameter);
 

@@ -10,5 +10,6 @@
         <mapping resource="com/midtrans/bank/core/model/LookupGroup.hbm.xml" />
         <mapping resource="com/midtrans/bank/core/model/Terminal.hbm.xml" />
         <mapping resource="com/midtrans/bank/core/model/Transaction.hbm.xml" />
+        <mapping resource="com/midtrans/bank/core/model/VoidTxn.hbm.xml" />
     </mappings>
 </module>

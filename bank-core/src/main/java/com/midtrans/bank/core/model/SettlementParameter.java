@@ -20,7 +20,16 @@ public class SettlementParameter {
 
     private SettlementBlock authRefund;
 
-    public SettlementParameter(String param) {
+    public SettlementParameter(SettlementBlock creditSales, SettlementBlock creditRefund, SettlementBlock debitSales, SettlementBlock debitRefund, SettlementBlock authSales, SettlementBlock authRefund) {
+        this.creditSales = creditSales;
+        this.creditRefund = creditRefund;
+        this.debitSales = debitSales;
+        this.debitRefund = debitRefund;
+        this.authSales = authSales;
+        this.authRefund = authRefund;
+    }
+
+    public static SettlementParameter create(String param) {
         int csc = Integer.valueOf(param.substring(0,2));
         long csa = Long.valueOf(param.substring(3,14));
         int crc = Integer.valueOf(param.substring(15,17));
@@ -41,12 +50,7 @@ public class SettlementParameter {
         SettlementBlock authSales = new SettlementBlock(asc, asa);
         SettlementBlock authRefund = new SettlementBlock(arc, ara);
 
-        this.creditSales = creditSales;
-        this.creditRefund = creditRefund;
-        this.debitSales = debitSales;
-        this.debitRefund = debitRefund;
-        this.authSales = authSales;
-        this.authRefund = authRefund;
+        return new SettlementParameter(creditSales, creditRefund, debitSales, debitRefund, authSales, authRefund);
     }
 
     public SettlementBlock getCreditSales() {

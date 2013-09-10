@@ -32,9 +32,9 @@ public class SaveTerminal extends BankTxnSupport {
         terminal.setAmount(terminal.getAmount() + valueChange);
 
         Transaction txn = (Transaction) ctx.get(TXN);
-        if(valueChange < 0 && txn.getAmount().equals(txn.getVoidAmount())) {
+        if(valueChange < 0 && valueAfter == 0) {
             terminal.setCount(terminal.getCount() - 1);
-        }else if(valueChange > 0 && txn.getVoidAmount() ==  0) {
+        }else if(valueChange > 0 && valueBefore ==  0) {
             terminal.setCount(terminal.getCount() + 1);
         }
 

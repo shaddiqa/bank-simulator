@@ -8,21 +8,23 @@ import org.jpos.transaction.Context;
 /**
  * Created with IntelliJ IDEA.
  * User: shaddiqa
- * Date: 9/9/13
- * Time: 12:26 PM
+ * Date: 9/10/13
+ * Time: 10:19 AM
  * To change this template use File | Settings | File Templates.
  */
-public class DoVoid extends BankTxnSupport {
+public class CreateVoidTxn extends BankTxnSupport {
     @Override
     protected int doPrepare(long id, Context ctx) throws Exception {
+        Long amount = (Long) ctx.get(AMOUNT);
+        Integer traceNumber = (Integer) ctx.get(TRACE_NUMBER);
         Transaction txn = (Transaction) ctx.get(TXN);
-        VoidTxn voidTxn = (VoidTxn) ctx.get(VOID_TXN);
 
-        txn.modifyVoidAmount(voidTxn);
+        VoidTxn voidTxn = new VoidTxn();
+        voidTxn.setAmount(amount);
+        voidTxn.setTraceNumber(traceNumber);
+        voidTxn.setTransaction(txn);
 
-        ctx.put(VALAFTER, txn.calcSettleAmount());
-
-        ctx.put(TXN, txn);
+        ctx.put(VOID_TXN, voidTxn);
 
         return PREPARED | NO_JOIN;
     }

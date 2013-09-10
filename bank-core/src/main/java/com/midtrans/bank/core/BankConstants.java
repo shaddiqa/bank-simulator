@@ -31,6 +31,7 @@ public interface BankConstants {
     public static final String SETTLE_PARAM         = "SETTLE_PARAM";
     public static final String TERMINAL             = "TERMINAL";
     public static final String TXN                  = "TXN";
+    public static final String VOID_TXN             = "VOID_TXN";
     public static final String BTC                  = "BTC";
     public static final String CR                   = "CR";
     public static final String CTC                  = "CTC";

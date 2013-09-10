@@ -18,22 +18,10 @@ public class SettlementUtil {
         long amount = 0L;
 
         for(Transaction txn : transactions) {
-            amount += calculateAmount(txn);
+            amount += txn.calcSettleAmount();
             count++;
         }
 
         return new SettlementBlock(count, amount);
-    }
-
-    public static Long calculateAmount(Transaction txn) {
-        if(txn.isReversalFlag()) {
-            return 0L;
-        }
-
-        if(txn.isVoidFlag()) {
-            return txn.getAmount() - txn.getVoidAmount();
-        }
-
-        return txn.getAmount();
     }
 }

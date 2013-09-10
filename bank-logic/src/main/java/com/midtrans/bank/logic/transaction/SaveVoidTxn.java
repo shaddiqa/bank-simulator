@@ -1,29 +1,32 @@
 package com.midtrans.bank.logic.transaction;
 
-import com.midtrans.bank.core.model.Transaction;
 import com.midtrans.bank.core.model.VoidTxn;
 import com.midtrans.bank.core.transaction.BankTxnSupport;
+import com.midtrans.bank.logic.dao.impl.VoidTxnDao;
+import org.jpos.ee.DB;
 import org.jpos.transaction.Context;
 
 /**
  * Created with IntelliJ IDEA.
  * User: shaddiqa
- * Date: 9/9/13
- * Time: 12:26 PM
+ * Date: 9/10/13
+ * Time: 10:10 AM
  * To change this template use File | Settings | File Templates.
  */
-public class DoVoid extends BankTxnSupport {
+public class SaveVoidTxn extends BankTxnSupport {
+    VoidTxnDao dao;
+
     @Override
     protected int doPrepare(long id, Context ctx) throws Exception {
-        Transaction txn = (Transaction) ctx.get(TXN);
+        DB db = openDB(ctx);
+
+        dao = new VoidTxnDao(db);
+
         VoidTxn voidTxn = (VoidTxn) ctx.get(VOID_TXN);
 
-        txn.modifyVoidAmount(voidTxn);
+        dao.saveOrUpdate(voidTxn);
 
-        ctx.put(VALAFTER, txn.calcSettleAmount());
-
-        ctx.put(TXN, txn);
-
+        closeDB(ctx);
         return PREPARED | NO_JOIN;
     }
 }
