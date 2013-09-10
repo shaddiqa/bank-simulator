@@ -2,8 +2,8 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
         "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-    <class name="com.midtrans.bank.core.model.Transaction" table="transaction" catalog="peacock">
-        <id name="id" type="java.lang.Long" column="pk_transaction">
+    <class name="com.midtrans.bank.core.model.BatchTxn" table="batch_txn" catalog="peacock">
+        <id name="id" type="java.lang.Long" column="pk_batch_txn">
             <generator class="identity" />
         </id>
         <property name="amount" type="java.lang.Long" column="amount"/>
@@ -17,10 +17,7 @@
         <property name="authorizationId" type="string" column="authorization_id"/>
         <property name="responseCode" type="string" column="response_code"/>
 
-        <property name="voidAmount" type="java.lang.Long" column="void_amount"/>
-        <property name="reversal" type="boolean">
-            <column name="reversal" sql-type="TINYINT(1)"/>
-        </property>
+        <property name="batchNumber" type="string" column="batch_number"/>
         <property name="createdAt" type="java.util.Date">
             <column name="created_at" sql-type="DATETIME"/>
         </property>

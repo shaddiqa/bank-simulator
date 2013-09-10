@@ -6,27 +6,25 @@ import java.util.Date;
  * Created with IntelliJ IDEA.
  * User: shaddiqa
  * Date: 9/10/13
- * Time: 10:01 AM
+ * Time: 12:45 PM
  * To change this template use File | Settings | File Templates.
  */
-public class VoidTxn {
+public class SettlementTxn {
     private Long id;
 
     private Trace trace;
 
-    private Long amount;
+    private String batchNumber;
 
-    private boolean reversal;
+    private String settlementParameter;
 
-    private Transaction transaction;
+    private String referenceNumber;
 
     private String responseCode;
 
     private Date createdAt;
 
-    public VoidTxn() {
-        this.amount = 0L;
-        this.reversal = false;
+    public SettlementTxn() {
         this.createdAt = new Date();
     }
 
@@ -46,28 +44,28 @@ public class VoidTxn {
         this.trace = trace;
     }
 
-    public Long getAmount() {
-        return amount;
+    public String getBatchNumber() {
+        return batchNumber;
     }
 
-    public void setAmount(Long amount) {
-        this.amount = amount;
+    public void setBatchNumber(String batchNumber) {
+        this.batchNumber = batchNumber;
     }
 
-    public boolean isReversal() {
-        return reversal;
+    public String getSettlementParameter() {
+        return settlementParameter;
     }
 
-    public void setReversal(boolean reversal) {
-        this.reversal = reversal;
+    public void setSettlementParameter(String settlementParameter) {
+        this.settlementParameter = settlementParameter;
     }
 
-    public Transaction getTransaction() {
-        return transaction;
+    public String getReferenceNumber() {
+        return referenceNumber;
     }
 
-    public void setTransaction(Transaction transaction) {
-        this.transaction = transaction;
+    public void setReferenceNumber(String referenceNumber) {
+        this.referenceNumber = referenceNumber;
     }
 
     public String getResponseCode() {

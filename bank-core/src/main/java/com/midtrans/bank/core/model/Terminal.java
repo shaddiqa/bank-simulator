@@ -1,8 +1,5 @@
 package com.midtrans.bank.core.model;
 
-import java.util.HashSet;
-import java.util.Set;
-
 /**
  * Created with IntelliJ IDEA.
  * User: shaddiqa
@@ -23,11 +20,22 @@ public class Terminal {
 
     private Long amount;
 
+    private Integer batchCount;
+
+    private Long batchAmount;
+
     private Bank bank;
 
     public Terminal reset() {
         this.count = 0;
         this.amount = 0L;
+
+        return this;
+    }
+
+    public Terminal resetBatch() {
+        this.batchCount = 0;
+        this.batchAmount = 0L;
 
         return this;
     }
@@ -78,6 +86,22 @@ public class Terminal {
 
     public void setAmount(Long amount) {
         this.amount = amount;
+    }
+
+    public Integer getBatchCount() {
+        return batchCount;
+    }
+
+    public void setBatchCount(Integer batchCount) {
+        this.batchCount = batchCount;
+    }
+
+    public Long getBatchAmount() {
+        return batchAmount;
+    }
+
+    public void setBatchAmount(Long batchAmount) {
+        this.batchAmount = batchAmount;
     }
 
     public Bank getBank() {

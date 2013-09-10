@@ -2,31 +2,27 @@ package com.midtrans.bank.logic.transaction;
 
 import com.midtrans.bank.core.model.Terminal;
 import com.midtrans.bank.core.transaction.BankTxnSupport;
-import com.midtrans.bank.logic.dao.impl.TransactionDao;
-import org.jpos.ee.DB;
 import org.jpos.transaction.Context;
 
 /**
  * Created with IntelliJ IDEA.
  * User: shaddiqa
- * Date: 9/9/13
- * Time: 12:00 PM
+ * Date: 9/10/13
+ * Time: 12:18 PM
  * To change this template use File | Settings | File Templates.
  */
-public class DeactivateTransactions extends BankTxnSupport {
-    TransactionDao dao;
-
+public class UpdateBatchTerminal extends BankTxnSupport {
     @Override
     protected int doPrepare(long id, Context ctx) throws Exception {
-        DB db = openDB(ctx);
-
-        dao = new TransactionDao(db);
-
         Terminal terminal = (Terminal) ctx.get(TERMINAL);
 
-        dao.deactivate(terminal);
+        Long amount = (Long) ctx.get(AMOUNT);
 
-        closeDB(ctx);
+        terminal.setBatchAmount(terminal.getBatchAmount() + amount);
+        terminal.setBatchCount(terminal.getBatchCount() + 1);
+
+        ctx.put(TERMINAL, terminal);
+
         return PREPARED | NO_JOIN;
     }
 }

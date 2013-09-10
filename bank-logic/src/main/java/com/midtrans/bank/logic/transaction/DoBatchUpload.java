@@ -1,8 +1,11 @@
 package com.midtrans.bank.logic.transaction;
 
-import com.midtrans.bank.core.model.Transaction;
+import com.midtrans.bank.core.model.BatchTxn;
+import com.midtrans.bank.core.model.Trace;
 import com.midtrans.bank.core.transaction.BankTxnSupport;
 import org.jpos.transaction.Context;
+
+import java.util.Date;
 
 /**
  * Created with IntelliJ IDEA.
@@ -14,14 +17,22 @@ import org.jpos.transaction.Context;
 public class DoBatchUpload extends BankTxnSupport {
     @Override
     protected int doPrepare(long id, Context ctx) throws Exception {
-        Transaction txn = (Transaction) ctx.get(TXN);
+        BatchTxn batchTxn = (BatchTxn) ctx.get(BATCH_TXN);
+        Trace trace = (Trace) ctx.get(BANK_TRACE);
         String batchNumber = ctx.getString(BATCH_NUMBER);
 
-        txn.setBatchNumber(batchNumber);
+        batchTxn.setTrace(trace);
+        batchTxn.setBatchNumber(batchNumber);
 
-        ctx.put(VALAFTER, txn.calcSettleAmount());
+        Date now = new Date();
+        String refNo = Long.toHexString(System.currentTimeMillis());
+        String authId = "AUTH";
 
-        ctx.put(TXN, txn);
+        ctx.put(TXN_TIME, now);
+        ctx.put(REFERENCE_NUMBER, refNo);
+        ctx.put(AUTHORIZATION_ID, authId);
+
+        ctx.put(BATCH_TXN, batchTxn);
 
         return PREPARED | NO_JOIN;
     }

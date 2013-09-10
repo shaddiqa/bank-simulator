@@ -1,37 +1,34 @@
 package com.midtrans.bank.logic.transaction;
 
 import com.midtrans.bank.core.model.Terminal;
-import com.midtrans.bank.core.model.Transaction;
+import com.midtrans.bank.core.model.Trace;
 import com.midtrans.bank.core.transaction.BankTxnSupport;
-import com.midtrans.bank.logic.dao.impl.TransactionDao;
-import com.midtrans.bank.logic.util.SettlementUtil;
+import com.midtrans.bank.logic.dao.impl.TraceDao;
 import org.jpos.ee.DB;
 import org.jpos.transaction.Context;
-
-import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
  * User: shaddiqa
- * Date: 9/9/13
- * Time: 12:13 PM
+ * Date: 9/6/13
+ * Time: 10:54 AM
  * To change this template use File | Settings | File Templates.
  */
-public class CalculateBatch extends BankTxnSupport {
-    TransactionDao dao;
+public class CheckTrace extends BankTxnSupport {
+    TraceDao dao;
 
     @Override
     protected int doPrepare(long id, Context ctx) throws Exception {
         DB db = openDB(ctx);
 
-        dao = new TransactionDao(db);
+        dao = new TraceDao(db);
 
-        String command = ctx.getString(COMMAND);
         Terminal terminal = (Terminal) ctx.get(TERMINAL);
+        Integer traceNumber = (Integer) ctx.get(TRACE_NUMBER);
 
-        List<Transaction> transactions = dao.findBy(terminal, command.equals("SettlementTrailer"));
+        Trace trace = dao.findBy(terminal, traceNumber);
 
-        ctx.put(BATCH_BLOCK, SettlementUtil.createBatchBlock(transactions));
+        assertNull(trace, "Trace number is used");
 
         closeDB(ctx);
         return PREPARED | NO_JOIN;

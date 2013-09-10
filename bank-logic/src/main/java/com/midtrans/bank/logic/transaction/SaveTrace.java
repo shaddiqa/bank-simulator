@@ -1,8 +1,8 @@
 package com.midtrans.bank.logic.transaction;
 
-import com.midtrans.bank.core.model.Transaction;
+import com.midtrans.bank.core.model.Trace;
 import com.midtrans.bank.core.transaction.BankTxnSupport;
-import com.midtrans.bank.logic.dao.impl.TransactionDao;
+import com.midtrans.bank.logic.dao.impl.TraceDao;
 import org.jpos.ee.DB;
 import org.jpos.transaction.AbortParticipant;
 import org.jpos.transaction.Context;
@@ -10,33 +10,31 @@ import org.jpos.transaction.Context;
 /**
  * Created with IntelliJ IDEA.
  * User: shaddiqa
- * Date: 8/17/13
- * Time: 9:46 PM
+ * Date: 9/10/13
+ * Time: 1:25 PM
  * To change this template use File | Settings | File Templates.
  */
-public class SaveTransaction extends BankTxnSupport implements AbortParticipant {
-    TransactionDao dao;
+public class SaveTrace extends BankTxnSupport implements AbortParticipant {
+    TraceDao dao;
 
     @Override
     protected int doPrepare(long id, Context ctx) throws Exception {
-        return saveTransaction(ctx);
+        return saveTrace(ctx);
     }
 
     @Override
     protected int doPrepareForAbort(long id, Context ctx) throws Exception {
-        return saveTransaction(ctx);
+        return saveTrace(ctx);
     }
 
-    private int saveTransaction(Context ctx) {
+    private int saveTrace(Context ctx) {
         DB db = openDB(ctx);
 
-        dao = new TransactionDao(db);
+        dao = new TraceDao(db);
 
-        Transaction txn = (Transaction) ctx.get(TXN);
+        Trace trace = (Trace) ctx.get(BANK_TRACE);
 
-        dao.saveOrUpdate(txn);
-
-        ctx.put(TXN, txn);
+        dao.saveOrUpdate(trace);
 
         closeDB(ctx);
         return PREPARED | NO_JOIN;

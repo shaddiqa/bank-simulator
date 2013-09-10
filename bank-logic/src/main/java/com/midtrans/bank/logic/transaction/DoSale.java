@@ -1,6 +1,6 @@
 package com.midtrans.bank.logic.transaction;
 
-import com.midtrans.bank.core.model.Terminal;
+import com.midtrans.bank.core.model.Trace;
 import com.midtrans.bank.core.model.Transaction;
 import com.midtrans.bank.core.transaction.BankTxnSupport;
 import org.jpos.transaction.Context;
@@ -28,8 +28,7 @@ public class DoSale extends BankTxnSupport {
         ctx.put(AUTHORIZATION_ID, authId);
 
         txn.setAmount((Long) ctx.get(AMOUNT));
-        txn.setTerminal((Terminal) ctx.get(TERMINAL));
-        txn.setTraceNumber((Integer) ctx.get(TRACE_NUMBER));
+        txn.setTrace((Trace) ctx.get(BANK_TRACE));
         txn.setCardNumber(ctx.getString(CARD_NUMBER));
         txn.setCardExpire(ctx.getString(CARD_EXPIRE));
         txn.setTxnTime(now);

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.midtrans.bank.core.model.Trace" table="trace" catalog="peacock">
+        <id name="id" type="java.lang.Long" column="pk_trace">
+            <generator class="identity" />
+        </id>
+        <property name="active" type="boolean">
+            <column name="active" sql-type="TINYINT(1)" />
+        </property>
+
+        <many-to-one name="terminal" class="com.midtrans.bank.core.model.Terminal" fetch="join">
+            <column name="fk_terminal"/>
+        </many-to-one>
+
+        <property name="traceNumber" type="java.lang.Integer" column="trace_number"/>
+    </class>
+</hibernate-mapping>

@@ -8,7 +8,6 @@ import org.hibernate.criterion.Restrictions;
 import org.jpos.ee.DB;
 
 import java.util.Date;
-import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -111,37 +110,8 @@ public class TransactionDao extends AbstractBankDao<Transaction> {
         return findBy(cardNumber, amount, traceNumber, cardExpire, terminal, txnTime, referenceNumber, responseCode, false);
     }
 
-    public Transaction checkTraceNumber(Terminal terminal, Integer traceNumber) {
-        Criteria criteria = db.session().createCriteria(domainClass);
-
-        criteria.add(Restrictions.eq("terminal", terminal))
-                .add(Restrictions.eq("traceNumber", traceNumber))
-                .add(Restrictions.eq("active", true));
-
-        return (Transaction) criteria.uniqueResult();
-    }
-
-    public List<Transaction> findBy(Terminal terminal, boolean trailer) {
-        Criteria criteria = db.session().createCriteria(domainClass);
-
-        criteria.add(Restrictions.eq("terminal", terminal))
-                .add(Restrictions.eq("active", true));
-
-        if(trailer) {
-            criteria.add(Restrictions.isNotNull("batchNumber"));
-        }
-
-        return criteria.list();
-    }
-
-    public int deactivate(Terminal terminal, boolean trailer) {
-        String hql;
-
-        if(trailer) {
-            hql = "update Transaction set active = false where terminal = :terminal and batchNumber is not null";
-        } else {
-            hql = "update Transaction set active = false where terminal = :terminal";
-        }
+    public int deactivate(Terminal terminal) {
+        String hql = "update Transaction set active = false where terminal = :terminal";
 
         Query query = db.session().createQuery(hql);
         query.setParameter("terminal", terminal);

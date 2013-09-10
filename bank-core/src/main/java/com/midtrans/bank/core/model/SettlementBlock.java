@@ -16,6 +16,11 @@ public class SettlementBlock {
         this.amount = amount;
     }
 
+    @Override
+    public String toString() {
+        return String.format("%03d%012d", count, amount);
+    }
+
     public Integer getCount() {
         return count;
     }

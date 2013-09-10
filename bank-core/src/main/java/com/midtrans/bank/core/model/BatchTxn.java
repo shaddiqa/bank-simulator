@@ -1,16 +1,15 @@
 package com.midtrans.bank.core.model;
 
-import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created with IntelliJ IDEA.
  * User: shaddiqa
- * Date: 8/17/13
- * Time: 8:35 PM
+ * Date: 9/10/13
+ * Time: 12:45 PM
  * To change this template use File | Settings | File Templates.
  */
-public class Transaction implements Serializable {
+public class BatchTxn {
     private Long id;
 
     private Long amount;
@@ -29,34 +28,23 @@ public class Transaction implements Serializable {
 
     private String responseCode;
 
-    private Long voidAmount;
-
-    private boolean reversal;
+    private String batchNumber;
 
     private Date createdAt;
 
-    public Transaction() {
-        this.amount = 0L;
-        this.voidAmount = 0L;
-        this.reversal = false;
+    public BatchTxn(String cardNumber, String cardExpire, Long amount) {
+        this.cardNumber = cardNumber;
+        this.cardExpire = cardExpire;
+        this.amount = amount;
         this.createdAt = new Date();
     }
 
-    public void modifyVoidAmount(VoidTxn voidTxn) {
-        if(voidTxn.isReversal()) {
-            this.voidAmount -= voidTxn.getAmount();
-        } else {
-            this.voidAmount += voidTxn.getAmount();
+    public static BatchTxn create(Transaction txn) {
+        Long amount = txn.getAmount();
+        String cardNumber = txn.getCardNumber();
+        String cardExpire = txn.getCardExpire();
 
-        }
-    }
-
-    public Long calcSettleAmount() {
-        if(reversal) {
-            return 0L;
-        }
-
-        return amount - voidAmount;
+        return new BatchTxn(cardNumber, cardExpire, amount);
     }
 
     public Long getId() {
@@ -131,20 +119,12 @@ public class Transaction implements Serializable {
         this.responseCode = responseCode;
     }
 
-    public Long getVoidAmount() {
-        return voidAmount;
+    public String getBatchNumber() {
+        return batchNumber;
     }
 
-    public void setVoidAmount(Long voidAmount) {
-        this.voidAmount = voidAmount;
-    }
-
-    public boolean isReversal() {
-        return reversal;
-    }
-
-    public void setReversal(boolean reversal) {
-        this.reversal = reversal;
+    public void setBatchNumber(String batchNumber) {
+        this.batchNumber = batchNumber;
     }
 
     public Date getCreatedAt() {

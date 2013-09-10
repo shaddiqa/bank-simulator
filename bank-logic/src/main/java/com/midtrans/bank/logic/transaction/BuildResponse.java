@@ -64,7 +64,9 @@ public class BuildResponse extends BankTxnSupport implements AbortParticipant {
         response.set(13, ISODate.getDate(txnTime));
         response.set(24, nii);
         response.set(37, refNo);
-        response.set(38, authId);
+        if(authId != null) {
+            response.set(38, authId);
+        }
         response.set(39, rCode);
         response.set(41, tid);
 

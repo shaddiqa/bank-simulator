@@ -53,6 +53,11 @@ public class SettlementParameter {
         return new SettlementParameter(creditSales, creditRefund, debitSales, debitRefund, authSales, authRefund);
     }
 
+    @Override
+    public String toString() {
+        return String.format("%s%s%s%s%s%s", creditSales.toString(), creditRefund.toString(), debitSales.toString(), debitRefund.toString(), authSales.toString(), authRefund.toString());
+    }
+
     public SettlementBlock getCreditSales() {
         return creditSales;
     }

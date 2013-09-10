@@ -1,9 +1,11 @@
 package com.midtrans.bank.logic.transaction;
 
-import com.midtrans.bank.core.model.SettlementBlock;
 import com.midtrans.bank.core.model.SettlementParameter;
+import com.midtrans.bank.core.model.Terminal;
 import com.midtrans.bank.core.transaction.BankTxnSupport;
 import org.jpos.transaction.Context;
+
+import java.util.Date;
 
 /**
  * Created with IntelliJ IDEA.
@@ -16,10 +18,16 @@ public class DoSettlementTrailer extends BankTxnSupport {
     @Override
     protected int doPrepare(long id, Context ctx) throws Exception {
         SettlementParameter parameter = (SettlementParameter) ctx.get(SETTLE_PARAM);
-        SettlementBlock batchBlock = (SettlementBlock) ctx.get(BATCH_BLOCK);
+        Terminal terminal = (Terminal) ctx.get(TERMINAL);
 
-        assertTrue(batchBlock.getCount().equals(parameter.getDebitSales().getCount()), "Count is not equal");
-        assertTrue(batchBlock.getAmount().equals(parameter.getDebitSales().getAmount()), "Amount is not equal");
+        Date now = new Date();
+        String refNo = Long.toHexString(System.currentTimeMillis());
+
+        ctx.put(TXN_TIME, now);
+        ctx.put(REFERENCE_NUMBER, refNo);
+
+        assertTrue(terminal.getBatchCount().equals(parameter.getDebitSales().getCount()), "Count is not equal");
+        assertTrue(terminal.getBatchAmount().equals(parameter.getDebitSales().getAmount()), "Amount is not equal");
 
         return PREPARED | NO_JOIN;
     }

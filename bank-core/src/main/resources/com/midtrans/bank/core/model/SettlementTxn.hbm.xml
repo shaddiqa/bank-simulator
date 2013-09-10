@@ -2,18 +2,14 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
         "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-    <class name="com.midtrans.bank.core.model.VoidTxn" table="void_txn" catalog="peacock">
-        <id name="id" type="java.lang.Long" column="pk_void_txn">
+    <class name="com.midtrans.bank.core.model.SettlementTxn" table="settlement_txn" catalog="peacock">
+        <id name="id" type="java.lang.Long" column="pk_settlement_txn">
             <generator class="identity" />
         </id>
         <one-to-one name="trace" class="com.midtrans.bank.core.model.Trace" fetch="join" constrained="true"/>
-        <property name="amount" type="java.lang.Long" column="amount"/>
-        <property name="reversal" type="boolean">
-            <column name="reversal" sql-type="TINYINT(1)"/>
-        </property>
-        <many-to-one name="transaction" class="com.midtrans.bank.core.model.Transaction" fetch="join">
-            <column name="fk_transaction"/>
-        </many-to-one>
+        <property name="batchNumber" type="string" column="batch_number"/>
+        <property name="settlementParameter" type="string" column="settlementParameter"/>
+        <property name="referenceNumber" type="string" column="reference_number"/>
         <property name="responseCode" type="string" column="response_code"/>
         <property name="createdAt" type="java.util.Date">
             <column name="created_at" sql-type="DATETIME"/>

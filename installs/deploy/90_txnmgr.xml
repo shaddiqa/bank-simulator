@@ -9,13 +9,13 @@
     <participant class="com.midtrans.bank.logic.transaction.FindBankTransConfiguration" logger="Q2"/>
     <participant class="com.midtrans.bank.logic.transaction.SelectCommand" logger="Q2">
         <property name="Echo" value="DoEcho EchoResponse"/>
-        <property name="Sale" value="FindTerminal CheckTraceNumber CreateTransaction DoSale SaveTerminal BuildResponse SaveTransaction"/>
-        <property name="Void" value="FindTerminal CheckTraceNumber FindTransaction CheckBalance CreateVoidTxn DoVoid SaveTerminal BuildResponse SaveVoidTxn SaveTransaction"/>
-        <property name="ReversalSale" value="FindTransaction DoReversalSale SaveTerminal BuildResponse SaveTransaction"/>
-        <property name="ReversalVoid" value="FindTransaction FindVoidTxn DoReversalVoid SaveTerminal BuildResponse SaveVoidTxn SaveTransaction"/>
-        <property name="Settlement" value=""/>
-        <property name="BatchUpload" value=""/>
-        <property name="SettlementTrailer" value=""/>
+        <property name="Sale" value="FindTerminal CheckTrace CreateTrace SaveTrace CreateTransaction DoSale UpdateTerminal SaveTerminal BuildResponse SaveTransaction"/>
+        <property name="Void" value="FindTerminal CheckTrace CreateTrace SaveTrace FindTransaction CheckBalance CreateVoidTxn DoVoid UpdateTerminal SaveTerminal BuildResponse SaveVoidTxn SaveTransaction"/>
+        <property name="ReversalSale" value="FindTransaction DoReversalSale UpdateTerminal SaveTerminal BuildResponse SaveTransaction"/>
+        <property name="ReversalVoid" value="FindTransaction FindVoidTxn DoReversalVoid UpdateTerminal SaveTerminal BuildResponse SaveVoidTxn SaveTransaction"/>
+        <property name="Settlement" value="FindTerminal CheckTrace CreateTrace SaveTrace CreateSettlementTxn DoSettlement ResetTerminal SaveTerminal BuildResponse SaveSettlementTxn DeactivateTransactions"/>
+        <property name="BatchUpload" value="FindTerminal CheckTrace CreateTrace SaveTrace FindTransaction CreateBatchTxn DoBatchUpload UpdateBatchTerminal SaveTerminal BuildResponse SaveBatchTxn"/>
+        <property name="SettlementTrailer" value="FindTerminal CheckTrace CreateTrace SaveTrace CreateSettlementTxn DoSettlementTrailer ResetTerminal ResetBatchTerminal SaveTerminal BuildResponse SaveSettlementTxn DeactivateTransactions"/>
     </participant>
     <participant class="com.midtrans.bank.logic.transaction.EndTransaction" logger="Q2"/>
 
@@ -23,8 +23,8 @@
         <participant class="com.midtrans.bank.logic.transaction.FindTerminal" logger="Q2"/>
     </group>
 
-    <group name="CheckTraceNumber">
-        <participant class="com.midtrans.bank.logic.transaction.CheckTraceNumber" logger="Q2"/>
+    <group name="CheckTrace">
+        <participant class="com.midtrans.bank.logic.transaction.CheckTrace" logger="Q2"/>
     </group>
 
     <group name="CheckBalance">
@@ -35,8 +35,20 @@
         <participant class="com.midtrans.bank.logic.transaction.CreateTransaction" logger="Q2"/>
     </group>
 
+    <group name="CreateTrace">
+        <participant class="com.midtrans.bank.logic.transaction.CreateTrace" logger="Q2"/>
+    </group>
+
+    <group name="CreateBatchTxn">
+        <participant class="com.midtrans.bank.logic.transaction.CreateBatchTxn" logger="Q2"/>
+    </group>
+
     <group name="CreateVoidTxn">
         <participant class="com.midtrans.bank.logic.transaction.CreateVoidTxn" logger="Q2"/>
+    </group>
+
+    <group name="CreateSettlementTxn">
+        <participant class="com.midtrans.bank.logic.transaction.CreateSettlementTxn" logger="Q2"/>
     </group>
 
     <group name="FindTransaction">
@@ -67,8 +79,16 @@
         <participant class="com.midtrans.bank.logic.transaction.DoReversalVoid" logger="Q2"/>
     </group>
 
-    <group name="SaveTerminal">
-        <participant class="com.midtrans.bank.logic.transaction.SaveTerminal" logger="Q2"/>
+    <group name="DoBatchUpload">
+        <participant class="com.midtrans.bank.logic.transaction.DoBatchUpload" logger="Q2"/>
+    </group>
+
+    <group name="DoSettlement">
+        <participant class="com.midtrans.bank.logic.transaction.DoSettlement" logger="Q2"/>
+    </group>
+
+    <group name="DoSettlementTrailer">
+        <participant class="com.midtrans.bank.logic.transaction.DoSettlementTrailer" logger="Q2"/>
     </group>
 
     <group name="BuildResponse">
@@ -79,11 +99,47 @@
         <participant class="com.midtrans.bank.logic.transaction.EchoResponse" logger="Q2"/>
     </group>
 
+    <group name="ResetTerminal">
+        <participant class="com.midtrans.bank.logic.transaction.ResetTerminal" logger="Q2"/>
+    </group>
+
+    <group name="DeactivateTransactions">
+        <participant class="com.midtrans.bank.logic.transaction.DeactivateTransactions" logger="Q2"/>
+    </group>
+
+    <group name="ResetBatchTerminal">
+        <participant class="com.midtrans.bank.logic.transaction.ResetBatchTerminal" logger="Q2"/>
+    </group>
+
+    <group name="UpdateBatchTerminal">
+        <participant class="com.midtrans.bank.logic.transaction.UpdateBatchTerminal" logger="Q2"/>
+    </group>
+
+    <group name="UpdateTerminal">
+        <participant class="com.midtrans.bank.logic.transaction.UpdateTerminal" logger="Q2"/>
+    </group>
+
+    <group name="SaveTerminal">
+        <participant class="com.midtrans.bank.logic.transaction.SaveTerminal" logger="Q2"/>
+    </group>
+
     <group name="SaveTransaction">
         <participant class="com.midtrans.bank.logic.transaction.SaveTransaction" logger="Q2"/>
     </group>
 
+    <group name="SaveBatchTxn">
+        <participant class="com.midtrans.bank.logic.transaction.SaveBatchTxn" logger="Q2"/>
+    </group>
+
+    <group name="SaveTrace">
+        <participant class="com.midtrans.bank.logic.transaction.SaveTrace" logger="Q2"/>
+    </group>
+
     <group name="SaveVoidTxn">
         <participant class="com.midtrans.bank.logic.transaction.SaveVoidTxn" logger="Q2"/>
+    </group>
+
+    <group name="SaveSettlementTxn">
+        <participant class="com.midtrans.bank.logic.transaction.SaveSettlementTxn" logger="Q2"/>
     </group>
 </txnmgr>

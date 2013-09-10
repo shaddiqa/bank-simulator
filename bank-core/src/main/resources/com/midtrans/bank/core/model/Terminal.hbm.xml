@@ -14,6 +14,9 @@
         <property name="count" type="java.lang.Integer" column="count" />
         <property name="amount" type="java.lang.Long" column="amount" />
 
+        <property name="batchCount" type="java.lang.Integer" column="batch_count" />
+        <property name="batchAmount" type="java.lang.Long" column="batch_amount" />
+
         <many-to-one name="bank" class="com.midtrans.bank.core.model.Bank" fetch="join">
             <column name="fk_bank"/>
         </many-to-one>
