@@ -10,15 +10,13 @@ package com.midtrans.bank.core.model;
 public class Bank {
     private Long id;
 
-    private boolean active;
-
     private String name;
-
-    private String note;
 
     private String header;
 
     private String port;
+
+    private boolean active;
 
     public Long getId() {
         return id;
@@ -28,28 +26,12 @@ public class Bank {
         this.id = id;
     }
 
-    public boolean isActive() {
-        return active;
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
-    }
-
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getNote() {
-        return note;
-    }
-
-    public void setNote(String note) {
-        this.note = note;
     }
 
     public String getHeader() {
@@ -66,5 +48,13 @@ public class Bank {
 
     public void setPort(String port) {
         this.port = port;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 }

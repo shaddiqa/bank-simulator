@@ -1,6 +1,6 @@
 package com.midtrans.bank.logic.transaction;
 
-import com.midtrans.bank.core.model.BankTransConfiguration;
+import com.midtrans.bank.core.model.Bank;
 import com.midtrans.bank.core.model.Terminal;
 import com.midtrans.bank.core.transaction.BankTxnSupport;
 import com.midtrans.bank.logic.dao.impl.TerminalDao;
@@ -23,11 +23,11 @@ public class FindTerminal extends BankTxnSupport {
 
         dao = new TerminalDao(db);
 
-        BankTransConfiguration btc = (BankTransConfiguration) ctx.get(BTC);
+        Bank bank = (Bank) ctx.get(BANK);
         String mid = ctx.getString(MID);
         String tid = ctx.getString(TID);
 
-        Terminal terminal = dao.findBy(btc.getBank(), mid, tid);
+        Terminal terminal = dao.findBy(bank, mid, tid);
 
         assertNotNull(terminal, "14");
 

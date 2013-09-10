@@ -1,29 +1,22 @@
 package com.midtrans.bank.core.model;
 
-import java.util.HashSet;
-import java.util.Set;
-
 /**
  * Created with IntelliJ IDEA.
  * User: shaddiqa
- * Date: 9/3/13
- * Time: 3:47 PM
+ * Date: 9/10/13
+ * Time: 11:09 PM
  * To change this template use File | Settings | File Templates.
  */
-public class BankTransConfiguration {
+public class Command {
     private Long id;
 
-    private boolean active;
+    private String name;
 
     private String mti;
-
-    private String name;
 
     private String processingCode;
 
     private Bank bank;
-
-    private Lookup lookupOfCommandType;
 
     public Long getId() {
         return id;
@@ -33,12 +26,12 @@ public class BankTransConfiguration {
         this.id = id;
     }
 
-    public boolean isActive() {
-        return active;
+    public String getName() {
+        return name;
     }
 
-    public void setActive(boolean active) {
-        this.active = active;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getMti() {
@@ -47,14 +40,6 @@ public class BankTransConfiguration {
 
     public void setMti(String mti) {
         this.mti = mti;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getProcessingCode() {
@@ -71,13 +56,5 @@ public class BankTransConfiguration {
 
     public void setBank(Bank bank) {
         this.bank = bank;
-    }
-
-    public Lookup getLookupOfCommandType() {
-        return lookupOfCommandType;
-    }
-
-    public void setLookupOfCommandType(Lookup lookupOfCommandType) {
-        this.lookupOfCommandType = lookupOfCommandType;
     }
 }

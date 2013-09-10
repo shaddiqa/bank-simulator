@@ -6,16 +6,15 @@
 
     <participant class="org.jpos.transaction.Debug" logger="Q2"/>
     <participant class="com.midtrans.bank.logic.transaction.StartTransaction" logger="Q2"/>
-    <participant class="com.midtrans.bank.logic.transaction.FindBankTransConfiguration" logger="Q2"/>
     <participant class="com.midtrans.bank.logic.transaction.SelectCommand" logger="Q2">
-        <property name="Echo" value="EchoResponse"/>
-        <property name="Sale" value="FindTerminal CheckTrace CreateTrace SaveTrace CreateTransaction DoSale UpdateTerminal SaveTerminal BuildResponse UpdateTransaction SaveTransaction"/>
-        <property name="Void" value="FindTerminal CheckTrace CreateTrace SaveTrace FindTransaction CheckBalance CreateVoidTxn DoVoid UpdateTerminal SaveTerminal BuildResponse UpdateVoidTxn SaveVoidTxn SaveTransaction"/>
-        <property name="ReversalSale" value="FindTerminal FindTrace FindTransaction DoReversalSale UpdateTerminal SaveTerminal BuildResponse SaveTransaction"/>
-        <property name="ReversalVoid" value="FindTerminal FindTrace FindVoidTxn FindTransaction DoReversalVoid UpdateTerminal SaveTerminal BuildResponse SaveVoidTxn SaveTransaction"/>
-        <property name="Settlement" value="FindTerminal CheckTrace CreateTrace SaveTrace CreateSettlementTxn DoSettlement ResetTerminal SaveTerminal BuildResponse UpdateSettlementTxn SaveSettlementTxn DeactivateTraces"/>
-        <property name="BatchUpload" value="FindTerminal CheckTrace CheckBatchNumber CreateTrace SaveTrace FindTransaction CreateBatchTxn DoBatchUpload UpdateBatchTerminal SaveTerminal BuildResponse UpdateBatchTxn SaveBatchTxn"/>
-        <property name="SettlementTrailer" value="FindTerminal CheckTrace CreateTrace SaveTrace CreateSettlementTxn DoSettlementTrailer ResetTerminal ResetBatchTerminal SaveTerminal BuildResponse UpdateSettlementTxn SaveSettlementTxn DeactivateTraces"/>
+        <property name="echo" value="EchoResponse"/>
+        <property name="sale" value="FindTerminal CheckTrace CreateTrace SaveTrace CreateTransaction DoSale UpdateTerminal SaveTerminal BuildResponse UpdateTransaction SaveTransaction"/>
+        <property name="void" value="FindTerminal CheckTrace CreateTrace SaveTrace FindTransaction CheckBalance CreateVoidTxn DoVoid UpdateTerminal SaveTerminal BuildResponse UpdateVoidTxn SaveVoidTxn SaveTransaction"/>
+        <property name="reversalsale" value="FindTerminal FindTrace FindTransaction DoReversalSale UpdateTerminal SaveTerminal BuildResponse SaveTransaction"/>
+        <property name="reversalvoid" value="FindTerminal FindTrace FindVoidTxn FindTransaction DoReversalVoid UpdateTerminal SaveTerminal BuildResponse SaveVoidTxn SaveTransaction"/>
+        <property name="settlement" value="FindTerminal CheckTrace CreateTrace SaveTrace CreateSettlementTxn DoSettlement ResetTerminal SaveTerminal BuildResponse UpdateSettlementTxn SaveSettlementTxn DeactivateTraces"/>
+        <property name="batchupload" value="FindTerminal CheckTrace CheckBatchNumber CreateTrace SaveTrace FindTransaction CreateBatchTxn DoBatchUpload UpdateBatchTerminal SaveTerminal BuildResponse UpdateBatchTxn SaveBatchTxn"/>
+        <property name="settlementtrailer" value="FindTerminal CheckTrace CreateTrace SaveTrace CreateSettlementTxn DoSettlementTrailer ResetTerminal ResetBatchTerminal SaveTerminal BuildResponse UpdateSettlementTxn SaveSettlementTxn DeactivateTraces"/>
     </participant>
     <participant class="com.midtrans.bank.logic.transaction.EndTransaction" logger="Q2"/>
 

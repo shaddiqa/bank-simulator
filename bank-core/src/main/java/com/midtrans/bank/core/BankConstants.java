@@ -33,11 +33,8 @@ public interface BankConstants {
     public static final String SETTLE_TXN           = "SETTLE_TXN";
     public static final String BATCH_TXN            = "BATCH_TXN";
     public static final String VOID_TXN             = "VOID_TXN";
-    public static final String BTC                  = "BTC";
-    public static final String CR                   = "CR";
-    public static final String CTC                  = "CTC";
-    public static final String BIRS                 = "BIRS";
     public static final String VALBEFORE            = "VALBEFORE";
     public static final String VALAFTER             = "VALAFTER";
     public static final String BANK_TRACE           = "BANK_TRACE";
+    public static final String BANK                 = "BANK";
 }

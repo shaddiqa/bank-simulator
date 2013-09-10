@@ -2,7 +2,7 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
         "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-    <class name="com.midtrans.bank.core.model.Transaction" table="transaction" catalog="peacock">
+    <class name="com.midtrans.bank.core.model.Transaction" table="transaction" catalog="bank">
         <id name="id" type="java.lang.Long" column="pk_transaction">
             <generator class="identity" />
         </id>

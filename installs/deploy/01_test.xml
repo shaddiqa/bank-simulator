@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<server name="test" class="org.jpos.q2.iso.QServer" logger="Q2">
+    <attr name="port" type="java.lang.Integer">8001</attr>
+    <channel name="test-channel" class="org.jpos.iso.channel.NACChannel" packager="org.jpos.iso.packager.ISO87BPackager" logger="Q2" header="6000018193"/>
+    <request-listener class="com.midtrans.bank.core.BankRequestListener" logger="Q2"/>
+</server>

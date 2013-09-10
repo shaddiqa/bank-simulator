@@ -2,16 +2,15 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
         "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-    <class name="com.midtrans.bank.core.model.Bank" table="bank" catalog="peacock">
+    <class name="com.midtrans.bank.core.model.Bank" table="bank" catalog="bank">
         <id name="id" type="java.lang.Long" column="pk_bank">
             <generator class="identity" />
         </id>
+        <property name="name" type="string" column="name"/>
+        <property name="header" type="string" column="header"/>
+        <property name="port" type="string" column="port"/>
         <property name="active" type="boolean">
             <column name="active" sql-type="TINYINT(1)" />
         </property>
-        <property name="name" type="string" column="name"/>
-        <property name="note" type="string" column="note"/>
-        <property name="header" type="string" column="header"/>
-        <property name="port" type="string" column="port"/>
     </class>
 </hibernate-mapping>

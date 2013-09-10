@@ -1,10 +1,9 @@
 package com.midtrans.bank.logic.transaction;
 
-import com.midtrans.bank.core.BankConstants;
-import com.midtrans.bank.core.model.BankTransConfiguration;
-import org.jpos.core.Configurable;
-import org.jpos.core.Configuration;
-import org.jpos.core.ConfigurationException;
+import com.midtrans.bank.core.model.Command;
+import com.midtrans.bank.core.transaction.BankTxnSupport;
+import com.midtrans.bank.logic.dao.impl.CommandDao;
+import org.jpos.ee.DB;
 import org.jpos.transaction.Context;
 import org.jpos.transaction.GroupSelector;
 
@@ -17,37 +16,31 @@ import java.io.Serializable;
  * Time: 9:14 PM
  * To change this template use File | Settings | File Templates.
  */
-public class SelectCommand implements GroupSelector, Configurable, BankConstants {
-
-    Configuration cfg;
-
-    @Override
-    public void setConfiguration(Configuration cfg) throws ConfigurationException {
-        this.cfg = cfg;
-    }
+public class SelectCommand extends BankTxnSupport implements GroupSelector {
+    CommandDao dao;
 
     @Override
     public String select(long id, Serializable context) {
         Context ctx = (Context) context;
+        String header = ctx.getString(HEADER);
+        String mti = ctx.getString(MTI);
+        String pCode = ctx.getString(PCODE);
 
-        BankTransConfiguration btc = (BankTransConfiguration) ctx.get(BTC);
-        String command = btc.getLookupOfCommandType().getName();
+        DB db = openDB(ctx);
 
-        ctx.put(COMMAND, command);
+        dao = new CommandDao(db);
 
-        return cfg.get(command);
+        Command command = dao.findBy(header, mti, pCode);
+
+        ctx.put(COMMAND, command.getName());
+        ctx.put(BANK, command.getBank());
+
+        closeDB(ctx);
+        return cfg.get(command.getName());
     }
 
     @Override
     public int prepare(long id, Serializable context) {
         return PREPARED | NO_JOIN;
-    }
-
-    @Override
-    public void commit(long id, Serializable context) {
-    }
-
-    @Override
-    public void abort(long id, Serializable context) {
     }
 }

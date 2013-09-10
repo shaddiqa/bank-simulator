@@ -5,9 +5,11 @@ import com.midtrans.bank.core.model.Bank;
 import com.midtrans.bank.ws.util.DocumentUtil;
 import com.midtrans.bank.ws.util.JsonUtil;
 import org.apache.commons.io.IOUtils;
+import org.dom4j.io.OutputFormat;
 import org.dom4j.io.XMLWriter;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -39,7 +41,8 @@ public class BankController {
 
             Bank bank = gson.fromJson(input, Bank.class);
 
-            XMLWriter writer = new XMLWriter(new FileWriter(String.format("%s%s",DIRNAME,xmlName(bank.getId(),bank.getName()))));
+            OutputFormat format = OutputFormat.createPrettyPrint();
+            XMLWriter writer = new XMLWriter(new FileWriter(String.format("%s%s",DIRNAME,xmlName(bank.getId(),bank.getName()))), format);
             writer.write(DocumentUtil.createBankServer(bank));
             writer.close();
 
@@ -50,7 +53,7 @@ public class BankController {
         }
     }
 
-    @POST
+    @DELETE
     @Path("/delete")
     @Produces(MediaType.APPLICATION_JSON)
     public Response delete(@Context HttpServletRequest request) {

@@ -46,6 +46,40 @@
                     </execution>
                 </executions>
             </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>sql-maven-plugin</artifactId>
+                <version>1.5</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>mysql</groupId>
+                        <artifactId>mysql-connector-java</artifactId>
+                        <version>5.1.21</version>
+                    </dependency>
+                </dependencies>
+                <configuration>
+                    <driver>${hibernate.connection.driver_class}</driver>
+                    <url>${hibernate.connection.url}</url>
+                    <username>${hibernate.connection.username}</username>
+                    <password>${hibernate.connection.password}</password>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>prepare-schema</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>execute</goal>
+                        </goals>
+                        <configuration>
+                            <autocommit>true</autocommit>
+                            <srcFiles>
+                                <srcFile>${project.basedir}/schema/bank.sql</srcFile>
+                            </srcFiles>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 </project>
