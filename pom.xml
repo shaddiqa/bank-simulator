@@ -52,6 +52,50 @@
             </plugin>
 
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.7</version>
+                <inherited>false</inherited>
+                <executions>
+                    <execution>
+                        <id>change-permissions</id>
+                        <phase>validate</phase>
+                        <configuration>
+                            <target>
+                                <chmod file="target/bin/*" perm="755"/>
+                            </target>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>2.5</version>
+                <inherited>false</inherited>
+                <executions>
+                    <execution>
+                        <id>clean-antrun</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>clean</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <filesets>
+                        <fileset>
+                            <directory>${basedir}/target/antrun</directory>
+                        </fileset>
+                    </filesets>
+                    <excludeDefaultDirectories>true</excludeDefaultDirectories>
+                </configuration>
+            </plugin>
+
+            <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>1.2.1</version>
@@ -65,12 +109,8 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <executable>java</executable>
-                    <arguments>
-                        <argument>-jar</argument>
-                        <argument>bank-core-${bank-core.version}.jar</argument>
-                    </arguments>
-                    <workingDirectory>${basedir}/target</workingDirectory>
+                    <executable>target/bin/bank</executable>
+                    <workingDirectory>${basedir}</workingDirectory>
                 </configuration>
             </plugin>
         </plugins>
