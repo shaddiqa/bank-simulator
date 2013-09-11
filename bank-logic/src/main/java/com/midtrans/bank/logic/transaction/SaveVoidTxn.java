@@ -1,5 +1,7 @@
 package com.midtrans.bank.logic.transaction;
 
+import com.midtrans.bank.core.model.Trace;
+import com.midtrans.bank.core.model.Transaction;
 import com.midtrans.bank.core.model.VoidTxn;
 import com.midtrans.bank.core.transaction.BankTxnSupport;
 import com.midtrans.bank.logic.dao.impl.VoidTxnDao;
@@ -25,7 +27,20 @@ public class SaveVoidTxn extends BankTxnSupport implements AbortParticipant {
     @Override
     protected int doPrepareForAbort(long id, Context ctx) throws Exception {
         if(ctx.get(VOID_TXN) == null) {
-            return PREPARED | NO_JOIN;
+            Long amount = (Long) ctx.get(AMOUNT);
+            String authId = ctx.getString(AUTHORIZATION_ID, "");
+            String rCode = ctx.getString(RCODE);
+            Trace trace = (Trace) ctx.get(TRACE);
+            Transaction txn = (Transaction) ctx.get(TXN);
+
+            VoidTxn voidTxn = new VoidTxn();
+            voidTxn.setAmount(amount);
+            voidTxn.setAuthorizationId(authId);
+            voidTxn.setResponseCode(rCode);
+            voidTxn.setTrace(trace);
+            voidTxn.setTransaction(txn);
+
+            ctx.put(VOID_TXN, voidTxn);
         }
 
         return saveVoidTxn(ctx);

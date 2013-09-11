@@ -32,6 +32,10 @@ public class BatchTxn {
 
     private Date createdAt;
 
+    public BatchTxn() {
+        this.createdAt = new Date();
+    }
+
     public BatchTxn(String cardNumber, String cardExpire, Long amount) {
         this.cardNumber = cardNumber;
         this.cardExpire = cardExpire;
