@@ -28,6 +28,8 @@ public class CheckTrace extends BankTxnSupport {
 
         Trace trace = dao.findBy(terminal, traceNumber);
 
+        ctx.put(BANK_TRACE, trace);
+
         assertNull(trace, "94");
 
         closeDB(ctx);
