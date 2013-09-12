@@ -11,7 +11,7 @@
         </property>
 
         <many-to-one name="terminal" class="com.midtrans.bank.core.model.Terminal" fetch="join">
-            <column name="fk_terminal"/>
+            <column name="fk_terminal" not-null="false"/>
         </many-to-one>
 
         <property name="traceNumber" type="java.lang.Integer" column="trace_number"/>

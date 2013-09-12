@@ -35,7 +35,7 @@ public class SaveTransaction extends BankTxnSupport implements AbortParticipant 
             String refNo = ctx.getString(REFERENCE_NUMBER, Long.toHexString(System.currentTimeMillis()));
             String authId = ctx.getString(AUTHORIZATION_ID, "");
             String rCode = ctx.getString(RCODE);
-            Trace trace = (Trace) ctx.get(TRACE);
+            Trace trace = (Trace) ctx.get(BANK_TRACE);
 
             Transaction txn = new Transaction();
             txn.setAmount(amount);

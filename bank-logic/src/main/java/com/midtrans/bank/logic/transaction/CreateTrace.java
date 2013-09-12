@@ -16,6 +16,19 @@ import org.jpos.transaction.Context;
 public class CreateTrace extends BankTxnSupport implements AbortParticipant {
     @Override
     protected int doPrepare(long id, Context ctx) throws Exception {
+        return createTrace(ctx);
+    }
+
+    @Override
+    protected int doPrepareForAbort(long id, Context ctx) throws Exception {
+        if(ctx.get(BANK_TRACE) != null) {
+            return PREPARED | NO_JOIN;
+        }
+
+        return createTrace(ctx);
+    }
+
+    private int createTrace(Context ctx) {
         Terminal terminal = (Terminal) ctx.get(TERMINAL);
         Integer traceNumber = (Integer) ctx.get(TRACE_NUMBER);
 

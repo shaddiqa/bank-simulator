@@ -30,7 +30,7 @@ public class SaveVoidTxn extends BankTxnSupport implements AbortParticipant {
             Long amount = (Long) ctx.get(AMOUNT);
             String authId = ctx.getString(AUTHORIZATION_ID, "");
             String rCode = ctx.getString(RCODE);
-            Trace trace = (Trace) ctx.get(TRACE);
+            Trace trace = (Trace) ctx.get(BANK_TRACE);
             Transaction txn = (Transaction) ctx.get(TXN);
 
             VoidTxn voidTxn = new VoidTxn();

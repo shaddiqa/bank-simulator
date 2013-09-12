@@ -36,7 +36,7 @@ public class SaveBatchTxn extends BankTxnSupport implements AbortParticipant {
             String authId = ctx.getString(AUTHORIZATION_ID, "");
             String rCode = ctx.getString(RCODE);
             String batchNumber = ctx.getString(BATCH_NUMBER);
-            Trace trace = (Trace) ctx.get(TRACE);
+            Trace trace = (Trace) ctx.get(BANK_TRACE);
 
             BatchTxn batchTxn = new BatchTxn();
             batchTxn.setAmount(amount);

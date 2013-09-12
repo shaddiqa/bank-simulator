@@ -34,7 +34,7 @@ public class SaveSettlementTxn extends BankTxnSupport implements AbortParticipan
             String batchNumber = ctx.getString(BATCH_NUMBER);
             SettlementParameter parameter = (SettlementParameter) ctx.get(SETTLE_PARAM);
             String rCode = ctx.getString(RCODE);
-            Trace trace = (Trace) ctx.get(TRACE);
+            Trace trace = (Trace) ctx.get(BANK_TRACE);
 
             SettlementTxn settlementTxn = new SettlementTxn();
             settlementTxn.setTxnTime(txnTime);
