@@ -21,6 +21,10 @@ public class CreateTrace extends BankTxnSupport implements AbortParticipant {
 
     @Override
     protected int doPrepareForAbort(long id, Context ctx) throws Exception {
+        if(ctx.get(TERMINAL) == null) {
+            return PREPARED | NO_JOIN;
+        }
+
         return createTrace(ctx);
     }
 
